@@ -1,0 +1,1273 @@
+!SESSION 2019-03-08 15:31:05.261 -----------------------------------------------
+eclipse.buildId=unknown
+java.fullversion=JRE 1.8.0 IBM J9 2.8 Windows 10 x86-32 20160106_284759 (JIT enabled, AOT enabled)
+J9VM - R28_20160106_1341_B284759
+JIT  - tr.r14.java_20151209_107110.02
+GC   - R28_20160106_1341_B284759
+J9CL - 20160106_284759
+BootLoader constants: OS=win32, ARCH=x86, WS=win32, NL=en_US
+Framework arguments:  -product com.ibm.rational.rad.product.v95.ide
+Command-line arguments:  -os win32 -ws win32 -arch x86 -product com.ibm.rational.rad.product.v95.ide
+
+!ENTRY com.ibm.rational.clearcase.rtc.UCMActivity 4 0 2019-03-08 15:31:06.989
+!MESSAGE FrameworkEvent ERROR
+!STACK 0
+org.osgi.framework.BundleException: Could not resolve module: com.ibm.rational.clearcase.rtc.UCMActivity [2721]
+  Unresolved requirement: Require-Bundle: com.rational.clearcase
+
+	at org.eclipse.osgi.container.Module.start(Unknown Source)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.incStartLevel(Unknown Source)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.incStartLevel(Unknown Source)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.doContainerStartLevel(Unknown Source)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.dispatchEvent(Unknown Source)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.dispatchEvent(Unknown Source)
+	at org.eclipse.osgi.framework.eventmgr.EventManager.dispatchEvent(Unknown Source)
+	at org.eclipse.osgi.framework.eventmgr.EventManager$EventThread.run(Unknown Source)
+
+!ENTRY com.ibm.datatools.core.http 1 0 2019-03-08 15:31:24.861
+!MESSAGE Embedded server started: [HTTP port: 56791, HTTPS port: 56792]
+
+!ENTRY com.ibm.datatools.core.http 1 0 2019-03-08 15:34:00.493
+!MESSAGE Embedded HTTP server stopped
+!SESSION 2019-03-13 16:17:51.760 -----------------------------------------------
+eclipse.buildId=unknown
+java.fullversion=JRE 1.8.0 IBM J9 2.8 Windows 10 x86-32 20160106_284759 (JIT enabled, AOT enabled)
+J9VM - R28_20160106_1341_B284759
+JIT  - tr.r14.java_20151209_107110.02
+GC   - R28_20160106_1341_B284759
+J9CL - 20160106_284759
+BootLoader constants: OS=win32, ARCH=x86, WS=win32, NL=en_US
+Framework arguments:  -product com.ibm.rational.rad.product.v95.ide
+Command-line arguments:  -os win32 -ws win32 -arch x86 -product com.ibm.rational.rad.product.v95.ide
+
+!ENTRY com.ibm.rational.clearcase.rtc.UCMActivity 4 0 2019-03-13 16:17:53.414
+!MESSAGE FrameworkEvent ERROR
+!STACK 0
+org.osgi.framework.BundleException: Could not resolve module: com.ibm.rational.clearcase.rtc.UCMActivity [2721]
+  Unresolved requirement: Require-Bundle: com.rational.clearcase
+
+	at org.eclipse.osgi.container.Module.start(Unknown Source)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.incStartLevel(Unknown Source)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.incStartLevel(Unknown Source)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.doContainerStartLevel(Unknown Source)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.dispatchEvent(Unknown Source)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.dispatchEvent(Unknown Source)
+	at org.eclipse.osgi.framework.eventmgr.EventManager.dispatchEvent(Unknown Source)
+	at org.eclipse.osgi.framework.eventmgr.EventManager$EventThread.run(Unknown Source)
+
+!ENTRY org.eclipse.core.resources 4 567 2019-03-13 16:18:04.649
+!MESSAGE Workspace restored, but some problems occurred.
+!SUBENTRY 1 org.eclipse.core.resources 4 567 2019-03-13 16:18:04.649
+!MESSAGE Could not read metadata for 'RemoteSystemsTempFiles'.
+!STACK 1
+org.eclipse.core.internal.resources.ResourceException: The project description file (.project) for 'RemoteSystemsTempFiles' is missing.  This file contains important information about the project.  The project will not function properly until this file is restored.
+	at org.eclipse.core.internal.localstore.FileSystemResourceManager.read(Unknown Source)
+	at org.eclipse.core.internal.resources.SaveManager.restoreMetaInfo(Unknown Source)
+	at org.eclipse.core.internal.resources.SaveManager.restoreMetaInfo(Unknown Source)
+	at org.eclipse.core.internal.resources.SaveManager.restore(Unknown Source)
+	at org.eclipse.core.internal.resources.SaveManager.startup(Unknown Source)
+	at org.eclipse.core.internal.resources.Workspace.startup(Unknown Source)
+	at org.eclipse.core.internal.resources.Workspace.open(Unknown Source)
+	at org.eclipse.core.resources.ResourcesPlugin.start(Unknown Source)
+	at org.eclipse.osgi.internal.framework.BundleContextImpl$3.run(Unknown Source)
+	at org.eclipse.osgi.internal.framework.BundleContextImpl$3.run(Unknown Source)
+	at java.security.AccessController.doPrivileged(Unknown Source)
+	at org.eclipse.osgi.internal.framework.BundleContextImpl.startActivator(Unknown Source)
+	at org.eclipse.osgi.internal.framework.BundleContextImpl.start(Unknown Source)
+	at org.eclipse.osgi.internal.framework.EquinoxBundle.startWorker0(Unknown Source)
+	at org.eclipse.osgi.internal.framework.EquinoxBundle$EquinoxModule.startWorker(Unknown Source)
+	at org.eclipse.osgi.container.Module.doStart(Unknown Source)
+	at org.eclipse.osgi.container.Module.start(Unknown Source)
+	at org.eclipse.osgi.framework.util.SecureAction.start(Unknown Source)
+	at org.eclipse.osgi.internal.hooks.EclipseLazyStarter.postFindLocalClass(Unknown Source)
+	at org.eclipse.osgi.internal.loader.classpath.ClasspathManager.findLocalClass(Unknown Source)
+	at org.eclipse.osgi.internal.loader.ModuleClassLoader.findLocalClass(Unknown Source)
+	at org.eclipse.osgi.internal.loader.BundleLoader.findLocalClass(Unknown Source)
+	at org.eclipse.osgi.internal.loader.sources.SingleSourcePackage.loadClass(Unknown Source)
+	at org.eclipse.osgi.internal.loader.BundleLoader.findClassInternal(Unknown Source)
+	at org.eclipse.osgi.internal.loader.BundleLoader.findClass(Unknown Source)
+	at org.eclipse.osgi.internal.loader.BundleLoader.findClass(Unknown Source)
+	at org.eclipse.osgi.internal.loader.ModuleClassLoader.loadClass(Unknown Source)
+	at java.lang.ClassLoader.loadClass(Unknown Source)
+	at org.eclipse.ui.internal.ide.application.IDEApplication.start(Unknown Source)
+	at org.eclipse.equinox.internal.app.EclipseAppHandle.run(Unknown Source)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.runApplication(Unknown Source)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.start(Unknown Source)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(Unknown Source)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(Unknown Source)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.eclipse.equinox.launcher.Main.invokeFramework(Unknown Source)
+	at org.eclipse.equinox.launcher.Main.basicRun(Unknown Source)
+	at org.eclipse.equinox.launcher.Main.run(Unknown Source)
+	at org.eclipse.equinox.launcher.Main.main(Unknown Source)
+!SUBENTRY 2 org.eclipse.core.resources 4 567 2019-03-13 16:18:04.649
+!MESSAGE The project description file (.project) for 'RemoteSystemsTempFiles' is missing.  This file contains important information about the project.  The project will not function properly until this file is restored.
+
+!ENTRY com.ibm.datatools.core.http 1 0 2019-03-13 16:18:09.613
+!MESSAGE Embedded server started: [HTTP port: 56788, HTTPS port: 56789]
+
+!ENTRY com.ibm.datatools.core.http 1 0 2019-03-13 16:18:34.321
+!MESSAGE Embedded HTTP server stopped
+!SESSION 2019-03-13 16:19:59.028 -----------------------------------------------
+eclipse.buildId=unknown
+java.fullversion=JRE 1.8.0 IBM J9 2.8 Windows 10 x86-32 20160106_284759 (JIT enabled, AOT enabled)
+J9VM - R28_20160106_1341_B284759
+JIT  - tr.r14.java_20151209_107110.02
+GC   - R28_20160106_1341_B284759
+J9CL - 20160106_284759
+BootLoader constants: OS=win32, ARCH=x86, WS=win32, NL=en_US
+Framework arguments:  -product com.ibm.rational.rad.product.v95.ide
+Command-line arguments:  -os win32 -ws win32 -arch x86 -product com.ibm.rational.rad.product.v95.ide
+
+!ENTRY com.ibm.rational.clearcase.rtc.UCMActivity 4 0 2019-03-13 16:20:00.622
+!MESSAGE FrameworkEvent ERROR
+!STACK 0
+org.osgi.framework.BundleException: Could not resolve module: com.ibm.rational.clearcase.rtc.UCMActivity [2721]
+  Unresolved requirement: Require-Bundle: com.rational.clearcase
+
+	at org.eclipse.osgi.container.Module.start(Unknown Source)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.incStartLevel(Unknown Source)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.incStartLevel(Unknown Source)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.doContainerStartLevel(Unknown Source)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.dispatchEvent(Unknown Source)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.dispatchEvent(Unknown Source)
+	at org.eclipse.osgi.framework.eventmgr.EventManager.dispatchEvent(Unknown Source)
+	at org.eclipse.osgi.framework.eventmgr.EventManager$EventThread.run(Unknown Source)
+
+!ENTRY com.ibm.datatools.core.http 1 0 2019-03-13 16:20:08.423
+!MESSAGE Embedded server started: [HTTP port: 56788, HTTPS port: 56789]
+
+!ENTRY org.tigris.subversion.subclipse.core 4 0 2019-03-13 16:22:10.193
+!MESSAGE Could not auto-share project adminAPI
+!STACK 1
+org.tigris.subversion.subclipse.core.SVNException: Provided SVN information does not match that on disk for project 'adminAPI'.
+	at org.tigris.subversion.subclipse.core.resources.SVNWorkspaceRoot.setSharing(Unknown Source)
+	at org.tigris.subversion.subclipse.core.SVNTeamProviderType$AutoShareJob.autoconnectSVNProject(Unknown Source)
+	at org.tigris.subversion.subclipse.core.SVNTeamProviderType$AutoShareJob.run(Unknown Source)
+	at org.eclipse.core.internal.jobs.Worker.run(Unknown Source)
+!SUBENTRY 1 org.tigris.subversion.subclipse.core 4 4 2019-03-13 16:22:10.193
+!MESSAGE Provided SVN information does not match that on disk for project 'adminAPI'.
+!SESSION 2019-03-14 08:28:55.816 -----------------------------------------------
+eclipse.buildId=unknown
+java.fullversion=JRE 1.8.0 IBM J9 2.8 Windows 10 x86-32 20160106_284759 (JIT enabled, AOT enabled)
+J9VM - R28_20160106_1341_B284759
+JIT  - tr.r14.java_20151209_107110.02
+GC   - R28_20160106_1341_B284759
+J9CL - 20160106_284759
+BootLoader constants: OS=win32, ARCH=x86, WS=win32, NL=en_US
+Framework arguments:  -product com.ibm.rational.rad.product.v95.ide
+Command-line arguments:  -os win32 -ws win32 -arch x86 -product com.ibm.rational.rad.product.v95.ide
+
+!ENTRY com.ibm.rational.clearcase.rtc.UCMActivity 4 0 2019-03-14 08:28:57.573
+!MESSAGE FrameworkEvent ERROR
+!STACK 0
+org.osgi.framework.BundleException: Could not resolve module: com.ibm.rational.clearcase.rtc.UCMActivity [2721]
+  Unresolved requirement: Require-Bundle: com.rational.clearcase
+
+	at org.eclipse.osgi.container.Module.start(Unknown Source)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.incStartLevel(Unknown Source)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.incStartLevel(Unknown Source)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.doContainerStartLevel(Unknown Source)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.dispatchEvent(Unknown Source)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.dispatchEvent(Unknown Source)
+	at org.eclipse.osgi.framework.eventmgr.EventManager.dispatchEvent(Unknown Source)
+	at org.eclipse.osgi.framework.eventmgr.EventManager$EventThread.run(Unknown Source)
+
+!ENTRY com.ibm.datatools.core.http 1 0 2019-03-14 08:29:11.598
+!MESSAGE Embedded server started: [HTTP port: 56788, HTTPS port: 56789]
+
+!ENTRY com.ibm.ws.jaxrs.core 4 0 2019-03-14 08:34:20.051
+!MESSAGE AccountsController [in [Working copy] AccountsController.java [in gov.wisconsin.admin.controller [in src/main/java [in adminAPI]]]] does not exist
+!STACK 1
+Java Model Exception: Java Model Status [AccountsController [in [Working copy] AccountsController.java [in gov.wisconsin.admin.controller [in src/main/java [in adminAPI]]]] does not exist]
+	at org.eclipse.jdt.internal.core.JavaElement.newNotPresentException(Unknown Source)
+	at org.eclipse.jdt.internal.core.JavaElement.openWhenClosed(Unknown Source)
+	at org.eclipse.jdt.internal.core.JavaElement.getElementInfo(Unknown Source)
+	at org.eclipse.jdt.internal.core.JavaElement.getElementInfo(Unknown Source)
+	at org.eclipse.jdt.internal.core.SourceType.isInterface(Unknown Source)
+	at com.ibm.ws.jaxrs.finder.AbstractSourceFinder.resourceChanged(Unknown Source)
+	at com.ibm.ccl.ws.internal.finder.core.notifier.impl.NotifyResourceChangedJob.run(Unknown Source)
+	at org.eclipse.core.internal.jobs.Worker.run(Unknown Source)
+!SUBENTRY 1 org.eclipse.jdt.core 4 969 2019-03-14 08:34:20.051
+!MESSAGE AccountsController [in [Working copy] AccountsController.java [in gov.wisconsin.admin.controller [in src/main/java [in adminAPI]]]] does not exist
+
+!ENTRY com.ibm.ws.jaxrs.core 4 0 2019-03-14 08:34:23.273
+!MESSAGE AccountsController [in [Working copy] AccountsController.java [in gov.wisconsin.admin.controller [in src/main/java [in adminAPI]]]] does not exist
+!STACK 1
+Java Model Exception: Java Model Status [AccountsController [in [Working copy] AccountsController.java [in gov.wisconsin.admin.controller [in src/main/java [in adminAPI]]]] does not exist]
+	at org.eclipse.jdt.internal.core.JavaElement.newNotPresentException(Unknown Source)
+	at org.eclipse.jdt.internal.core.JavaElement.openWhenClosed(Unknown Source)
+	at org.eclipse.jdt.internal.core.JavaElement.getElementInfo(Unknown Source)
+	at org.eclipse.jdt.internal.core.JavaElement.getElementInfo(Unknown Source)
+	at org.eclipse.jdt.internal.core.SourceType.isInterface(Unknown Source)
+	at com.ibm.ws.jaxrs.finder.AbstractSourceFinder.resourceChanged(Unknown Source)
+	at com.ibm.ccl.ws.internal.finder.core.notifier.impl.NotifyResourceChangedJob.run(Unknown Source)
+	at org.eclipse.core.internal.jobs.Worker.run(Unknown Source)
+!SUBENTRY 1 org.eclipse.jdt.core 4 969 2019-03-14 08:34:23.273
+!MESSAGE AccountsController [in [Working copy] AccountsController.java [in gov.wisconsin.admin.controller [in src/main/java [in adminAPI]]]] does not exist
+
+!ENTRY com.ibm.ccl.sca.composite.emf 2 0 2019-03-14 08:36:13.714
+!MESSAGE Composite diagram namespaces not found
+!STACK 0
+org.xml.sax.SAXParseException: Content is not allowed in prolog.
+	at org.apache.xerces.parsers.AbstractSAXParser.parse(Unknown Source)
+	at org.apache.xerces.jaxp.SAXParserImpl$JAXPSAXParser.parse(Unknown Source)
+	at com.ibm.ccl.sca.composite.emf.internal.content.CompositeDiagramContentDescriber.describe(Unknown Source)
+	at com.ibm.ccl.sca.composite.emf.internal.content.CompositeDiagramContentDescriber.describe(Unknown Source)
+	at org.eclipse.core.internal.content.ContentTypeCatalog.describe(Unknown Source)
+	at org.eclipse.core.internal.content.ContentTypeCatalog.collectMatchingByContents(Unknown Source)
+	at org.eclipse.core.internal.content.ContentTypeCatalog.internalFindContentTypesFor(Unknown Source)
+	at org.eclipse.core.internal.content.ContentTypeCatalog.internalFindContentTypesFor(Unknown Source)
+	at org.eclipse.core.internal.content.ContentTypeCatalog.findContentTypesFor(Unknown Source)
+	at org.eclipse.core.internal.content.ContentTypeMatcher.findContentTypeFor(Unknown Source)
+	at org.eclipse.wst.sse.core.internal.modelhandler.ModelHandlerRegistry.getHandlerFor(Unknown Source)
+	at org.eclipse.wst.sse.core.internal.model.ModelManagerImpl.calculateType(Unknown Source)
+	at org.eclipse.wst.sse.core.internal.model.ModelManagerImpl.getModelForEdit(Unknown Source)
+	at org.eclipse.wst.sse.ui.internal.StorageModelProvider.loadModel(Unknown Source)
+	at org.eclipse.wst.sse.ui.internal.StorageModelProvider.loadModel(Unknown Source)
+	at org.eclipse.wst.sse.ui.internal.StorageModelProvider.selfCreateModel(Unknown Source)
+	at org.eclipse.wst.sse.ui.internal.StorageModelProvider.createModelInfo(Unknown Source)
+	at org.eclipse.wst.sse.ui.internal.StorageModelProvider.createElementInfo(Unknown Source)
+	at org.eclipse.ui.texteditor.AbstractDocumentProvider.connect(Unknown Source)
+	at org.eclipse.ui.texteditor.AbstractTextEditor.doSetInput(Unknown Source)
+	at org.eclipse.ui.texteditor.StatusTextEditor.doSetInput(Unknown Source)
+	at org.eclipse.ui.texteditor.AbstractDecoratedTextEditor.doSetInput(Unknown Source)
+	at org.eclipse.ui.editors.text.TextEditor.doSetInput(Unknown Source)
+	at org.eclipse.wst.sse.ui.StructuredTextEditor.doSetInput(Unknown Source)
+	at org.eclipse.ui.texteditor.AbstractTextEditor$19.run(Unknown Source)
+	at org.eclipse.jface.operation.ModalContext.runInCurrentThread(Unknown Source)
+	at org.eclipse.jface.operation.ModalContext.run(Unknown Source)
+	at org.eclipse.ui.internal.WorkbenchWindow$13.run(Unknown Source)
+	at org.eclipse.swt.custom.BusyIndicator.showWhile(Unknown Source)
+	at org.eclipse.ui.internal.WorkbenchWindow.run(Unknown Source)
+	at org.eclipse.ui.texteditor.AbstractTextEditor.internalInit(Unknown Source)
+	at org.eclipse.ui.texteditor.AbstractTextEditor.init(Unknown Source)
+	at org.eclipse.wst.sse.ui.StructuredTextEditor.init(Unknown Source)
+	at org.eclipse.ui.part.MultiPageEditorPart.addPage(Unknown Source)
+	at org.eclipse.ui.forms.editor.FormEditor.addPage(Unknown Source)
+	at org.eclipse.ui.part.MultiPageEditorPart.addPage(Unknown Source)
+	at org.eclipse.ui.forms.editor.FormEditor.addPage(Unknown Source)
+	at org.eclipse.m2e.editor.pom.MavenPomEditor.addSourcePage(Unknown Source)
+	at org.eclipse.m2e.editor.pom.MavenPomEditor.addPages(Unknown Source)
+	at org.eclipse.ui.forms.editor.FormEditor.createPages(Unknown Source)
+	at org.eclipse.ui.part.MultiPageEditorPart.createPartControl(Unknown Source)
+	at org.eclipse.ui.internal.e4.compatibility.CompatibilityPart.createPartControl(Unknown Source)
+	at org.eclipse.ui.internal.e4.compatibility.CompatibilityEditor.createPartControl(Unknown Source)
+	at org.eclipse.ui.internal.e4.compatibility.CompatibilityPart.create(Unknown Source)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.eclipse.e4.core.internal.di.MethodRequestor.execute(Unknown Source)
+	at org.eclipse.e4.core.internal.di.InjectorImpl.processAnnotated(Unknown Source)
+	at org.eclipse.e4.core.internal.di.InjectorImpl.processAnnotated(Unknown Source)
+	at org.eclipse.e4.core.internal.di.InjectorImpl.inject(Unknown Source)
+	at org.eclipse.e4.core.internal.di.InjectorImpl.internalMake(Unknown Source)
+	at org.eclipse.e4.core.internal.di.InjectorImpl.make(Unknown Source)
+	at org.eclipse.e4.core.contexts.ContextInjectionFactory.make(Unknown Source)
+	at org.eclipse.e4.ui.internal.workbench.ReflectionContributionFactory.createFromBundle(Unknown Source)
+	at org.eclipse.e4.ui.internal.workbench.ReflectionContributionFactory.doCreate(Unknown Source)
+	at org.eclipse.e4.ui.internal.workbench.ReflectionContributionFactory.create(Unknown Source)
+	at org.eclipse.e4.ui.workbench.renderers.swt.ContributedPartRenderer.createWidget(Unknown Source)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.createWidget(Unknown Source)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.safeCreateGui(Unknown Source)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.safeCreateGui(Unknown Source)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.access$2(Unknown Source)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine$7.run(Unknown Source)
+	at org.eclipse.core.runtime.SafeRunner.run(Unknown Source)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.createGui(Unknown Source)
+	at org.eclipse.e4.ui.workbench.renderers.swt.StackRenderer.showTab(Unknown Source)
+	at org.eclipse.e4.ui.workbench.renderers.swt.LazyStackRenderer$1.handleEvent(Unknown Source)
+	at org.eclipse.e4.ui.services.internal.events.UIEventHandler$1.run(Unknown Source)
+	at org.eclipse.swt.widgets.Synchronizer.syncExec(Unknown Source)
+	at org.eclipse.ui.internal.UISynchronizer.syncExec(Unknown Source)
+	at org.eclipse.swt.widgets.Display.syncExec(Unknown Source)
+	at org.eclipse.e4.ui.internal.workbench.swt.E4Application$1.syncExec(Unknown Source)
+	at org.eclipse.e4.ui.services.internal.events.UIEventHandler.handleEvent(Unknown Source)
+	at org.eclipse.equinox.internal.event.EventHandlerWrapper.handleEvent(Unknown Source)
+	at org.eclipse.equinox.internal.event.EventHandlerTracker.dispatchEvent(Unknown Source)
+	at org.eclipse.equinox.internal.event.EventHandlerTracker.dispatchEvent(Unknown Source)
+	at org.eclipse.osgi.framework.eventmgr.EventManager.dispatchEvent(Unknown Source)
+	at org.eclipse.osgi.framework.eventmgr.ListenerQueue.dispatchEventSynchronous(Unknown Source)
+	at org.eclipse.equinox.internal.event.EventAdminImpl.dispatchEvent(Unknown Source)
+	at org.eclipse.equinox.internal.event.EventAdminImpl.sendEvent(Unknown Source)
+	at org.eclipse.equinox.internal.event.EventComponent.sendEvent(Unknown Source)
+	at org.eclipse.e4.ui.services.internal.events.EventBroker.send(Unknown Source)
+	at org.eclipse.e4.ui.internal.workbench.UIEventPublisher.notifyChanged(Unknown Source)
+	at org.eclipse.emf.common.notify.impl.BasicNotifierImpl.eNotify(Unknown Source)
+	at org.eclipse.e4.ui.model.application.ui.impl.ElementContainerImpl.setSelectedElement(Unknown Source)
+	at org.eclipse.e4.ui.internal.workbench.ModelServiceImpl.showElementInWindow(Unknown Source)
+	at org.eclipse.e4.ui.internal.workbench.ModelServiceImpl.bringToTop(Unknown Source)
+	at org.eclipse.e4.ui.internal.workbench.PartServiceImpl.delegateBringToTop(Unknown Source)
+	at org.eclipse.e4.ui.internal.workbench.PartServiceImpl.bringToTop(Unknown Source)
+	at org.eclipse.e4.ui.internal.workbench.PartServiceImpl.showPart(Unknown Source)
+	at org.eclipse.ui.internal.WorkbenchPage.busyOpenEditor(Unknown Source)
+	at org.eclipse.ui.internal.WorkbenchPage.access$24(Unknown Source)
+	at org.eclipse.ui.internal.WorkbenchPage$9.run(Unknown Source)
+	at org.eclipse.swt.custom.BusyIndicator.showWhile(Unknown Source)
+	at org.eclipse.ui.internal.WorkbenchPage.openEditor(Unknown Source)
+	at org.eclipse.ui.internal.WorkbenchPage.openEditor(Unknown Source)
+	at org.eclipse.ui.internal.WorkbenchPage.openEditor(Unknown Source)
+	at org.eclipse.ui.ide.IDE.openEditor(Unknown Source)
+	at org.eclipse.ui.ide.IDE.openEditor(Unknown Source)
+	at org.eclipse.jdt.internal.ui.javaeditor.EditorUtility.openInEditor(Unknown Source)
+	at org.eclipse.jdt.internal.ui.javaeditor.EditorUtility.openInEditor(Unknown Source)
+	at org.eclipse.jdt.ui.actions.OpenAction.run(Unknown Source)
+	at org.eclipse.jdt.ui.actions.OpenAction.run(Unknown Source)
+	at org.eclipse.jdt.ui.actions.SelectionDispatchAction.dispatchRun(Unknown Source)
+	at org.eclipse.jdt.ui.actions.SelectionDispatchAction.run(Unknown Source)
+	at org.eclipse.jdt.internal.ui.navigator.OpenAndExpand.run(Unknown Source)
+	at org.eclipse.ui.actions.RetargetAction.run(Unknown Source)
+	at org.eclipse.ui.navigator.CommonNavigatorManager$3.open(Unknown Source)
+	at org.eclipse.ui.OpenAndLinkWithEditorHelper$InternalListener.open(Unknown Source)
+	at org.eclipse.jface.viewers.StructuredViewer$2.run(Unknown Source)
+	at org.eclipse.core.runtime.SafeRunner.run(Unknown Source)
+	at org.eclipse.ui.internal.JFaceUtil$1.run(Unknown Source)
+	at org.eclipse.jface.util.SafeRunnable.run(Unknown Source)
+	at org.eclipse.jface.viewers.StructuredViewer.fireOpen(Unknown Source)
+	at org.eclipse.jface.viewers.StructuredViewer.handleOpen(Unknown Source)
+	at org.eclipse.ui.navigator.CommonViewer.handleOpen(Unknown Source)
+	at org.eclipse.jface.viewers.StructuredViewer$6.handleOpen(Unknown Source)
+	at org.eclipse.jface.util.OpenStrategy.fireOpenEvent(Unknown Source)
+	at org.eclipse.jface.util.OpenStrategy.access$2(Unknown Source)
+	at org.eclipse.jface.util.OpenStrategy$1.handleEvent(Unknown Source)
+	at org.eclipse.swt.widgets.EventTable.sendEvent(Unknown Source)
+	at org.eclipse.swt.widgets.Display.sendEvent(Unknown Source)
+	at org.eclipse.swt.widgets.Widget.sendEvent(Unknown Source)
+	at org.eclipse.swt.widgets.Display.runDeferredEvents(Unknown Source)
+	at org.eclipse.swt.widgets.Display.readAndDispatch(Unknown Source)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine$9.run(Unknown Source)
+	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Unknown Source)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.run(Unknown Source)
+	at org.eclipse.e4.ui.internal.workbench.E4Workbench.createAndRunUI(Unknown Source)
+	at org.eclipse.ui.internal.Workbench$5.run(Unknown Source)
+	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Unknown Source)
+	at org.eclipse.ui.internal.Workbench.createAndRunWorkbench(Unknown Source)
+	at org.eclipse.ui.PlatformUI.createAndRunWorkbench(Unknown Source)
+	at org.eclipse.ui.internal.ide.application.IDEApplication.start(Unknown Source)
+	at org.eclipse.equinox.internal.app.EclipseAppHandle.run(Unknown Source)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.runApplication(Unknown Source)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.start(Unknown Source)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(Unknown Source)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(Unknown Source)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.eclipse.equinox.launcher.Main.invokeFramework(Unknown Source)
+	at org.eclipse.equinox.launcher.Main.basicRun(Unknown Source)
+	at org.eclipse.equinox.launcher.Main.run(Unknown Source)
+	at org.eclipse.equinox.launcher.Main.main(Unknown Source)
+
+!ENTRY com.ibm.siptools 1 1 2019-03-14 08:36:13.745
+!MESSAGE com.ibm.siptools.v10.ContentType.SIP_JavaEEQuickPeek.<init>: Content is not allowed in prolog.
+
+!ENTRY org.tigris.subversion.subclipse.core 4 0 2019-03-14 08:41:37.345
+!MESSAGE Could not auto-share project adminAPIEAR
+!STACK 1
+org.tigris.subversion.subclipse.core.SVNException: Provided SVN information does not match that on disk for project 'adminAPIEAR'.
+	at org.tigris.subversion.subclipse.core.resources.SVNWorkspaceRoot.setSharing(Unknown Source)
+	at org.tigris.subversion.subclipse.core.SVNTeamProviderType$AutoShareJob.autoconnectSVNProject(Unknown Source)
+	at org.tigris.subversion.subclipse.core.SVNTeamProviderType$AutoShareJob.run(Unknown Source)
+	at org.eclipse.core.internal.jobs.Worker.run(Unknown Source)
+!SUBENTRY 1 org.tigris.subversion.subclipse.core 4 4 2019-03-14 08:41:37.345
+!MESSAGE Provided SVN information does not match that on disk for project 'adminAPIEAR'.
+
+!ENTRY org.tigris.subversion.subclipse.core 4 0 2019-03-14 08:44:00.740
+!MESSAGE Could not auto-share project adminEAR
+!STACK 1
+org.tigris.subversion.subclipse.core.SVNException: Provided SVN information does not match that on disk for project 'adminEAR'.
+	at org.tigris.subversion.subclipse.core.resources.SVNWorkspaceRoot.setSharing(Unknown Source)
+	at org.tigris.subversion.subclipse.core.SVNTeamProviderType$AutoShareJob.autoconnectSVNProject(Unknown Source)
+	at org.tigris.subversion.subclipse.core.SVNTeamProviderType$AutoShareJob.run(Unknown Source)
+	at org.eclipse.core.internal.jobs.Worker.run(Unknown Source)
+!SUBENTRY 1 org.tigris.subversion.subclipse.core 4 4 2019-03-14 08:44:00.740
+!MESSAGE Provided SVN information does not match that on disk for project 'adminEAR'.
+
+!ENTRY org.tigris.subversion.subclipse.core 4 0 2019-03-14 08:45:11.183
+!MESSAGE Could not auto-share project adminEAR
+!STACK 1
+org.tigris.subversion.subclipse.core.SVNException: Provided SVN information does not match that on disk for project 'adminEAR'.
+	at org.tigris.subversion.subclipse.core.resources.SVNWorkspaceRoot.setSharing(Unknown Source)
+	at org.tigris.subversion.subclipse.core.SVNTeamProviderType$AutoShareJob.autoconnectSVNProject(Unknown Source)
+	at org.tigris.subversion.subclipse.core.SVNTeamProviderType$AutoShareJob.run(Unknown Source)
+	at org.eclipse.core.internal.jobs.Worker.run(Unknown Source)
+!SUBENTRY 1 org.tigris.subversion.subclipse.core 4 4 2019-03-14 08:45:11.184
+!MESSAGE Provided SVN information does not match that on disk for project 'adminEAR'.
+
+!ENTRY com.ibm.ws.jaxrs.core 4 0 2019-03-14 09:47:27.350
+!MESSAGE GetAllCategoryRequest [in [Working copy] GetAllCategoryRequest.java [in gov.wisconsin.admin.pojo.response [in src/main/java [in adminAPI]]]] does not exist
+!STACK 1
+Java Model Exception: Java Model Status [GetAllCategoryRequest [in [Working copy] GetAllCategoryRequest.java [in gov.wisconsin.admin.pojo.response [in src/main/java [in adminAPI]]]] does not exist]
+	at org.eclipse.jdt.internal.core.JavaElement.newNotPresentException(Unknown Source)
+	at org.eclipse.jdt.internal.core.JavaElement.openWhenClosed(Unknown Source)
+	at org.eclipse.jdt.internal.core.JavaElement.getElementInfo(Unknown Source)
+	at org.eclipse.jdt.internal.core.JavaElement.getElementInfo(Unknown Source)
+	at org.eclipse.jdt.internal.core.SourceType.isInterface(Unknown Source)
+	at com.ibm.ws.jaxrs.finder.AbstractSourceFinder.resourceChanged(Unknown Source)
+	at com.ibm.ccl.ws.internal.finder.core.notifier.impl.NotifyResourceChangedJob.run(Unknown Source)
+	at org.eclipse.core.internal.jobs.Worker.run(Unknown Source)
+!SUBENTRY 1 org.eclipse.jdt.core 4 969 2019-03-14 09:47:27.350
+!MESSAGE GetAllCategoryRequest [in [Working copy] GetAllCategoryRequest.java [in gov.wisconsin.admin.pojo.response [in src/main/java [in adminAPI]]]] does not exist
+
+!ENTRY org.eclipse.jface 4 0 2019-03-14 10:37:22.519
+!MESSAGE The command ("com.ibm.j2c.snippets.popup.command.BindingOperation1") is undefined
+!STACK 0
+java.lang.Exception
+	at org.eclipse.jface.action.ExternalActionManager$CommandCallback.isActive(Unknown Source)
+	at org.eclipse.jface.action.ActionContributionItem.isCommandActive(Unknown Source)
+	at org.eclipse.jface.action.ActionContributionItem.isVisible(Unknown Source)
+	at org.eclipse.ui.internal.PluginActionContributionItem.isVisible(Unknown Source)
+	at org.eclipse.jface.action.MenuManager.isChildVisible(Unknown Source)
+	at org.eclipse.jface.action.MenuManager.update(Unknown Source)
+	at org.eclipse.jface.action.MenuManager.handleAboutToShow(Unknown Source)
+	at org.eclipse.jface.action.MenuManager.access$1(Unknown Source)
+	at org.eclipse.jface.action.MenuManager$2.menuShown(Unknown Source)
+	at org.eclipse.swt.widgets.TypedListener.handleEvent(Unknown Source)
+	at org.eclipse.swt.widgets.EventTable.sendEvent(Unknown Source)
+	at org.eclipse.swt.widgets.Display.sendEvent(Unknown Source)
+	at org.eclipse.swt.widgets.Widget.sendEvent(Unknown Source)
+	at org.eclipse.swt.widgets.Widget.sendEvent(Unknown Source)
+	at org.eclipse.swt.widgets.Widget.sendEvent(Unknown Source)
+	at org.eclipse.swt.widgets.Control.WM_INITMENUPOPUP(Unknown Source)
+	at org.eclipse.swt.widgets.Control.windowProc(Unknown Source)
+	at org.eclipse.swt.widgets.Canvas.windowProc(Unknown Source)
+	at org.eclipse.swt.widgets.Decorations.windowProc(Unknown Source)
+	at org.eclipse.swt.widgets.Shell.windowProc(Unknown Source)
+	at org.eclipse.swt.widgets.Display.windowProc(Unknown Source)
+	at org.eclipse.swt.internal.win32.OS.TrackPopupMenu(Native Method)
+	at org.eclipse.swt.widgets.Menu._setVisible(Unknown Source)
+	at org.eclipse.swt.widgets.Display.runPopups(Unknown Source)
+	at org.eclipse.swt.widgets.Display.readAndDispatch(Unknown Source)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine$9.run(Unknown Source)
+	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Unknown Source)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.run(Unknown Source)
+	at org.eclipse.e4.ui.internal.workbench.E4Workbench.createAndRunUI(Unknown Source)
+	at org.eclipse.ui.internal.Workbench$5.run(Unknown Source)
+	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Unknown Source)
+	at org.eclipse.ui.internal.Workbench.createAndRunWorkbench(Unknown Source)
+	at org.eclipse.ui.PlatformUI.createAndRunWorkbench(Unknown Source)
+	at org.eclipse.ui.internal.ide.application.IDEApplication.start(Unknown Source)
+	at org.eclipse.equinox.internal.app.EclipseAppHandle.run(Unknown Source)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.runApplication(Unknown Source)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.start(Unknown Source)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(Unknown Source)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(Unknown Source)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.eclipse.equinox.launcher.Main.invokeFramework(Unknown Source)
+	at org.eclipse.equinox.launcher.Main.basicRun(Unknown Source)
+	at org.eclipse.equinox.launcher.Main.run(Unknown Source)
+	at org.eclipse.equinox.launcher.Main.main(Unknown Source)
+
+!ENTRY com.ibm.ws.jaxrs.core 4 0 2019-03-14 10:39:57.381
+!MESSAGE GetAllCategoryRequest [in [Working copy] GetAllCategoryRequest.java [in gov.wisconsin.admin.pojo.request [in src/main/java [in adminAPI]]]] does not exist
+!STACK 1
+Java Model Exception: Java Model Status [GetAllCategoryRequest [in [Working copy] GetAllCategoryRequest.java [in gov.wisconsin.admin.pojo.request [in src/main/java [in adminAPI]]]] does not exist]
+	at org.eclipse.jdt.internal.core.JavaElement.newNotPresentException(Unknown Source)
+	at org.eclipse.jdt.internal.core.JavaElement.openWhenClosed(Unknown Source)
+	at org.eclipse.jdt.internal.core.JavaElement.getElementInfo(Unknown Source)
+	at org.eclipse.jdt.internal.core.JavaElement.getElementInfo(Unknown Source)
+	at org.eclipse.jdt.internal.core.SourceType.isInterface(Unknown Source)
+	at com.ibm.ws.jaxrs.finder.AbstractSourceFinder.resourceChanged(Unknown Source)
+	at com.ibm.ccl.ws.internal.finder.core.notifier.impl.NotifyResourceChangedJob.run(Unknown Source)
+	at org.eclipse.core.internal.jobs.Worker.run(Unknown Source)
+!SUBENTRY 1 org.eclipse.jdt.core 4 969 2019-03-14 10:39:57.381
+!MESSAGE GetAllCategoryRequest [in [Working copy] GetAllCategoryRequest.java [in gov.wisconsin.admin.pojo.request [in src/main/java [in adminAPI]]]] does not exist
+
+!ENTRY com.ibm.ws.jaxrs.core 4 0 2019-03-14 10:40:05.519
+!MESSAGE GetAllCategoryResponse [in [Working copy] GetAllCategoryResponse.java [in gov.wisconsin.admin.pojo.response [in src/main/java [in adminAPI]]]] does not exist
+!STACK 1
+Java Model Exception: Java Model Status [GetAllCategoryResponse [in [Working copy] GetAllCategoryResponse.java [in gov.wisconsin.admin.pojo.response [in src/main/java [in adminAPI]]]] does not exist]
+	at org.eclipse.jdt.internal.core.JavaElement.newNotPresentException(Unknown Source)
+	at org.eclipse.jdt.internal.core.JavaElement.openWhenClosed(Unknown Source)
+	at org.eclipse.jdt.internal.core.JavaElement.getElementInfo(Unknown Source)
+	at org.eclipse.jdt.internal.core.JavaElement.getElementInfo(Unknown Source)
+	at org.eclipse.jdt.internal.core.SourceType.isInterface(Unknown Source)
+	at com.ibm.ws.jaxrs.finder.AbstractSourceFinder.resourceChanged(Unknown Source)
+	at com.ibm.ccl.ws.internal.finder.core.notifier.impl.NotifyResourceChangedJob.run(Unknown Source)
+	at org.eclipse.core.internal.jobs.Worker.run(Unknown Source)
+!SUBENTRY 1 org.eclipse.jdt.core 4 969 2019-03-14 10:40:05.519
+!MESSAGE GetAllCategoryResponse [in [Working copy] GetAllCategoryResponse.java [in gov.wisconsin.admin.pojo.response [in src/main/java [in adminAPI]]]] does not exist
+!SESSION 2019-03-14 12:54:52.311 -----------------------------------------------
+eclipse.buildId=unknown
+java.fullversion=JRE 1.8.0 IBM J9 2.8 Windows 10 x86-32 20160106_284759 (JIT enabled, AOT enabled)
+J9VM - R28_20160106_1341_B284759
+JIT  - tr.r14.java_20151209_107110.02
+GC   - R28_20160106_1341_B284759
+J9CL - 20160106_284759
+BootLoader constants: OS=win32, ARCH=x86, WS=win32, NL=en_US
+Framework arguments:  -product com.ibm.rational.rad.product.v95.ide
+Command-line arguments:  -os win32 -ws win32 -arch x86 -product com.ibm.rational.rad.product.v95.ide
+
+!ENTRY com.ibm.rational.clearcase.rtc.UCMActivity 4 0 2019-03-14 12:54:54.034
+!MESSAGE FrameworkEvent ERROR
+!STACK 0
+org.osgi.framework.BundleException: Could not resolve module: com.ibm.rational.clearcase.rtc.UCMActivity [2721]
+  Unresolved requirement: Require-Bundle: com.rational.clearcase
+
+	at org.eclipse.osgi.container.Module.start(Unknown Source)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.incStartLevel(Unknown Source)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.incStartLevel(Unknown Source)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.doContainerStartLevel(Unknown Source)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.dispatchEvent(Unknown Source)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.dispatchEvent(Unknown Source)
+	at org.eclipse.osgi.framework.eventmgr.EventManager.dispatchEvent(Unknown Source)
+	at org.eclipse.osgi.framework.eventmgr.EventManager$EventThread.run(Unknown Source)
+
+!ENTRY org.eclipse.core.resources 2 10035 2019-03-14 12:55:04.166
+!MESSAGE The workspace exited with unsaved changes in the previous session; refreshing workspace to recover changes.
+
+!ENTRY com.ibm.datatools.core.http 1 0 2019-03-14 12:55:12.920
+!MESSAGE Embedded server started: [HTTP port: 56800, HTTPS port: 56801]
+
+!ENTRY org.eclipse.jst.jsp.core 4 4 2019-03-14 12:55:15.636
+!MESSAGE A workspace crash was detected. The previous session did not exit normally. Not using saved taglib indexes.
+
+!ENTRY org.eclipse.wst.validation 4 0 2019-03-14 12:55:33.475
+!MESSAGE Web Validator finished validating: null
+
+!ENTRY org.eclipse.wst.validation 4 0 2019-03-14 12:55:33.475
+!MESSAGE [EMFWorkbenchContextBase]The project "adminAPI" is not accessible.
+!STACK 0
+java.lang.IllegalStateException: [EMFWorkbenchContextBase]The project "adminAPI" is not accessible.
+	at org.eclipse.jem.internal.util.emf.workbench.EMFWorkbenchContextFactory.createEMFContext(Unknown Source)
+	at org.eclipse.wst.common.internal.emfworkbench.edit.EMFWorkbenchEditContextFactory.createEMFContext(Unknown Source)
+	at org.eclipse.jem.util.emf.workbench.WorkbenchResourceHelperBase.createEMFContext(Unknown Source)
+	at org.eclipse.jem.util.emf.workbench.WorkbenchResourceHelperBase.getResourceSet(Unknown Source)
+	at com.ibm.etools.javaee.model.internal.JEE5ModelProvider.getResourceSet(Unknown Source)
+	at com.ibm.etools.javaee.model.internal.JEE5ModelProvider.getModelResource(Unknown Source)
+	at com.ibm.etools.javaee.model.internal.Web25ModelProvider.getModelResource(Unknown Source)
+	at com.ibm.etools.javaee.model.internal.Web25ModelProvider.getXMLModel(Unknown Source)
+	at com.ibm.etools.javaee.model.internal.Web25ModelProvider.getModelObject(Unknown Source)
+	at com.ibm.etools.javaee.model.internal.Web25ModelProvider.getModelObject(Unknown Source)
+	at com.ibm.etools.javaee.core.validation.JEEValidationUtility.getModel(Unknown Source)
+	at com.ibm.etools.javaee.core.validation.web.WebV2Validator.initializeContext(Unknown Source)
+	at com.ibm.etools.javaee.core.validation.web.WebV2Validator.getValidationContext(Unknown Source)
+	at com.ibm.etools.javaee.core.validation.web.WebV2Validator.validate(Unknown Source)
+	at org.eclipse.wst.validation.Validator$V2.validate(Unknown Source)
+	at org.eclipse.wst.validation.internal.ValManager.validate(Unknown Source)
+	at org.eclipse.wst.validation.internal.ValManager$1.visit(Unknown Source)
+	at org.eclipse.wst.validation.internal.ValManager.accept(Unknown Source)
+	at org.eclipse.wst.validation.internal.ValManager.validate(Unknown Source)
+	at org.eclipse.wst.validation.internal.ValBuilderJob$Visitor.visit(Unknown Source)
+	at org.eclipse.core.internal.resources.Resource$2.visit(Unknown Source)
+	at org.eclipse.core.internal.resources.Resource$1.visitElement(Unknown Source)
+	at org.eclipse.core.internal.watson.ElementTreeIterator.doIteration(Unknown Source)
+	at org.eclipse.core.internal.watson.ElementTreeIterator.doIteration(Unknown Source)
+	at org.eclipse.core.internal.watson.ElementTreeIterator.doIteration(Unknown Source)
+	at org.eclipse.core.internal.watson.ElementTreeIterator.doIteration(Unknown Source)
+	at org.eclipse.core.internal.watson.ElementTreeIterator.doIteration(Unknown Source)
+	at org.eclipse.core.internal.watson.ElementTreeIterator.doIteration(Unknown Source)
+	at org.eclipse.core.internal.watson.ElementTreeIterator.doIteration(Unknown Source)
+	at org.eclipse.core.internal.watson.ElementTreeIterator.doIteration(Unknown Source)
+	at org.eclipse.core.internal.watson.ElementTreeIterator.doIteration(Unknown Source)
+	at org.eclipse.core.internal.watson.ElementTreeIterator.iterate(Unknown Source)
+	at org.eclipse.core.internal.resources.Resource.accept(Unknown Source)
+	at org.eclipse.core.internal.resources.Resource.accept(Unknown Source)
+	at org.eclipse.core.internal.resources.Resource.accept(Unknown Source)
+	at org.eclipse.core.internal.resources.Resource.accept(Unknown Source)
+	at org.eclipse.wst.validation.internal.ValBuilderJob.fullBuild(Unknown Source)
+	at org.eclipse.wst.validation.internal.ValBuilderJob.run(Unknown Source)
+	at org.eclipse.wst.validation.internal.ValBuilderJob.runInWorkspace(Unknown Source)
+	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(Unknown Source)
+	at org.eclipse.core.internal.jobs.Worker.run(Unknown Source)
+
+!ENTRY org.eclipse.wst.validation 4 0 2019-03-14 12:55:33.477
+!MESSAGE IWAE0027E Could not retrieve the validation configuration for resource adminAPI.
+!STACK 0
+java.lang.reflect.InvocationTargetException: IWAE0027E Could not retrieve the validation configuration for resource adminAPI.
+	at org.eclipse.wst.validation.internal.ConfigurationManager.getProjectConfiguration(Unknown Source)
+	at org.eclipse.wst.validation.internal.ConfigurationManager.getConfiguration(Unknown Source)
+	at org.eclipse.wst.validation.internal.ValManager.getValidatorsNotCached(Unknown Source)
+	at org.eclipse.wst.validation.internal.ValManager.access$1(Unknown Source)
+	at org.eclipse.wst.validation.internal.ValManager$ValidatorCache.getValidatorsCached(Unknown Source)
+	at org.eclipse.wst.validation.internal.ValManager.getValidators(Unknown Source)
+	at org.eclipse.wst.validation.internal.ValManager.validate(Unknown Source)
+	at org.eclipse.wst.validation.internal.ValBuilderJob$Visitor.visit(Unknown Source)
+	at org.eclipse.core.internal.resources.Resource$2.visit(Unknown Source)
+	at org.eclipse.core.internal.resources.Resource$1.visitElement(Unknown Source)
+	at org.eclipse.core.internal.watson.ElementTreeIterator.doIteration(Unknown Source)
+	at org.eclipse.core.internal.watson.ElementTreeIterator.doIteration(Unknown Source)
+	at org.eclipse.core.internal.watson.ElementTreeIterator.doIteration(Unknown Source)
+	at org.eclipse.core.internal.watson.ElementTreeIterator.doIteration(Unknown Source)
+	at org.eclipse.core.internal.watson.ElementTreeIterator.doIteration(Unknown Source)
+	at org.eclipse.core.internal.watson.ElementTreeIterator.doIteration(Unknown Source)
+	at org.eclipse.core.internal.watson.ElementTreeIterator.doIteration(Unknown Source)
+	at org.eclipse.core.internal.watson.ElementTreeIterator.doIteration(Unknown Source)
+	at org.eclipse.core.internal.watson.ElementTreeIterator.iterate(Unknown Source)
+	at org.eclipse.core.internal.resources.Resource.accept(Unknown Source)
+	at org.eclipse.core.internal.resources.Resource.accept(Unknown Source)
+	at org.eclipse.core.internal.resources.Resource.accept(Unknown Source)
+	at org.eclipse.core.internal.resources.Resource.accept(Unknown Source)
+	at org.eclipse.wst.validation.internal.ValBuilderJob.fullBuild(Unknown Source)
+	at org.eclipse.wst.validation.internal.ValBuilderJob.run(Unknown Source)
+	at org.eclipse.wst.validation.internal.ValBuilderJob.runInWorkspace(Unknown Source)
+	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(Unknown Source)
+	at org.eclipse.core.internal.jobs.Worker.run(Unknown Source)
+Caused by: org.eclipse.core.internal.resources.ResourceException: Resource '/adminAPI' does not exist.
+	at org.eclipse.core.internal.resources.Resource.checkExists(Unknown Source)
+	at org.eclipse.core.internal.resources.Resource.checkAccessible(Unknown Source)
+	at org.eclipse.core.internal.resources.Project.checkAccessible(Unknown Source)
+	at org.eclipse.core.internal.resources.Resource.checkAccessibleAndLocal(Unknown Source)
+	at org.eclipse.core.internal.resources.Resource.getSessionProperty(Unknown Source)
+	... 28 more
+Root exception:
+org.eclipse.core.internal.resources.ResourceException: Resource '/adminAPI' does not exist.
+	at org.eclipse.core.internal.resources.Resource.checkExists(Unknown Source)
+	at org.eclipse.core.internal.resources.Resource.checkAccessible(Unknown Source)
+	at org.eclipse.core.internal.resources.Project.checkAccessible(Unknown Source)
+	at org.eclipse.core.internal.resources.Resource.checkAccessibleAndLocal(Unknown Source)
+	at org.eclipse.core.internal.resources.Resource.getSessionProperty(Unknown Source)
+	at org.eclipse.wst.validation.internal.ConfigurationManager.getProjectConfiguration(Unknown Source)
+	at org.eclipse.wst.validation.internal.ConfigurationManager.getConfiguration(Unknown Source)
+	at org.eclipse.wst.validation.internal.ValManager.getValidatorsNotCached(Unknown Source)
+	at org.eclipse.wst.validation.internal.ValManager.access$1(Unknown Source)
+	at org.eclipse.wst.validation.internal.ValManager$ValidatorCache.getValidatorsCached(Unknown Source)
+	at org.eclipse.wst.validation.internal.ValManager.getValidators(Unknown Source)
+	at org.eclipse.wst.validation.internal.ValManager.validate(Unknown Source)
+	at org.eclipse.wst.validation.internal.ValBuilderJob$Visitor.visit(Unknown Source)
+	at org.eclipse.core.internal.resources.Resource$2.visit(Unknown Source)
+	at org.eclipse.core.internal.resources.Resource$1.visitElement(Unknown Source)
+	at org.eclipse.core.internal.watson.ElementTreeIterator.doIteration(Unknown Source)
+	at org.eclipse.core.internal.watson.ElementTreeIterator.doIteration(Unknown Source)
+	at org.eclipse.core.internal.watson.ElementTreeIterator.doIteration(Unknown Source)
+	at org.eclipse.core.internal.watson.ElementTreeIterator.doIteration(Unknown Source)
+	at org.eclipse.core.internal.watson.ElementTreeIterator.doIteration(Unknown Source)
+	at org.eclipse.core.internal.watson.ElementTreeIterator.doIteration(Unknown Source)
+	at org.eclipse.core.internal.watson.ElementTreeIterator.doIteration(Unknown Source)
+	at org.eclipse.core.internal.watson.ElementTreeIterator.doIteration(Unknown Source)
+	at org.eclipse.core.internal.watson.ElementTreeIterator.iterate(Unknown Source)
+	at org.eclipse.core.internal.resources.Resource.accept(Unknown Source)
+	at org.eclipse.core.internal.resources.Resource.accept(Unknown Source)
+	at org.eclipse.core.internal.resources.Resource.accept(Unknown Source)
+	at org.eclipse.core.internal.resources.Resource.accept(Unknown Source)
+	at org.eclipse.wst.validation.internal.ValBuilderJob.fullBuild(Unknown Source)
+	at org.eclipse.wst.validation.internal.ValBuilderJob.run(Unknown Source)
+	at org.eclipse.wst.validation.internal.ValBuilderJob.runInWorkspace(Unknown Source)
+	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(Unknown Source)
+	at org.eclipse.core.internal.jobs.Worker.run(Unknown Source)
+
+!ENTRY org.eclipse.core.jobs 4 2 2019-03-14 12:55:33.527
+!MESSAGE An internal error occurred during: "Validating adminEAR".
+!STACK 0
+java.lang.IllegalStateException: Preference node "org.eclipse.wst.validation" has been removed.
+	at org.eclipse.core.internal.preferences.EclipsePreferences.checkRemoved(Unknown Source)
+	at org.eclipse.core.internal.resources.ProjectPreferences.internalGet(Unknown Source)
+	at org.eclipse.core.internal.preferences.EclipsePreferences.get(Unknown Source)
+	at org.eclipse.wst.validation.internal.PreferencesWrapper$PreferencesWrapperPersistent.get(Unknown Source)
+	at org.eclipse.wst.validation.internal.DisabledResourceManager.load(Unknown Source)
+	at org.eclipse.wst.validation.internal.DisabledResourceManager.isDisabled(Unknown Source)
+	at org.eclipse.wst.validation.internal.DisabledResourceManager.isDisabled(Unknown Source)
+	at org.eclipse.wst.validation.internal.ValBuilderJob$Visitor.visit(Unknown Source)
+	at org.eclipse.core.internal.resources.Resource$2.visit(Unknown Source)
+	at org.eclipse.core.internal.resources.Resource$1.visitElement(Unknown Source)
+	at org.eclipse.core.internal.watson.ElementTreeIterator.doIteration(Unknown Source)
+	at org.eclipse.core.internal.watson.ElementTreeIterator.doIteration(Unknown Source)
+	at org.eclipse.core.internal.watson.ElementTreeIterator.doIteration(Unknown Source)
+	at org.eclipse.core.internal.watson.ElementTreeIterator.doIteration(Unknown Source)
+	at org.eclipse.core.internal.watson.ElementTreeIterator.doIteration(Unknown Source)
+	at org.eclipse.core.internal.watson.ElementTreeIterator.doIteration(Unknown Source)
+	at org.eclipse.core.internal.watson.ElementTreeIterator.doIteration(Unknown Source)
+	at org.eclipse.core.internal.watson.ElementTreeIterator.doIteration(Unknown Source)
+	at org.eclipse.core.internal.watson.ElementTreeIterator.doIteration(Unknown Source)
+	at org.eclipse.core.internal.watson.ElementTreeIterator.doIteration(Unknown Source)
+	at org.eclipse.core.internal.watson.ElementTreeIterator.iterate(Unknown Source)
+	at org.eclipse.core.internal.resources.Resource.accept(Unknown Source)
+	at org.eclipse.core.internal.resources.Resource.accept(Unknown Source)
+	at org.eclipse.core.internal.resources.Resource.accept(Unknown Source)
+	at org.eclipse.core.internal.resources.Resource.accept(Unknown Source)
+	at org.eclipse.wst.validation.internal.ValBuilderJob.fullBuild(Unknown Source)
+	at org.eclipse.wst.validation.internal.ValBuilderJob.run(Unknown Source)
+	at org.eclipse.wst.validation.internal.ValBuilderJob.runInWorkspace(Unknown Source)
+	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(Unknown Source)
+	at org.eclipse.core.internal.jobs.Worker.run(Unknown Source)
+
+!ENTRY org.eclipse.core.resources 4 2 2019-03-14 12:55:35.512
+!MESSAGE Problems occurred when invoking code from plug-in: "org.eclipse.core.resources".
+!STACK 0
+java.lang.NullPointerException
+	at com.ibm.datatools.javatool.core.ResourceListener$ResourceDeltaVisitor.visit(Unknown Source)
+	at org.eclipse.core.internal.events.ResourceDelta.accept(Unknown Source)
+	at org.eclipse.core.internal.events.ResourceDelta.accept(Unknown Source)
+	at org.eclipse.core.internal.events.ResourceDelta.accept(Unknown Source)
+	at org.eclipse.core.internal.events.ResourceDelta.accept(Unknown Source)
+	at org.eclipse.core.internal.events.ResourceDelta.accept(Unknown Source)
+	at org.eclipse.core.internal.events.ResourceDelta.accept(Unknown Source)
+	at org.eclipse.core.internal.events.ResourceDelta.accept(Unknown Source)
+	at org.eclipse.core.internal.events.ResourceDelta.accept(Unknown Source)
+	at org.eclipse.core.internal.events.ResourceDelta.accept(Unknown Source)
+	at org.eclipse.core.internal.events.ResourceDelta.accept(Unknown Source)
+	at org.eclipse.core.internal.events.ResourceDelta.accept(Unknown Source)
+	at com.ibm.datatools.javatool.core.ResourceListener.resourceChanged(Unknown Source)
+	at org.eclipse.core.internal.events.NotificationManager$1.run(Unknown Source)
+	at org.eclipse.core.runtime.SafeRunner.run(Unknown Source)
+	at org.eclipse.core.internal.events.NotificationManager.notify(Unknown Source)
+	at org.eclipse.core.internal.events.NotificationManager.broadcastChanges(Unknown Source)
+	at org.eclipse.core.internal.resources.Workspace.broadcastBuildEvent(Unknown Source)
+	at org.eclipse.core.internal.events.AutoBuildJob.doBuild(Unknown Source)
+	at org.eclipse.core.internal.events.AutoBuildJob.run(Unknown Source)
+	at org.eclipse.core.internal.jobs.Worker.run(Unknown Source)
+
+!ENTRY org.tigris.subversion.subclipse.core 4 0 2019-03-14 12:56:31.884
+!MESSAGE Could not auto-share project adminAPI
+!STACK 1
+org.tigris.subversion.subclipse.core.SVNException: Provided SVN information does not match that on disk for project 'adminAPI'.
+	at org.tigris.subversion.subclipse.core.resources.SVNWorkspaceRoot.setSharing(Unknown Source)
+	at org.tigris.subversion.subclipse.core.SVNTeamProviderType$AutoShareJob.autoconnectSVNProject(Unknown Source)
+	at org.tigris.subversion.subclipse.core.SVNTeamProviderType$AutoShareJob.run(Unknown Source)
+	at org.eclipse.core.internal.jobs.Worker.run(Unknown Source)
+!SUBENTRY 1 org.tigris.subversion.subclipse.core 4 4 2019-03-14 12:56:31.884
+!MESSAGE Provided SVN information does not match that on disk for project 'adminAPI'.
+
+!ENTRY org.tigris.subversion.subclipse.core 4 0 2019-03-14 12:56:52.252
+!MESSAGE Could not auto-share project timeoffAPI
+!STACK 1
+org.tigris.subversion.subclipse.core.SVNException: Provided SVN information does not match that on disk for project 'timeoffAPI'.
+	at org.tigris.subversion.subclipse.core.resources.SVNWorkspaceRoot.setSharing(Unknown Source)
+	at org.tigris.subversion.subclipse.core.SVNTeamProviderType$AutoShareJob.autoconnectSVNProject(Unknown Source)
+	at org.tigris.subversion.subclipse.core.SVNTeamProviderType$AutoShareJob.run(Unknown Source)
+	at org.eclipse.core.internal.jobs.Worker.run(Unknown Source)
+!SUBENTRY 1 org.tigris.subversion.subclipse.core 4 4 2019-03-14 12:56:52.252
+!MESSAGE Provided SVN information does not match that on disk for project 'timeoffAPI'.
+
+!ENTRY org.eclipse.core.resources 4 2 2019-03-14 12:56:52.443
+!MESSAGE Problems occurred when invoking code from plug-in: "org.eclipse.core.resources".
+!STACK 0
+java.lang.NullPointerException
+	at com.ibm.datatools.javatool.core.ResourceListener$ResourceDeltaVisitor.visit(Unknown Source)
+	at org.eclipse.core.internal.events.ResourceDelta.accept(Unknown Source)
+	at org.eclipse.core.internal.events.ResourceDelta.accept(Unknown Source)
+	at org.eclipse.core.internal.events.ResourceDelta.accept(Unknown Source)
+	at org.eclipse.core.internal.events.ResourceDelta.accept(Unknown Source)
+	at org.eclipse.core.internal.events.ResourceDelta.accept(Unknown Source)
+	at org.eclipse.core.internal.events.ResourceDelta.accept(Unknown Source)
+	at org.eclipse.core.internal.events.ResourceDelta.accept(Unknown Source)
+	at org.eclipse.core.internal.events.ResourceDelta.accept(Unknown Source)
+	at org.eclipse.core.internal.events.ResourceDelta.accept(Unknown Source)
+	at org.eclipse.core.internal.events.ResourceDelta.accept(Unknown Source)
+	at org.eclipse.core.internal.events.ResourceDelta.accept(Unknown Source)
+	at com.ibm.datatools.javatool.core.ResourceListener.resourceChanged(Unknown Source)
+	at org.eclipse.core.internal.events.NotificationManager$1.run(Unknown Source)
+	at org.eclipse.core.runtime.SafeRunner.run(Unknown Source)
+	at org.eclipse.core.internal.events.NotificationManager.notify(Unknown Source)
+	at org.eclipse.core.internal.events.NotificationManager.broadcastChanges(Unknown Source)
+	at org.eclipse.core.internal.resources.Workspace.broadcastBuildEvent(Unknown Source)
+	at org.eclipse.core.internal.events.AutoBuildJob.doBuild(Unknown Source)
+	at org.eclipse.core.internal.events.AutoBuildJob.run(Unknown Source)
+	at org.eclipse.core.internal.jobs.Worker.run(Unknown Source)
+
+!ENTRY org.tigris.subversion.subclipse.core 4 0 2019-03-14 12:58:00.443
+!MESSAGE Could not auto-share project timeoffEAR
+!STACK 1
+org.tigris.subversion.subclipse.core.SVNException: Provided SVN information does not match that on disk for project 'timeoffEAR'.
+	at org.tigris.subversion.subclipse.core.resources.SVNWorkspaceRoot.setSharing(Unknown Source)
+	at org.tigris.subversion.subclipse.core.SVNTeamProviderType$AutoShareJob.autoconnectSVNProject(Unknown Source)
+	at org.tigris.subversion.subclipse.core.SVNTeamProviderType$AutoShareJob.run(Unknown Source)
+	at org.eclipse.core.internal.jobs.Worker.run(Unknown Source)
+!SUBENTRY 1 org.tigris.subversion.subclipse.core 4 4 2019-03-14 12:58:00.443
+!MESSAGE Provided SVN information does not match that on disk for project 'timeoffEAR'.
+
+!ENTRY org.tigris.subversion.subclipse.core 4 0 2019-03-14 12:58:42.374
+!MESSAGE Could not auto-share project timeoffEAR
+!STACK 1
+org.tigris.subversion.subclipse.core.SVNException: Provided SVN information does not match that on disk for project 'timeoffEAR'.
+	at org.tigris.subversion.subclipse.core.resources.SVNWorkspaceRoot.setSharing(Unknown Source)
+	at org.tigris.subversion.subclipse.core.SVNTeamProviderType$AutoShareJob.autoconnectSVNProject(Unknown Source)
+	at org.tigris.subversion.subclipse.core.SVNTeamProviderType$AutoShareJob.run(Unknown Source)
+	at org.eclipse.core.internal.jobs.Worker.run(Unknown Source)
+!SUBENTRY 1 org.tigris.subversion.subclipse.core 4 4 2019-03-14 12:58:42.374
+!MESSAGE Provided SVN information does not match that on disk for project 'timeoffEAR'.
+
+!ENTRY com.ibm.ws.jaxrs.core 4 0 2019-03-14 13:10:12.889
+!MESSAGE AdminController [in [Working copy] AdminController.java [in gov.wisconsin.timeoff.controller [in src/main/java [in timeoffAPI]]]] does not exist
+!STACK 1
+Java Model Exception: Java Model Status [AdminController [in [Working copy] AdminController.java [in gov.wisconsin.timeoff.controller [in src/main/java [in timeoffAPI]]]] does not exist]
+	at org.eclipse.jdt.internal.core.JavaElement.newNotPresentException(Unknown Source)
+	at org.eclipse.jdt.internal.core.JavaElement.openWhenClosed(Unknown Source)
+	at org.eclipse.jdt.internal.core.JavaElement.getElementInfo(Unknown Source)
+	at org.eclipse.jdt.internal.core.JavaElement.getElementInfo(Unknown Source)
+	at org.eclipse.jdt.internal.core.SourceType.isInterface(Unknown Source)
+	at com.ibm.ws.jaxrs.finder.AbstractSourceFinder.resourceChanged(Unknown Source)
+	at com.ibm.ccl.ws.internal.finder.core.notifier.impl.NotifyResourceChangedJob.run(Unknown Source)
+	at org.eclipse.core.internal.jobs.Worker.run(Unknown Source)
+!SUBENTRY 1 org.eclipse.jdt.core 4 969 2019-03-14 13:10:12.889
+!MESSAGE AdminController [in [Working copy] AdminController.java [in gov.wisconsin.timeoff.controller [in src/main/java [in timeoffAPI]]]] does not exist
+!SESSION 2019-03-29 16:42:33.582 -----------------------------------------------
+eclipse.buildId=unknown
+java.fullversion=JRE 1.8.0 IBM J9 2.8 Windows 10 x86-32 20160106_284759 (JIT enabled, AOT enabled)
+J9VM - R28_20160106_1341_B284759
+JIT  - tr.r14.java_20151209_107110.02
+GC   - R28_20160106_1341_B284759
+J9CL - 20160106_284759
+BootLoader constants: OS=win32, ARCH=x86, WS=win32, NL=en_US
+Framework arguments:  -product com.ibm.rational.rad.product.v95.ide
+Command-line arguments:  -os win32 -ws win32 -arch x86 -product com.ibm.rational.rad.product.v95.ide
+
+!ENTRY com.ibm.rational.clearcase.rtc.UCMActivity 4 0 2019-03-29 16:42:35.325
+!MESSAGE FrameworkEvent ERROR
+!STACK 0
+org.osgi.framework.BundleException: Could not resolve module: com.ibm.rational.clearcase.rtc.UCMActivity [2721]
+  Unresolved requirement: Require-Bundle: com.rational.clearcase
+
+	at org.eclipse.osgi.container.Module.start(Unknown Source)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.incStartLevel(Unknown Source)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.incStartLevel(Unknown Source)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.doContainerStartLevel(Unknown Source)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.dispatchEvent(Unknown Source)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.dispatchEvent(Unknown Source)
+	at org.eclipse.osgi.framework.eventmgr.EventManager.dispatchEvent(Unknown Source)
+	at org.eclipse.osgi.framework.eventmgr.EventManager$EventThread.run(Unknown Source)
+
+!ENTRY org.eclipse.core.resources 2 10035 2019-03-29 16:42:46.569
+!MESSAGE The workspace exited with unsaved changes in the previous session; refreshing workspace to recover changes.
+
+!ENTRY com.ibm.datatools.core.http 1 0 2019-03-29 16:42:53.192
+!MESSAGE Embedded server started: [HTTP port: 56794, HTTPS port: 56795]
+
+!ENTRY org.eclipse.jst.jsp.core 4 4 2019-03-29 16:42:57.442
+!MESSAGE A workspace crash was detected. The previous session did not exit normally. Not using saved taglib indexes.
+
+!ENTRY com.ibm.datatools.core.http 1 0 2019-04-01 08:59:32.028
+!MESSAGE Embedded HTTP server stopped
+!SESSION 2019-04-01 14:07:35.752 -----------------------------------------------
+eclipse.buildId=unknown
+java.fullversion=JRE 1.8.0 IBM J9 2.8 Windows 10 x86-32 20160106_284759 (JIT enabled, AOT enabled)
+J9VM - R28_20160106_1341_B284759
+JIT  - tr.r14.java_20151209_107110.02
+GC   - R28_20160106_1341_B284759
+J9CL - 20160106_284759
+BootLoader constants: OS=win32, ARCH=x86, WS=win32, NL=en_US
+Framework arguments:  -product com.ibm.rational.rad.product.v95.ide
+Command-line arguments:  -os win32 -ws win32 -arch x86 -product com.ibm.rational.rad.product.v95.ide
+
+!ENTRY com.ibm.rational.clearcase.rtc.UCMActivity 4 0 2019-04-01 14:07:37.564
+!MESSAGE FrameworkEvent ERROR
+!STACK 0
+org.osgi.framework.BundleException: Could not resolve module: com.ibm.rational.clearcase.rtc.UCMActivity [2721]
+  Unresolved requirement: Require-Bundle: com.rational.clearcase
+
+	at org.eclipse.osgi.container.Module.start(Unknown Source)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.incStartLevel(Unknown Source)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.incStartLevel(Unknown Source)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.doContainerStartLevel(Unknown Source)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.dispatchEvent(Unknown Source)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.dispatchEvent(Unknown Source)
+	at org.eclipse.osgi.framework.eventmgr.EventManager.dispatchEvent(Unknown Source)
+	at org.eclipse.osgi.framework.eventmgr.EventManager$EventThread.run(Unknown Source)
+
+!ENTRY com.ibm.datatools.core.http 1 0 2019-04-01 14:07:49.274
+!MESSAGE Embedded server started: [HTTP port: 56800, HTTPS port: 56801]
+
+!ENTRY com.ibm.ws.jaxrs.core 4 0 2019-04-01 14:08:21.429
+!MESSAGE TimesheetController [in [Working copy] TimesheetController.java [in gov.wisconsin.timeoff.controller [in src/main/java [in timeoffAPI]]]] does not exist
+!STACK 1
+Java Model Exception: Java Model Status [TimesheetController [in [Working copy] TimesheetController.java [in gov.wisconsin.timeoff.controller [in src/main/java [in timeoffAPI]]]] does not exist]
+	at org.eclipse.jdt.internal.core.JavaElement.newNotPresentException(Unknown Source)
+	at org.eclipse.jdt.internal.core.JavaElement.openWhenClosed(Unknown Source)
+	at org.eclipse.jdt.internal.core.JavaElement.getElementInfo(Unknown Source)
+	at org.eclipse.jdt.internal.core.JavaElement.getElementInfo(Unknown Source)
+	at org.eclipse.jdt.internal.core.SourceType.isInterface(Unknown Source)
+	at com.ibm.ws.jaxrs.finder.AbstractSourceFinder.resourceChanged(Unknown Source)
+	at com.ibm.ccl.ws.internal.finder.core.notifier.impl.NotifyResourceChangedJob.run(Unknown Source)
+	at org.eclipse.core.internal.jobs.Worker.run(Unknown Source)
+!SUBENTRY 1 org.eclipse.jdt.core 4 969 2019-04-01 14:08:21.429
+!MESSAGE TimesheetController [in [Working copy] TimesheetController.java [in gov.wisconsin.timeoff.controller [in src/main/java [in timeoffAPI]]]] does not exist
+
+!ENTRY com.ibm.ccl.sca.composite.emf 2 0 2019-04-01 14:09:07.984
+!MESSAGE Composite diagram namespaces not found
+!STACK 0
+org.xml.sax.SAXParseException: Content is not allowed in prolog.
+	at org.apache.xerces.parsers.AbstractSAXParser.parse(Unknown Source)
+	at org.apache.xerces.jaxp.SAXParserImpl$JAXPSAXParser.parse(Unknown Source)
+	at com.ibm.ccl.sca.composite.emf.internal.content.CompositeDiagramContentDescriber.describe(Unknown Source)
+	at com.ibm.ccl.sca.composite.emf.internal.content.CompositeDiagramContentDescriber.describe(Unknown Source)
+	at org.eclipse.core.internal.content.ContentTypeCatalog.describe(Unknown Source)
+	at org.eclipse.core.internal.content.ContentTypeCatalog.collectMatchingByContents(Unknown Source)
+	at org.eclipse.core.internal.content.ContentTypeCatalog.internalFindContentTypesFor(Unknown Source)
+	at org.eclipse.core.internal.content.ContentTypeCatalog.internalFindContentTypesFor(Unknown Source)
+	at org.eclipse.core.internal.content.ContentTypeCatalog.findContentTypesFor(Unknown Source)
+	at org.eclipse.core.internal.content.ContentTypeMatcher.findContentTypeFor(Unknown Source)
+	at org.eclipse.wst.sse.core.internal.modelhandler.ModelHandlerRegistry.getHandlerFor(Unknown Source)
+	at org.eclipse.wst.sse.core.internal.model.ModelManagerImpl.calculateType(Unknown Source)
+	at org.eclipse.wst.sse.core.internal.model.ModelManagerImpl.getModelForEdit(Unknown Source)
+	at org.eclipse.wst.sse.ui.internal.StorageModelProvider.loadModel(Unknown Source)
+	at org.eclipse.wst.sse.ui.internal.StorageModelProvider.loadModel(Unknown Source)
+	at org.eclipse.wst.sse.ui.internal.StorageModelProvider.selfCreateModel(Unknown Source)
+	at org.eclipse.wst.sse.ui.internal.StorageModelProvider.createModelInfo(Unknown Source)
+	at org.eclipse.wst.sse.ui.internal.StorageModelProvider.createElementInfo(Unknown Source)
+	at org.eclipse.ui.texteditor.AbstractDocumentProvider.connect(Unknown Source)
+	at org.eclipse.ui.texteditor.AbstractTextEditor.doSetInput(Unknown Source)
+	at org.eclipse.ui.texteditor.StatusTextEditor.doSetInput(Unknown Source)
+	at org.eclipse.ui.texteditor.AbstractDecoratedTextEditor.doSetInput(Unknown Source)
+	at org.eclipse.ui.editors.text.TextEditor.doSetInput(Unknown Source)
+	at org.eclipse.wst.sse.ui.StructuredTextEditor.doSetInput(Unknown Source)
+	at org.eclipse.ui.texteditor.AbstractTextEditor$19.run(Unknown Source)
+	at org.eclipse.jface.operation.ModalContext.runInCurrentThread(Unknown Source)
+	at org.eclipse.jface.operation.ModalContext.run(Unknown Source)
+	at org.eclipse.ui.internal.WorkbenchWindow$13.run(Unknown Source)
+	at org.eclipse.swt.custom.BusyIndicator.showWhile(Unknown Source)
+	at org.eclipse.ui.internal.WorkbenchWindow.run(Unknown Source)
+	at org.eclipse.ui.texteditor.AbstractTextEditor.internalInit(Unknown Source)
+	at org.eclipse.ui.texteditor.AbstractTextEditor.init(Unknown Source)
+	at org.eclipse.wst.sse.ui.StructuredTextEditor.init(Unknown Source)
+	at org.eclipse.ui.part.MultiPageEditorPart.addPage(Unknown Source)
+	at org.eclipse.ui.forms.editor.FormEditor.addPage(Unknown Source)
+	at org.eclipse.ui.part.MultiPageEditorPart.addPage(Unknown Source)
+	at org.eclipse.ui.forms.editor.FormEditor.addPage(Unknown Source)
+	at org.eclipse.m2e.editor.pom.MavenPomEditor.addSourcePage(Unknown Source)
+	at org.eclipse.m2e.editor.pom.MavenPomEditor.addPages(Unknown Source)
+	at org.eclipse.ui.forms.editor.FormEditor.createPages(Unknown Source)
+	at org.eclipse.ui.part.MultiPageEditorPart.createPartControl(Unknown Source)
+	at org.eclipse.ui.internal.e4.compatibility.CompatibilityPart.createPartControl(Unknown Source)
+	at org.eclipse.ui.internal.e4.compatibility.CompatibilityEditor.createPartControl(Unknown Source)
+	at org.eclipse.ui.internal.e4.compatibility.CompatibilityPart.create(Unknown Source)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.eclipse.e4.core.internal.di.MethodRequestor.execute(Unknown Source)
+	at org.eclipse.e4.core.internal.di.InjectorImpl.processAnnotated(Unknown Source)
+	at org.eclipse.e4.core.internal.di.InjectorImpl.processAnnotated(Unknown Source)
+	at org.eclipse.e4.core.internal.di.InjectorImpl.inject(Unknown Source)
+	at org.eclipse.e4.core.internal.di.InjectorImpl.internalMake(Unknown Source)
+	at org.eclipse.e4.core.internal.di.InjectorImpl.make(Unknown Source)
+	at org.eclipse.e4.core.contexts.ContextInjectionFactory.make(Unknown Source)
+	at org.eclipse.e4.ui.internal.workbench.ReflectionContributionFactory.createFromBundle(Unknown Source)
+	at org.eclipse.e4.ui.internal.workbench.ReflectionContributionFactory.doCreate(Unknown Source)
+	at org.eclipse.e4.ui.internal.workbench.ReflectionContributionFactory.create(Unknown Source)
+	at org.eclipse.e4.ui.workbench.renderers.swt.ContributedPartRenderer.createWidget(Unknown Source)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.createWidget(Unknown Source)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.safeCreateGui(Unknown Source)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.safeCreateGui(Unknown Source)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.access$2(Unknown Source)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine$7.run(Unknown Source)
+	at org.eclipse.core.runtime.SafeRunner.run(Unknown Source)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.createGui(Unknown Source)
+	at org.eclipse.e4.ui.internal.workbench.PartServiceImpl$1.handleEvent(Unknown Source)
+	at org.eclipse.e4.ui.services.internal.events.UIEventHandler$1.run(Unknown Source)
+	at org.eclipse.swt.widgets.Synchronizer.syncExec(Unknown Source)
+	at org.eclipse.ui.internal.UISynchronizer.syncExec(Unknown Source)
+	at org.eclipse.swt.widgets.Display.syncExec(Unknown Source)
+	at org.eclipse.e4.ui.internal.workbench.swt.E4Application$1.syncExec(Unknown Source)
+	at org.eclipse.e4.ui.services.internal.events.UIEventHandler.handleEvent(Unknown Source)
+	at org.eclipse.equinox.internal.event.EventHandlerWrapper.handleEvent(Unknown Source)
+	at org.eclipse.equinox.internal.event.EventHandlerTracker.dispatchEvent(Unknown Source)
+	at org.eclipse.equinox.internal.event.EventHandlerTracker.dispatchEvent(Unknown Source)
+	at org.eclipse.osgi.framework.eventmgr.EventManager.dispatchEvent(Unknown Source)
+	at org.eclipse.osgi.framework.eventmgr.ListenerQueue.dispatchEventSynchronous(Unknown Source)
+	at org.eclipse.equinox.internal.event.EventAdminImpl.dispatchEvent(Unknown Source)
+	at org.eclipse.equinox.internal.event.EventAdminImpl.sendEvent(Unknown Source)
+	at org.eclipse.equinox.internal.event.EventComponent.sendEvent(Unknown Source)
+	at org.eclipse.e4.ui.services.internal.events.EventBroker.send(Unknown Source)
+	at org.eclipse.e4.ui.internal.workbench.UIEventPublisher.notifyChanged(Unknown Source)
+	at org.eclipse.emf.common.notify.impl.BasicNotifierImpl.eNotify(Unknown Source)
+	at org.eclipse.e4.ui.model.application.ui.impl.ElementContainerImpl.setSelectedElement(Unknown Source)
+	at org.eclipse.e4.ui.internal.workbench.ModelServiceImpl.showElementInWindow(Unknown Source)
+	at org.eclipse.e4.ui.internal.workbench.ModelServiceImpl.bringToTop(Unknown Source)
+	at org.eclipse.e4.ui.internal.workbench.PartServiceImpl.delegateBringToTop(Unknown Source)
+	at org.eclipse.e4.ui.internal.workbench.PartServiceImpl.showPart(Unknown Source)
+	at org.eclipse.ui.internal.WorkbenchPage.busyOpenEditor(Unknown Source)
+	at org.eclipse.ui.internal.WorkbenchPage.access$24(Unknown Source)
+	at org.eclipse.ui.internal.WorkbenchPage$9.run(Unknown Source)
+	at org.eclipse.swt.custom.BusyIndicator.showWhile(Unknown Source)
+	at org.eclipse.ui.internal.WorkbenchPage.openEditor(Unknown Source)
+	at org.eclipse.ui.internal.WorkbenchPage.openEditor(Unknown Source)
+	at org.eclipse.ui.internal.WorkbenchPage.openEditor(Unknown Source)
+	at org.eclipse.ui.ide.IDE.openEditor(Unknown Source)
+	at org.eclipse.ui.ide.IDE.openEditor(Unknown Source)
+	at org.eclipse.ui.internal.ide.handlers.OpenResourceHandler.execute(Unknown Source)
+	at org.eclipse.ui.internal.ide.handlers.OpenResourceHandler.run(Unknown Source)
+	at org.eclipse.ui.internal.handlers.ActionDelegateHandlerProxy.execute(Unknown Source)
+	at org.eclipse.ui.internal.handlers.E4HandlerProxy.execute(Unknown Source)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.eclipse.e4.core.internal.di.MethodRequestor.execute(Unknown Source)
+	at org.eclipse.e4.core.internal.di.InjectorImpl.invokeUsingClass(Unknown Source)
+	at org.eclipse.e4.core.internal.di.InjectorImpl.invoke(Unknown Source)
+	at org.eclipse.e4.core.contexts.ContextInjectionFactory.invoke(Unknown Source)
+	at org.eclipse.e4.core.commands.internal.HandlerServiceHandler.execute(Unknown Source)
+	at org.eclipse.core.commands.Command.executeWithChecks(Unknown Source)
+	at org.eclipse.core.commands.ParameterizedCommand.executeWithChecks(Unknown Source)
+	at org.eclipse.e4.core.commands.internal.HandlerServiceImpl.executeHandler(Unknown Source)
+	at org.eclipse.e4.ui.bindings.keys.KeyBindingDispatcher.executeCommand(Unknown Source)
+	at org.eclipse.e4.ui.bindings.keys.KeyBindingDispatcher.press(Unknown Source)
+	at org.eclipse.e4.ui.bindings.keys.KeyBindingDispatcher.processKeyEvent(Unknown Source)
+	at org.eclipse.e4.ui.bindings.keys.KeyBindingDispatcher.filterKeySequenceBindings(Unknown Source)
+	at org.eclipse.e4.ui.bindings.keys.KeyBindingDispatcher.access$0(Unknown Source)
+	at org.eclipse.e4.ui.bindings.keys.KeyBindingDispatcher$KeyDownFilter.handleEvent(Unknown Source)
+	at org.eclipse.swt.widgets.EventTable.sendEvent(Unknown Source)
+	at org.eclipse.swt.widgets.Display.filterEvent(Unknown Source)
+	at org.eclipse.swt.widgets.Widget.sendEvent(Unknown Source)
+	at org.eclipse.swt.widgets.Widget.sendEvent(Unknown Source)
+	at org.eclipse.swt.widgets.Widget.sendEvent(Unknown Source)
+	at org.eclipse.swt.widgets.Widget.sendKeyEvent(Unknown Source)
+	at org.eclipse.swt.widgets.Widget.sendKeyEvent(Unknown Source)
+	at org.eclipse.swt.widgets.Widget.wmChar(Unknown Source)
+	at org.eclipse.swt.widgets.Control.WM_CHAR(Unknown Source)
+	at org.eclipse.swt.widgets.Canvas.WM_CHAR(Unknown Source)
+	at org.eclipse.swt.widgets.Control.windowProc(Unknown Source)
+	at org.eclipse.swt.widgets.Canvas.windowProc(Unknown Source)
+	at org.eclipse.swt.widgets.Display.windowProc(Unknown Source)
+	at org.eclipse.swt.internal.win32.OS.DispatchMessageW(Native Method)
+	at org.eclipse.swt.internal.win32.OS.DispatchMessage(Unknown Source)
+	at org.eclipse.swt.widgets.Display.readAndDispatch(Unknown Source)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine$9.run(Unknown Source)
+	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Unknown Source)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.run(Unknown Source)
+	at org.eclipse.e4.ui.internal.workbench.E4Workbench.createAndRunUI(Unknown Source)
+	at org.eclipse.ui.internal.Workbench$5.run(Unknown Source)
+	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Unknown Source)
+	at org.eclipse.ui.internal.Workbench.createAndRunWorkbench(Unknown Source)
+	at org.eclipse.ui.PlatformUI.createAndRunWorkbench(Unknown Source)
+	at org.eclipse.ui.internal.ide.application.IDEApplication.start(Unknown Source)
+	at org.eclipse.equinox.internal.app.EclipseAppHandle.run(Unknown Source)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.runApplication(Unknown Source)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.start(Unknown Source)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(Unknown Source)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(Unknown Source)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.eclipse.equinox.launcher.Main.invokeFramework(Unknown Source)
+	at org.eclipse.equinox.launcher.Main.basicRun(Unknown Source)
+	at org.eclipse.equinox.launcher.Main.run(Unknown Source)
+	at org.eclipse.equinox.launcher.Main.main(Unknown Source)
+
+!ENTRY com.ibm.siptools 1 1 2019-04-01 14:09:08.015
+!MESSAGE com.ibm.siptools.v10.ContentType.SIP_JavaEEQuickPeek.<init>: Content is not allowed in prolog.
+
+!ENTRY org.eclipse.jface 4 0 2019-04-01 14:20:45.324
+!MESSAGE The command ("com.ibm.j2c.snippets.popup.command.BindingOperation1") is undefined
+!STACK 0
+java.lang.Exception
+	at org.eclipse.jface.action.ExternalActionManager$CommandCallback.isActive(Unknown Source)
+	at org.eclipse.jface.action.ActionContributionItem.isCommandActive(Unknown Source)
+	at org.eclipse.jface.action.ActionContributionItem.isVisible(Unknown Source)
+	at org.eclipse.ui.internal.PluginActionContributionItem.isVisible(Unknown Source)
+	at org.eclipse.jface.action.MenuManager.isChildVisible(Unknown Source)
+	at org.eclipse.jface.action.MenuManager.update(Unknown Source)
+	at org.eclipse.jface.action.MenuManager.handleAboutToShow(Unknown Source)
+	at org.eclipse.jface.action.MenuManager.access$1(Unknown Source)
+	at org.eclipse.jface.action.MenuManager$2.menuShown(Unknown Source)
+	at org.eclipse.swt.widgets.TypedListener.handleEvent(Unknown Source)
+	at org.eclipse.swt.widgets.EventTable.sendEvent(Unknown Source)
+	at org.eclipse.swt.widgets.Display.sendEvent(Unknown Source)
+	at org.eclipse.swt.widgets.Widget.sendEvent(Unknown Source)
+	at org.eclipse.swt.widgets.Widget.sendEvent(Unknown Source)
+	at org.eclipse.swt.widgets.Widget.sendEvent(Unknown Source)
+	at org.eclipse.swt.widgets.Control.WM_INITMENUPOPUP(Unknown Source)
+	at org.eclipse.swt.widgets.Control.windowProc(Unknown Source)
+	at org.eclipse.swt.widgets.Canvas.windowProc(Unknown Source)
+	at org.eclipse.swt.widgets.Decorations.windowProc(Unknown Source)
+	at org.eclipse.swt.widgets.Shell.windowProc(Unknown Source)
+	at org.eclipse.swt.widgets.Display.windowProc(Unknown Source)
+	at org.eclipse.swt.internal.win32.OS.TrackPopupMenu(Native Method)
+	at org.eclipse.swt.widgets.Menu._setVisible(Unknown Source)
+	at org.eclipse.swt.widgets.Display.runPopups(Unknown Source)
+	at org.eclipse.swt.widgets.Display.readAndDispatch(Unknown Source)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine$9.run(Unknown Source)
+	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Unknown Source)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.run(Unknown Source)
+	at org.eclipse.e4.ui.internal.workbench.E4Workbench.createAndRunUI(Unknown Source)
+	at org.eclipse.ui.internal.Workbench$5.run(Unknown Source)
+	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Unknown Source)
+	at org.eclipse.ui.internal.Workbench.createAndRunWorkbench(Unknown Source)
+	at org.eclipse.ui.PlatformUI.createAndRunWorkbench(Unknown Source)
+	at org.eclipse.ui.internal.ide.application.IDEApplication.start(Unknown Source)
+	at org.eclipse.equinox.internal.app.EclipseAppHandle.run(Unknown Source)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.runApplication(Unknown Source)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.start(Unknown Source)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(Unknown Source)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(Unknown Source)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.eclipse.equinox.launcher.Main.invokeFramework(Unknown Source)
+	at org.eclipse.equinox.launcher.Main.basicRun(Unknown Source)
+	at org.eclipse.equinox.launcher.Main.run(Unknown Source)
+	at org.eclipse.equinox.launcher.Main.main(Unknown Source)
+
+!ENTRY com.ibm.ws.jaxrs.core 4 0 2019-04-01 14:21:27.879
+!MESSAGE TimesheetSummaryResponse [in [Working copy] TimesheetSummaryResponse.java [in gov.wisconsin.timeoff.transport.response [in src/main/java [in timeoffAPI]]]] does not exist
+!STACK 1
+Java Model Exception: Java Model Status [TimesheetSummaryResponse [in [Working copy] TimesheetSummaryResponse.java [in gov.wisconsin.timeoff.transport.response [in src/main/java [in timeoffAPI]]]] does not exist]
+	at org.eclipse.jdt.internal.core.JavaElement.newNotPresentException(Unknown Source)
+	at org.eclipse.jdt.internal.core.JavaElement.openWhenClosed(Unknown Source)
+	at org.eclipse.jdt.internal.core.JavaElement.getElementInfo(Unknown Source)
+	at org.eclipse.jdt.internal.core.JavaElement.getElementInfo(Unknown Source)
+	at org.eclipse.jdt.internal.core.SourceType.isInterface(Unknown Source)
+	at com.ibm.ws.jaxrs.finder.AbstractSourceFinder.resourceChanged(Unknown Source)
+	at com.ibm.ccl.ws.internal.finder.core.notifier.impl.NotifyResourceChangedJob.run(Unknown Source)
+	at org.eclipse.core.internal.jobs.Worker.run(Unknown Source)
+!SUBENTRY 1 org.eclipse.jdt.core 4 969 2019-04-01 14:21:27.879
+!MESSAGE TimesheetSummaryResponse [in [Working copy] TimesheetSummaryResponse.java [in gov.wisconsin.timeoff.transport.response [in src/main/java [in timeoffAPI]]]] does not exist
+
+!ENTRY com.ibm.ws.jaxrs.core 4 0 2019-04-01 14:21:44.482
+!MESSAGE TimesheetSummaryData [in [Working copy] TimesheetSummaryData.java [in gov.wisconsin.timeoff.transport.helper [in src/main/java [in timeoffAPI]]]] does not exist
+!STACK 1
+Java Model Exception: Java Model Status [TimesheetSummaryData [in [Working copy] TimesheetSummaryData.java [in gov.wisconsin.timeoff.transport.helper [in src/main/java [in timeoffAPI]]]] does not exist]
+	at org.eclipse.jdt.internal.core.JavaElement.newNotPresentException(Unknown Source)
+	at org.eclipse.jdt.internal.core.JavaElement.openWhenClosed(Unknown Source)
+	at org.eclipse.jdt.internal.core.JavaElement.getElementInfo(Unknown Source)
+	at org.eclipse.jdt.internal.core.JavaElement.getElementInfo(Unknown Source)
+	at org.eclipse.jdt.internal.core.SourceType.isInterface(Unknown Source)
+	at com.ibm.ws.jaxrs.finder.AbstractSourceFinder.resourceChanged(Unknown Source)
+	at com.ibm.ccl.ws.internal.finder.core.notifier.impl.NotifyResourceChangedJob.run(Unknown Source)
+	at org.eclipse.core.internal.jobs.Worker.run(Unknown Source)
+!SUBENTRY 1 org.eclipse.jdt.core 4 969 2019-04-01 14:21:44.482
+!MESSAGE TimesheetSummaryData [in [Working copy] TimesheetSummaryData.java [in gov.wisconsin.timeoff.transport.helper [in src/main/java [in timeoffAPI]]]] does not exist
+
+!ENTRY com.ibm.ws.jaxrs.core 4 0 2019-04-01 16:01:57.565
+!MESSAGE asfd [in [Working copy] asfd.java [in gov.wisconsin.timeoff.transport.request [in src/main/java [in timeoffAPI]]]] does not exist
+!STACK 1
+Java Model Exception: Java Model Status [asfd [in [Working copy] asfd.java [in gov.wisconsin.timeoff.transport.request [in src/main/java [in timeoffAPI]]]] does not exist]
+	at org.eclipse.jdt.internal.core.JavaElement.newNotPresentException(Unknown Source)
+	at org.eclipse.jdt.internal.core.JavaElement.openWhenClosed(Unknown Source)
+	at org.eclipse.jdt.internal.core.JavaElement.getElementInfo(Unknown Source)
+	at org.eclipse.jdt.internal.core.JavaElement.getElementInfo(Unknown Source)
+	at org.eclipse.jdt.internal.core.SourceType.isInterface(Unknown Source)
+	at com.ibm.ws.jaxrs.finder.AbstractSourceFinder.resourceChanged(Unknown Source)
+	at com.ibm.ccl.ws.internal.finder.core.notifier.impl.NotifyResourceChangedJob.run(Unknown Source)
+	at org.eclipse.core.internal.jobs.Worker.run(Unknown Source)
+!SUBENTRY 1 org.eclipse.jdt.core 4 969 2019-04-01 16:01:57.565
+!MESSAGE asfd [in [Working copy] asfd.java [in gov.wisconsin.timeoff.transport.request [in src/main/java [in timeoffAPI]]]] does not exist
+
+!ENTRY com.ibm.datatools.core.http 1 0 2019-04-02 08:40:07.360
+!MESSAGE Embedded HTTP server stopped
+!SESSION 2019-04-03 10:37:18.686 -----------------------------------------------
+eclipse.buildId=unknown
+java.fullversion=JRE 1.8.0 IBM J9 2.8 Windows 10 x86-32 20160106_284759 (JIT enabled, AOT enabled)
+J9VM - R28_20160106_1341_B284759
+JIT  - tr.r14.java_20151209_107110.02
+GC   - R28_20160106_1341_B284759
+J9CL - 20160106_284759
+BootLoader constants: OS=win32, ARCH=x86, WS=win32, NL=en_US
+Framework arguments:  -product com.ibm.rational.rad.product.v95.ide
+Command-line arguments:  -os win32 -ws win32 -arch x86 -product com.ibm.rational.rad.product.v95.ide
+
+!ENTRY com.ibm.rational.clearcase.rtc.UCMActivity 4 0 2019-04-03 10:37:20.471
+!MESSAGE FrameworkEvent ERROR
+!STACK 0
+org.osgi.framework.BundleException: Could not resolve module: com.ibm.rational.clearcase.rtc.UCMActivity [2721]
+  Unresolved requirement: Require-Bundle: com.rational.clearcase
+
+	at org.eclipse.osgi.container.Module.start(Unknown Source)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.incStartLevel(Unknown Source)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.incStartLevel(Unknown Source)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.doContainerStartLevel(Unknown Source)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.dispatchEvent(Unknown Source)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.dispatchEvent(Unknown Source)
+	at org.eclipse.osgi.framework.eventmgr.EventManager.dispatchEvent(Unknown Source)
+	at org.eclipse.osgi.framework.eventmgr.EventManager$EventThread.run(Unknown Source)
+
+!ENTRY com.ibm.datatools.core.http 1 0 2019-04-03 10:37:40.125
+!MESSAGE Embedded server started: [HTTP port: 56800, HTTPS port: 56801]
+
+!ENTRY com.ibm.ws.st.core 4 0 2019-04-03 10:37:42.403
+!MESSAGE Error during validation for: file:/C:/ctts/src/CTTS_POC_R0/timeoffAPI/.metadata/.plugins/com.ibm.etools.wdt.server.core/tmp0/usr/servers/defaultServer0/server.xml
+!STACK 0
+java.lang.NullPointerException
+	at com.ibm.ws.kernel.feature.internal.FeatureResolverImpl.parseNameAndVersion(Unknown Source)
+	at com.ibm.ws.kernel.feature.internal.FeatureResolverImpl.processSelected(Unknown Source)
+	at com.ibm.ws.kernel.feature.internal.FeatureResolverImpl.processRoots(Unknown Source)
+	at com.ibm.ws.kernel.feature.internal.FeatureResolverImpl.doResolveFeatures(Unknown Source)
+	at com.ibm.ws.kernel.feature.internal.FeatureResolverImpl.resolveFeatures(Unknown Source)
+	at com.ibm.ws.kernel.feature.internal.FeatureResolverImpl.resolveFeatures(Unknown Source)
+	at com.ibm.ws.st.core.internal.RuntimeFeatureResolver.resolve(Unknown Source)
+	at com.ibm.ws.st.core.internal.config.validation.AbstractConfigurationValidator.validate(Unknown Source)
+	at com.ibm.ws.st.core.internal.config.validation.AbstractConfigurationValidator.validate(Unknown Source)
+	at com.ibm.ws.st.core.internal.config.validation.ConfigurationValidator.validate(Unknown Source)
+	at org.eclipse.wst.validation.Validator$V2.validate(Unknown Source)
+	at org.eclipse.wst.validation.internal.ValManager.validate(Unknown Source)
+	at org.eclipse.wst.validation.internal.ValManager$1.visit(Unknown Source)
+	at org.eclipse.wst.validation.internal.ValManager.accept(Unknown Source)
+	at org.eclipse.wst.validation.internal.ValManager.validate(Unknown Source)
+	at org.eclipse.wst.validation.internal.ValBuilderJob$Visitor.visit(Unknown Source)
+	at org.eclipse.core.internal.events.ResourceDelta.accept(Unknown Source)
+	at org.eclipse.core.internal.events.ResourceDelta.accept(Unknown Source)
+	at org.eclipse.core.internal.events.ResourceDelta.accept(Unknown Source)
+	at org.eclipse.core.internal.events.ResourceDelta.accept(Unknown Source)
+	at org.eclipse.core.internal.events.ResourceDelta.accept(Unknown Source)
+	at org.eclipse.core.internal.events.ResourceDelta.accept(Unknown Source)
+	at org.eclipse.core.internal.events.ResourceDelta.accept(Unknown Source)
+	at org.eclipse.core.internal.events.ResourceDelta.accept(Unknown Source)
+	at org.eclipse.core.internal.events.ResourceDelta.accept(Unknown Source)
+	at org.eclipse.core.internal.events.ResourceDelta.accept(Unknown Source)
+	at org.eclipse.wst.validation.internal.ValBuilderJob.deltaBuild(Unknown Source)
+	at org.eclipse.wst.validation.internal.ValBuilderJob.run(Unknown Source)
+	at org.eclipse.wst.validation.internal.ValBuilderJob.runInWorkspace(Unknown Source)
+	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(Unknown Source)
+	at org.eclipse.core.internal.jobs.Worker.run(Unknown Source)
+
+!ENTRY com.ibm.ws.jaxrs.core 4 0 2019-04-03 10:48:53.344
+!MESSAGE CreateTimesheetResponse [in [Working copy] CreateTimesheetResponse.java [in gov.wisconsin.timeoff.transport.response [in src/main/java [in timeoffAPI]]]] does not exist
+!STACK 1
+Java Model Exception: Java Model Status [CreateTimesheetResponse [in [Working copy] CreateTimesheetResponse.java [in gov.wisconsin.timeoff.transport.response [in src/main/java [in timeoffAPI]]]] does not exist]
+	at org.eclipse.jdt.internal.core.JavaElement.newNotPresentException(Unknown Source)
+	at org.eclipse.jdt.internal.core.JavaElement.openWhenClosed(Unknown Source)
+	at org.eclipse.jdt.internal.core.JavaElement.getElementInfo(Unknown Source)
+	at org.eclipse.jdt.internal.core.JavaElement.getElementInfo(Unknown Source)
+	at org.eclipse.jdt.internal.core.SourceType.isInterface(Unknown Source)
+	at com.ibm.ws.jaxrs.finder.AbstractSourceFinder.resourceChanged(Unknown Source)
+	at com.ibm.ccl.ws.internal.finder.core.notifier.impl.NotifyResourceChangedJob.run(Unknown Source)
+	at org.eclipse.core.internal.jobs.Worker.run(Unknown Source)
+!SUBENTRY 1 org.eclipse.jdt.core 4 969 2019-04-03 10:48:53.345
+!MESSAGE CreateTimesheetResponse [in [Working copy] CreateTimesheetResponse.java [in gov.wisconsin.timeoff.transport.response [in src/main/java [in timeoffAPI]]]] does not exist
+
+!ENTRY com.ibm.ws.jaxrs.core 4 0 2019-04-03 10:49:00.066
+!MESSAGE CreateTimesheetResponse [in [Working copy] CreateTimesheetResponse.java [in gov.wisconsin.timeoff.transport.response [in src/main/java [in timeoffAPI]]]] does not exist
+!STACK 1
+Java Model Exception: Java Model Status [CreateTimesheetResponse [in [Working copy] CreateTimesheetResponse.java [in gov.wisconsin.timeoff.transport.response [in src/main/java [in timeoffAPI]]]] does not exist]
+	at org.eclipse.jdt.internal.core.JavaElement.newNotPresentException(Unknown Source)
+	at org.eclipse.jdt.internal.core.JavaElement.openWhenClosed(Unknown Source)
+	at org.eclipse.jdt.internal.core.JavaElement.getElementInfo(Unknown Source)
+	at org.eclipse.jdt.internal.core.JavaElement.getElementInfo(Unknown Source)
+	at org.eclipse.jdt.internal.core.SourceType.isInterface(Unknown Source)
+	at com.ibm.ws.jaxrs.finder.AbstractSourceFinder.resourceChanged(Unknown Source)
+	at com.ibm.ccl.ws.internal.finder.core.notifier.impl.NotifyResourceChangedJob.run(Unknown Source)
+	at org.eclipse.core.internal.jobs.Worker.run(Unknown Source)
+!SUBENTRY 1 org.eclipse.jdt.core 4 969 2019-04-03 10:49:00.066
+!MESSAGE CreateTimesheetResponse [in [Working copy] CreateTimesheetResponse.java [in gov.wisconsin.timeoff.transport.response [in src/main/java [in timeoffAPI]]]] does not exist
+
+!ENTRY com.ibm.ws.jaxrs.core 4 0 2019-04-03 10:49:35.258
+!MESSAGE GetAllTimesheetsResponse [in [Working copy] GetAllTimesheetsResponse.java [in gov.wisconsin.timeoff.transport.response [in src/main/java [in timeoffAPI]]]] does not exist
+!STACK 1
+Java Model Exception: Java Model Status [GetAllTimesheetsResponse [in [Working copy] GetAllTimesheetsResponse.java [in gov.wisconsin.timeoff.transport.response [in src/main/java [in timeoffAPI]]]] does not exist]
+	at org.eclipse.jdt.internal.core.JavaElement.newNotPresentException(Unknown Source)
+	at org.eclipse.jdt.internal.core.JavaElement.openWhenClosed(Unknown Source)
+	at org.eclipse.jdt.internal.core.JavaElement.getElementInfo(Unknown Source)
+	at org.eclipse.jdt.internal.core.JavaElement.getElementInfo(Unknown Source)
+	at org.eclipse.jdt.internal.core.SourceType.isInterface(Unknown Source)
+	at com.ibm.ws.jaxrs.finder.AbstractSourceFinder.resourceChanged(Unknown Source)
+	at com.ibm.ccl.ws.internal.finder.core.notifier.impl.NotifyResourceChangedJob.run(Unknown Source)
+	at org.eclipse.core.internal.jobs.Worker.run(Unknown Source)
+!SUBENTRY 1 org.eclipse.jdt.core 4 969 2019-04-03 10:49:35.258
+!MESSAGE GetAllTimesheetsResponse [in [Working copy] GetAllTimesheetsResponse.java [in gov.wisconsin.timeoff.transport.response [in src/main/java [in timeoffAPI]]]] does not exist
+
+!ENTRY com.ibm.ws.jaxrs.core 4 0 2019-04-03 10:50:02.074
+!MESSAGE UpdateTimesheetResponse [in [Working copy] UpdateTimesheetResponse.java [in gov.wisconsin.timeoff.transport.response [in src/main/java [in timeoffAPI]]]] does not exist
+!STACK 1
+Java Model Exception: Java Model Status [UpdateTimesheetResponse [in [Working copy] UpdateTimesheetResponse.java [in gov.wisconsin.timeoff.transport.response [in src/main/java [in timeoffAPI]]]] does not exist]
+	at org.eclipse.jdt.internal.core.JavaElement.newNotPresentException(Unknown Source)
+	at org.eclipse.jdt.internal.core.JavaElement.openWhenClosed(Unknown Source)
+	at org.eclipse.jdt.internal.core.JavaElement.getElementInfo(Unknown Source)
+	at org.eclipse.jdt.internal.core.JavaElement.getElementInfo(Unknown Source)
+	at org.eclipse.jdt.internal.core.SourceType.isInterface(Unknown Source)
+	at com.ibm.ws.jaxrs.finder.AbstractSourceFinder.resourceChanged(Unknown Source)
+	at com.ibm.ccl.ws.internal.finder.core.notifier.impl.NotifyResourceChangedJob.run(Unknown Source)
+	at org.eclipse.core.internal.jobs.Worker.run(Unknown Source)
+!SUBENTRY 1 org.eclipse.jdt.core 4 969 2019-04-03 10:50:02.074
+!MESSAGE UpdateTimesheetResponse [in [Working copy] UpdateTimesheetResponse.java [in gov.wisconsin.timeoff.transport.response [in src/main/java [in timeoffAPI]]]] does not exist
+
+!ENTRY com.ibm.datatools.core.http 1 0 2019-04-03 10:50:31.765
+!MESSAGE Embedded HTTP server stopped

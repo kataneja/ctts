@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<org.eclipse.jst.j2ee.commonarchivecore.looseconfig:LooseArchive xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:org.eclipse.jst.j2ee.commonarchivecore.looseconfig="commonarchive.looseconfig.xmi" uri="C:\ctts\src\CTTS_POC_R0\timeoffEAR" binariesPath="C:\ctts\src\CTTS_POC_R0\timeoffEAR" resourcesPath="C:\ctts\src\CTTS_POC_R0\timeoffEAR" archiveType="EAR">
+  <looseChildren uri="timeoffAPI.war" binariesPath="C:/ctts/workspaces/CTTS_POC_R0/timeoffAPI/.metadata/.plugins/org.eclipse.wst.server.core/tmp0\timeoffAPI" resourcesPath="C:/ctts/workspaces/CTTS_POC_R0/timeoffAPI/.metadata/.plugins/org.eclipse.wst.server.core/tmp0\timeoffAPI" archiveType="WAR"/>
+</org.eclipse.jst.j2ee.commonarchivecore.looseconfig:LooseArchive>

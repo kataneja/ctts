@@ -1,0 +1,25 @@
+package gov.wisconsin.admin.scheduled;
+
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.TimeZone;
+
+import org.springframework.scheduling.annotation.Scheduled;
+import org.springframework.stereotype.Component;
+
+@Component
+public class ScheduledTasks {
+
+	@Scheduled(fixedRate = 10000)
+	public void scheduleFixedDelayTask() {
+		
+		Date date = new Date(System.currentTimeMillis() / 10000);
+		DateFormat formatter = new SimpleDateFormat("HH:mm:ss.SSS");
+		formatter.setTimeZone(TimeZone.getTimeZone("UTC"));
+		String dateFormatted = formatter.format(date);
+		
+	    System.out.println("Admin API Scheduled Task - " + System.currentTimeMillis() / 10000);
+	}
+	
+}

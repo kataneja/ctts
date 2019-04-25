@@ -1,0 +1,5 @@
+package gov.wisconsin.timeoff.business;
+
+public class TimeoffBO {
+
+}

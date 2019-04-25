@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<section name="CleanDialogSettings">
+		<item value="500" key="DIALOG_WIDTH"/>
+		<item value="false" key="TOGGLE_SELECTED"/>
+		<item value="378" key="DIALOG_HEIGHT"/>
+		<item value="390" key="DIALOG_X_ORIGIN"/>
+		<item value="240" key="DIALOG_Y_ORIGIN"/>
+	</section>
+	<section name="org.eclipse.ui.dialogs.FilteredResourcesSelectionDialog">
+		<item value="true" key="ShowStatusLine"/>
+		<item value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&#x0D;&#x0A;&lt;History&gt;&#x0D;&#x0A;&lt;historyRootNode&gt;&#x0D;&#x0A;&lt;infoNode path=&quot;/adminAPI/src/main/java/gov/wisconsin/Application.java&quot; type=&quot;1&quot;/&gt;&#x0D;&#x0A;&lt;infoNode path=&quot;/adminAPI/src/main/webapp/WEB-INF/resources/url.properties&quot; type=&quot;1&quot;/&gt;&#x0D;&#x0A;&lt;infoNode path=&quot;/adminAPI/pom.xml&quot; type=&quot;1&quot;/&gt;&#x0D;&#x0A;&lt;infoNode path=&quot;/adminAPI/src/main/java/gov/wisconsin/admin/data/pojo/T025_Activity_PK.java&quot; type=&quot;1&quot;/&gt;&#x0D;&#x0A;&lt;infoNode path=&quot;/adminAPI/src/main/java/gov/wisconsin/admin/data/pojo/T024_Category_PK.java&quot; type=&quot;1&quot;/&gt;&#x0D;&#x0A;&lt;infoNode path=&quot;/adminAPI/src/main/java/gov/wisconsin/admin/data/dao/T035_HolidayTime_DAO.java&quot; type=&quot;1&quot;/&gt;&#x0D;&#x0A;&lt;infoNode path=&quot;/adminAPI/src/main/java/gov/wisconsin/admin/data/pojo/T035_HolidayTime_PK.java&quot; type=&quot;1&quot;/&gt;&#x0D;&#x0A;&lt;infoNode path=&quot;/adminAPI/src/main/java/gov/wisconsin/admin/business/ActivityBO.java&quot; type=&quot;1&quot;/&gt;&#x0D;&#x0A;&lt;infoNode path=&quot;/adminAPI/src/main/java/gov/wisconsin/admin/business/CategoryBO.java&quot; type=&quot;1&quot;/&gt;&#x0D;&#x0A;&lt;infoNode path=&quot;/adminAPI/src/main/java/gov/wisconsin/admin/business/HolidayBO.java&quot; type=&quot;1&quot;/&gt;&#x0D;&#x0A;&lt;infoNode path=&quot;/adminAPI/src/main/java/gov/wisconsin/admin/data/dao/T024_Category_DAO.java&quot; type=&quot;1&quot;/&gt;&#x0D;&#x0A;&lt;infoNode path=&quot;/adminAPI/src/main/java/gov/wisconsin/admin/controller/POCController.java&quot; type=&quot;1&quot;/&gt;&#x0D;&#x0A;&lt;infoNode path=&quot;/adminAPI/src/main/java/gov/wisconsin/admin/queue/config/CttsQueueConfiguration.java&quot; type=&quot;1&quot;/&gt;&#x0D;&#x0A;&lt;infoNode path=&quot;/adminAPI/src/main/java/gov/wisconsin/admin/data/pojo/T024_Category_Cargo.java&quot; type=&quot;1&quot;/&gt;&#x0D;&#x0A;&lt;infoNode path=&quot;/adminAPI/src/main/java/gov/wisconsin/admin/data/pojo/T025_Activity_Cargo.java&quot; type=&quot;1&quot;/&gt;&#x0D;&#x0A;&lt;infoNode path=&quot;/adminAPI/src/main/java/gov/wisconsin/admin/data/pojo/T035_HolidayTime_Cargo.java&quot; type=&quot;1&quot;/&gt;&#x0D;&#x0A;&lt;infoNode path=&quot;/adminEAR/ConfigServer.py&quot; type=&quot;1&quot;/&gt;&#x0D;&#x0A;&lt;infoNode path=&quot;/adminEAR/META-INF/ibmconfig/cells/defaultCell/nodes/defaultNode/servers/defaultServer/libraries.xml&quot; type=&quot;1&quot;/&gt;&#x0D;&#x0A;&lt;infoNode path=&quot;/adminAPI/src/main/java/gov/wisconsin/admin/controller/AdminController.java&quot; type=&quot;1&quot;/&gt;&#x0D;&#x0A;&lt;infoNode path=&quot;/adminEAR/META-INF/ibmconfig/cells/defaultCell/applications/defaultApp/deployments/defaultApp/resources.xml&quot; type=&quot;1&quot;/&gt;&#x0D;&#x0A;&lt;infoNode path=&quot;/adminAPI/src/main/java/gov/wisconsin/admin/transport/response/GetStaffProfileResponse.java&quot; type=&quot;1&quot;/&gt;&#x0D;&#x0A;&lt;/historyRootNode&gt;&#x0D;&#x0A;&lt;/History&gt;" key="History"/>
+		<item value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&#x0D;&#x0A;&lt;workingSet workingSetName=&quot;&quot;/&gt;" key="WorkingSet"/>
+		<item value="false" key="ShowDerived"/>
+		<section name="DialogBoundsSettings">
+			<item value="485" key="DIALOG_WIDTH"/>
+			<item value="1|Segoe UI|9.0|0|WINDOWS|1|-12|0|0|0|400|0|0|0|1|0|0|0|0|Segoe UI" key="DIALOG_FONT_NAME"/>
+			<item value="515" key="DIALOG_HEIGHT"/>
+			<item value="348" key="DIALOG_X_ORIGIN"/>
+			<item value="167" key="DIALOG_Y_ORIGIN"/>
+		</section>
+	</section>
+</section>

@@ -1,0 +1,2707 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsl:stylesheet xmlns:xsd="http://www.w3.org/2001/XMLSchema" exclude-result-prefixes="xsl" version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:lxslt="http://xml.apache.org/xslt">
+    <xsl:output indent="no" method="xml"/>
+    <xsl:strip-space elements="*"/>
+    <xsl:param name="SOURCE_FILENAME"/>
+    <xsl:variable name="lcletters">abcdefghijklmnopqrstuvwxyz</xsl:variable>
+	<xsl:variable name="ucletters">ABCDEFGHIJKLMNOPQRSTUVWXYZ</xsl:variable>
+	<xsl:variable name="defaultAmount"><xsl:value-of select="'0.00'"/></xsl:variable>
+	<xsl:variable name="defaultAmountIndicator"><xsl:value-of select="'1'"/></xsl:variable>
+	<xsl:variable name="defaultSeqNum"><xsl:value-of select="'0'"/></xsl:variable>
+	<xsl:variable name="defaultQuantity"><xsl:value-of select="'0'"/></xsl:variable>
+	<xsl:variable name="defaultSpace"><xsl:value-of select="' '"/></xsl:variable>
+	<xsl:variable name="defaultHighdate"><xsl:value-of select="'9999-12-31'"/></xsl:variable>
+	
+	
+    <xsl:template name='convertToUppercase'>
+	    <xsl:param name='toConvert' />
+	    <xsl:value-of select="translate($toConvert,$lcletters,$ucletters)" />
+	</xsl:template>
+    <xsl:template name='convertAccessIndToCwwInd'>
+	    <xsl:param name='toConvert'/>
+	    <xsl:choose>
+	        <xsl:when test="$toConvert = '0'">
+	            <xsl:value-of select="1"/>
+	        </xsl:when>
+	        <xsl:when test="$toConvert = '1'">
+	            <xsl:value-of select="2"/>
+	        </xsl:when>
+	        <xsl:when test="$toConvert = '2'">
+	            <xsl:value-of select="2"/>
+	        </xsl:when>
+            <xsl:otherwise> 
+            	<xsl:value-of select="2"/>
+            </xsl:otherwise>
+	     </xsl:choose>
+	</xsl:template>
+	<xsl:template name='getYYYYMM'>
+	    <xsl:param name='date'/>
+	    <xsl:choose>
+	    	<xsl:when test="$date != '9999-12-31'">
+		    	<xsl:value-of select="concat(substring($date,1,4),substring($date,6,2))" />
+		    </xsl:when>	
+	     <xsl:otherwise> 
+            	<xsl:value-of select="'999912'"/>
+          </xsl:otherwise>
+	     </xsl:choose>
+	</xsl:template>
+	<xsl:template name='getNegative'>
+	    <xsl:param name='amount'/>
+		<xsl:value-of select="concat('-',$amount)" />
+	</xsl:template>
+    <xsl:template match="/APPLICATION">
+        <APPLICATION>
+            <APP_TYP>
+                <xsl:value-of select="'R'"/>
+            </APP_TYP>
+            <CASE_NUM>
+                <xsl:value-of select="CASE_NUM"/>
+            </CASE_NUM>
+            <RMC_APP_NUM>
+                <xsl:value-of select="' '"/>
+            </RMC_APP_NUM>
+            <CMPN_CASE_IND>
+	            <xsl:value-of select="' '"/><!-- we need to determine this indicator from cares side -->
+            </CMPN_CASE_IND>
+            <LANG_CD>
+	        	<xsl:value-of select="' '"/>
+            </LANG_CD>
+            <ECF_STAT_CD>
+            	<xsl:value-of select="' '"/>
+            </ECF_STAT_CD>
+            <DUE_DT>
+	            <xsl:value-of select="'9999-12-31'"/>
+            </DUE_DT>
+            <PRIM_PRSN_PIN_NUM>
+	            <xsl:value-of select="'0'"/>
+            </PRIM_PRSN_PIN_NUM>
+            <RPT_EFF_RCV_DT>
+            	<xsl:value-of select="'9999-12-31'"/>
+            </RPT_EFF_RCV_DT>
+            <RPT_PIN_NUM>
+	            <xsl:value-of select="'0'"/>
+            </RPT_PIN_NUM>
+            <RPT_STAT_CD>
+                <xsl:value-of select="'RC'"/>
+            </RPT_STAT_CD>
+            <RPT_TMS>
+                <xsl:value-of select="' '"/><!-- JAVA - Default to current DB2 Timestamp -->
+            </RPT_TMS>
+            <RPT_WRKR_ID>
+                <xsl:value-of select="' '"/>
+            </RPT_WRKR_ID>
+            <SRC_RMC_APP_NUM>
+                <xsl:value-of select="APP_NUM"/>
+            </SRC_RMC_APP_NUM>
+            <SRC_SBMT_TMS>
+	            <xsl:value-of select="SBMT_TMS"/>
+            </SRC_SBMT_TMS>
+            <UPDT_DT>
+                <xsl:value-of select="UPDT_DT"/><!-- RMC_RQST.UPDT_DT -->
+            </UPDT_DT>
+            <CC_PGM_SW>
+	            <xsl:value-of select="' '"/>
+            </CC_PGM_SW>
+            <CTS_PGM_SW>
+	            <xsl:value-of select="' '"/>
+            </CTS_PGM_SW>
+            <DSGT_PAYE_SW>
+	            <xsl:value-of select="' '"/>
+            </DSGT_PAYE_SW>
+            <FPW_PGM_SW>
+	            <xsl:value-of select="' '"/>            
+            </FPW_PGM_SW>
+            <FS_PGM_SW>
+	            <xsl:value-of select="' '"/>            
+            </FS_PGM_SW>
+            <KC_FC_ST_GARD_SW>
+	            <xsl:value-of select="' '"/>            
+            </KC_FC_ST_GARD_SW>
+            <FAM_MA_PGM_SW>
+	            <xsl:value-of select="' '"/>            
+            </FAM_MA_PGM_SW>
+            <MPA_PGM_SW>
+	            <xsl:value-of select="' '"/>            
+            </MPA_PGM_SW>
+            <NOTE_ADD_SW>
+	            <xsl:value-of select="' '"/>
+            </NOTE_ADD_SW>
+            <PRVD_CHG_SW>
+   	            <xsl:value-of select="' '"/>
+            </PRVD_CHG_SW>
+            <EI_CHG_SW>
+                <xsl:choose>
+            	    <xsl:when test="string(EI_CHG_SW)"><xsl:value-of select="EI_CHG_SW"/></xsl:when>
+        	        <xsl:otherwise><xsl:value-of select="' '"/></xsl:otherwise>
+ 		    	</xsl:choose>                                        
+            </EI_CHG_SW>
+            <ADD_CHG_STAT_SW>
+                <xsl:choose>
+            	    <xsl:when test="string(ADD_CHG_STAT_SW)"><xsl:value-of select="ADD_CHG_STAT_SW"/></xsl:when>
+        	        <xsl:otherwise><xsl:value-of select="' '"/></xsl:otherwise>
+ 		    	</xsl:choose>                                        
+            </ADD_CHG_STAT_SW>
+            <PRSN_ADD_STAT_SW>
+                <xsl:choose>
+            	    <xsl:when test="string(PRSN_ADD_STAT_SW)"><xsl:value-of select="PRSN_ADD_STAT_SW"/></xsl:when>
+        	        <xsl:otherwise><xsl:value-of select="' '"/></xsl:otherwise>
+ 		    	</xsl:choose>                                        
+            </PRSN_ADD_STAT_SW>
+            <PRSN_MOVE_STAT_SW>
+                <xsl:choose>
+            	    <xsl:when test="string(PRSN_MOVE_STAT_SW)"><xsl:value-of select="PRSN_MOVE_STAT_SW"/></xsl:when>
+        	        <xsl:otherwise><xsl:value-of select="' '"/></xsl:otherwise>
+ 		    	</xsl:choose>                                        
+            </PRSN_MOVE_STAT_SW>
+            <MRRG_STAT_SW>
+                <xsl:choose>
+            	    <xsl:when test="string(MRRG_STAT_SW)"><xsl:value-of select="MRRG_STAT_SW"/></xsl:when>
+        	        <xsl:otherwise><xsl:value-of select="' '"/></xsl:otherwise>
+ 		    	</xsl:choose>                                        
+            </MRRG_STAT_SW>
+            <DVRC_STAT_SW>
+                <xsl:choose>
+            	    <xsl:when test="string(DVRC_STAT_SW)"><xsl:value-of select="DVRC_STAT_SW"/></xsl:when>
+        	        <xsl:otherwise><xsl:value-of select="' '"/></xsl:otherwise>
+ 		    	</xsl:choose>                                        
+            </DVRC_STAT_SW>
+            <DABL_STAT_SW>
+                <xsl:choose>
+            	    <xsl:when test="string(DABL_STAT_SW)"><xsl:value-of select="DABL_STAT_SW"/></xsl:when>
+        	        <xsl:otherwise><xsl:value-of select="' '"/></xsl:otherwise>
+ 		    	</xsl:choose>                                        
+            </DABL_STAT_SW>
+            <PREG_ADD_STAT_SW>
+                <xsl:choose>
+            	    <xsl:when test="string(PREG_ADD_STAT_SW)"><xsl:value-of select="PREG_ADD_STAT_SW"/></xsl:when>
+        	        <xsl:otherwise><xsl:value-of select="' '"/></xsl:otherwise>
+ 		    	</xsl:choose>                                        
+            </PREG_ADD_STAT_SW>
+            <PREG_CHG_STAT_SW>
+                <xsl:choose>
+            	    <xsl:when test="string(PREG_CHG_STAT_SW)"><xsl:value-of select="PREG_CHG_STAT_SW"/></xsl:when>
+        	        <xsl:otherwise><xsl:value-of select="' '"/></xsl:otherwise>
+ 		    	</xsl:choose>                                        
+            </PREG_CHG_STAT_SW>
+            <DTH_STAT_SW>
+                <xsl:choose>
+            	    <xsl:when test="string(DTH_STAT_SW)"><xsl:value-of select="DTH_STAT_SW"/></xsl:when>
+        	        <xsl:otherwise><xsl:value-of select="' '"/></xsl:otherwise>
+ 		    	</xsl:choose>                                        
+            </DTH_STAT_SW>
+            <!-- MAGI TAX FILING CHANGES PCR 61703 --> 
+            <OTHR_STAT_SW>
+                <xsl:choose>
+            	    <xsl:when test="string(OTHR_STAT_SW) = 'Y' or string(EDUC_AID_STAT_SW) = 'Y'"><xsl:value-of select="'Y'" /></xsl:when>
+        	        <xsl:otherwise><xsl:value-of select="' '"/></xsl:otherwise>
+ 		    	</xsl:choose>                                        
+            </OTHR_STAT_SW>
+            <BC_TAX_DDCT_CHG_SW>
+                <xsl:choose>
+            	    <xsl:when test="string(TAX_DDCT_STAT_SW) = 'Y' or string(NO_TX_DDCT_STAT_SW) = 'Y'"><xsl:value-of select="'Y'" /></xsl:when>
+        	        <xsl:otherwise><xsl:value-of select="' '"/></xsl:otherwise>
+ 		    	</xsl:choose>                                        
+            </BC_TAX_DDCT_CHG_SW>
+            <TAX_DTLS_CHG_SW>
+                <xsl:choose>
+            	    <xsl:when test="string(TAX_FILE_STAT_SW)"><xsl:value-of select="TAX_FILE_STAT_SW" /></xsl:when>
+        	        <xsl:otherwise><xsl:value-of select="' '"/></xsl:otherwise>
+ 		    	</xsl:choose>                                        
+            </TAX_DTLS_CHG_SW>
+            <!-- MAGI TAX FILING CHANGES PCR 61703 --> 
+            <HOUS_UTIL_STAT_SW>
+                <xsl:choose>
+            	    <xsl:when test="string(HOUS_UTIL_STAT_SW)"><xsl:value-of select="HOUS_UTIL_STAT_SW"/></xsl:when>
+        	        <xsl:otherwise><xsl:value-of select="' '"/></xsl:otherwise>
+ 		    	</xsl:choose>                                        
+            </HOUS_UTIL_STAT_SW>
+            <HSHL_ADDR_CHANGED>
+                <xsl:choose>
+            	    <xsl:when test="string(HSHL_ADDR_CHANGED)"><xsl:value-of select="HSHL_ADDR_CHANGED"/></xsl:when>
+        	        <xsl:otherwise><xsl:value-of select="' '"/></xsl:otherwise>
+ 		    	</xsl:choose>                                        
+            </HSHL_ADDR_CHANGED>
+            <HSHL_ADDR_COUNTY_CHANGED>
+                <xsl:choose>
+            	    <xsl:when test="string(HSHL_ADDR_COUNTY_CHANGED)"><xsl:value-of select="HSHL_ADDR_COUNTY_CHANGED"/></xsl:when>
+        	        <xsl:otherwise><xsl:value-of select="' '"/></xsl:otherwise>
+ 		    	</xsl:choose>                                        
+            </HSHL_ADDR_COUNTY_CHANGED>
+            <HMO_CHANGED>
+                <xsl:choose>
+            	    <xsl:when test="string(HMO_CHANGED)"><xsl:value-of select="HMO_CHANGED"/></xsl:when>
+        	        <xsl:otherwise><xsl:value-of select="' '"/></xsl:otherwise>
+ 		    	</xsl:choose>                                        
+            </HMO_CHANGED>
+            <HLESS_SW>
+	             <xsl:choose>
+	        	    <xsl:when test="string(HSHL_ADDR_DETAILS/HLESS_SW)"><xsl:value-of select="HSHL_ADDR_DETAILS/HLESS_SW"/></xsl:when>
+	        	    <xsl:otherwise><xsl:value-of select="' '"/></xsl:otherwise>
+	     		</xsl:choose>                
+            </HLESS_SW>
+            <HSHL_CITY_ADR>
+				<xsl:call-template name='convertToUppercase'>
+                	<xsl:with-param name='toConvert' select='HSHL_ADDR_DETAILS/HSHL_CITY_ADR' />
+                </xsl:call-template>
+            </HSHL_CITY_ADR>
+            <RES_CNTY_NUM>
+       	    	<xsl:value-of select='HSHL_ADDR_DETAILS/CNTY_NUM' />
+            </RES_CNTY_NUM>
+            
+            <HSHL_PHN_NUM>
+				<xsl:call-template name='convertToUppercase'>
+                	<xsl:with-param name='toConvert' select='HSHL_ADDR_DETAILS/HSHL_HOME_PHN_NUM' />
+                </xsl:call-template>
+            </HSHL_PHN_NUM>
+            <HSHL_ST_ADR>
+				<xsl:call-template name='convertToUppercase'>
+                	<xsl:with-param name='toConvert' select='HSHL_ADDR_DETAILS/HSHL_L1_ADR' />
+                </xsl:call-template>            
+            </HSHL_ST_ADR>
+            <HSHL_STA_ADR>
+				<xsl:call-template name='convertToUppercase'>
+                	<xsl:with-param name='toConvert' select='HSHL_ADDR_DETAILS/HSHL_STA_ADR' />
+                </xsl:call-template>            
+            </HSHL_STA_ADR>
+            <HSHL_ZIP_ADR>
+				<xsl:call-template name='convertToUppercase'>
+                	<xsl:with-param name='toConvert' select='HSHL_ADDR_DETAILS/HSHL_ZIP_ADR' />
+                </xsl:call-template>            
+            </HSHL_ZIP_ADR>
+            <HSHL_L2_ADR>
+				<xsl:call-template name='convertToUppercase'>
+                	<xsl:with-param name='toConvert' select='HSHL_ADDR_DETAILS/HSHL_L2_ADR' />
+                </xsl:call-template>             
+            </HSHL_L2_ADR>
+            <HSHL_CELL_PHN_NUM>
+				<xsl:call-template name='convertToUppercase'>
+                	<xsl:with-param name='toConvert' select='HSHL_ADDR_DETAILS/HSHL_CELL_PHN_NUM' />
+                </xsl:call-template>             
+            </HSHL_CELL_PHN_NUM>
+             <!-- PCR 67239 Start -->
+             <PAPRLESS_IND>
+          		<xsl:choose>
+          		  <xsl:when test="string(HSHL_ADDR_DETAILS/PAPRLESS_IND)"><xsl:value-of select="' '"/></xsl:when>
+				</xsl:choose>
+             </PAPRLESS_IND>
+             <!-- PCR 67239 End -->
+            <HSHL_EMAIL_ADR>
+				<xsl:call-template name='convertToUppercase'>
+                	<xsl:with-param name='toConvert' select='HSHL_ADDR_DETAILS/HSHL_EMAIL_ADR' />
+                </xsl:call-template>             
+            </HSHL_EMAIL_ADR>
+            <HSHL_WORK_PHN_NUM>
+				<xsl:call-template name='convertToUppercase'>
+                	<xsl:with-param name='toConvert' select='HSHL_ADDR_DETAILS/HSHL_WORK_PHN_NUM' />
+                </xsl:call-template>             
+            </HSHL_WORK_PHN_NUM>
+            <MSG_PHN_EXTN_NUM>
+				<xsl:call-template name='convertToUppercase'>
+                	<xsl:with-param name='toConvert' select='HSHL_ADDR_DETAILS/MSG_PHN_EXTN_NUM' />
+                </xsl:call-template>             
+            </MSG_PHN_EXTN_NUM>
+            <WORK_PHN_EXTN_NUM>
+				<xsl:call-template name='convertToUppercase'>
+                	<xsl:with-param name='toConvert' select='HSHL_ADDR_DETAILS/WORK_PHN_EXTN_NUM' />
+                </xsl:call-template>             
+            </WORK_PHN_EXTN_NUM>
+             <MSG_PHN_NUM>
+				<xsl:call-template name='convertToUppercase'>
+                	<xsl:with-param name='toConvert' select='HSHL_ADDR_DETAILS/MSG_PHN_NUM' />
+                </xsl:call-template>             
+            </MSG_PHN_NUM>
+            <PREF_CNTC_IND>
+				<xsl:choose>
+	        	    <xsl:when test="string(HSHL_ADDR_DETAILS/PREF_CNTC_IND)"><xsl:value-of select="HSHL_ADDR_DETAILS/PREF_CNTC_IND"/></xsl:when>
+	        	    <xsl:otherwise>0</xsl:otherwise>
+	     		</xsl:choose>                
+            </PREF_CNTC_IND>
+            <PREF_CNTC_TM_TXT>
+				<xsl:call-template name='convertToUppercase'>
+                	<xsl:with-param name='toConvert' select='HSHL_ADDR_DETAILS/PREF_CNTC_TM_TXT' />
+                </xsl:call-template>             
+            </PREF_CNTC_TM_TXT>
+            <HSHL_SFX_DIR_ADR>
+                <xsl:value-of select="' '"/>
+            </HSHL_SFX_DIR_ADR>
+            
+            
+            <IP_FST_NAM>
+				<xsl:value-of select="' '"/>            
+            </IP_FST_NAM>
+            <IP_LAST_NAM>
+				<xsl:value-of select="' '"/>            
+            </IP_LAST_NAM>
+            <IP_MID_INIT>
+        	    <xsl:value-of select="' '"/>
+            </IP_MID_INIT>
+            <IP_RES_SW>
+                <xsl:value-of select="' '"/>
+            </IP_RES_SW>
+            <IP_RLT_CD>
+                <xsl:value-of select="' '"/>
+            </IP_RLT_CD>
+            <IP_SFX_NAM>
+                <xsl:value-of select="' '"/>
+            </IP_SFX_NAM>
+            <MA_FILE_DT>
+                <xsl:value-of select="'9999-12-31'"/>
+            </MA_FILE_DT>
+            <APP_FILE_DT>
+                <xsl:value-of select="'9999-12-31'"/>
+            </APP_FILE_DT>
+            <MA_RQST_SW>
+       	    	<xsl:value-of select="' '"/>
+            </MA_RQST_SW>
+            <FS_RQST_SW>
+       	    	<xsl:value-of select="' '"/>
+            </FS_RQST_SW>
+            <CC_RQST_SW>
+       	    	<xsl:value-of select="' '"/>
+            </CC_RQST_SW>
+            <MPA_RQST_RESP>
+       	    	<xsl:value-of select="' '"/>
+            </MPA_RQST_RESP>
+            <EBD_MEDCD_RQST_SW>
+       	    	<xsl:value-of select="' '"/>
+            </EBD_MEDCD_RQST_SW>
+            <BCP_FAM_RQST_SW>
+       	    	<xsl:value-of select="' '"/>
+            </BCP_FAM_RQST_SW>
+            <BCP_CLA_RQST_SW>
+       	    	<xsl:value-of select="' '"/>
+            </BCP_CLA_RQST_SW>
+            <INST_MA_RQST_SW>
+       	    	<xsl:value-of select="' '"/>
+            </INST_MA_RQST_SW>
+          	<FPW_FILE_DT>
+                <xsl:value-of select="'9999-12-31'"/>
+            </FPW_FILE_DT>
+            <FPW_RQST_SW>
+       	    	<xsl:value-of select="' '"/>
+            </FPW_RQST_SW>
+            <FS_FILE_DT>
+                <xsl:value-of select="'9999-12-31'"/>
+            </FS_FILE_DT>
+            <CC_FILE_DT>
+                <xsl:value-of select="'9999-12-31'"/>
+            </CC_FILE_DT>
+            <MPA_FILE_DT>
+                <xsl:value-of select="'9999-12-31'"/>
+            </MPA_FILE_DT>
+            <ONLN_SCRNR_RESP>
+                <xsl:value-of select="' '"/>
+            </ONLN_SCRNR_RESP>
+            <RGN_NUM>
+                <xsl:value-of select="'0'"/>
+            </RGN_NUM>
+            <RTRO_MA_RESP>
+                <xsl:value-of select="' '"/>
+            </RTRO_MA_RESP>
+            <CMT_TXT>
+                <xsl:value-of select="' '"/>
+            </CMT_TXT>
+            <APP_SRC_CD>
+                <xsl:value-of select="' '"/>
+            </APP_SRC_CD>
+            <AGCY_NUM>
+            	<xsl:value-of select="'0'"/>
+            </AGCY_NUM>
+		    <EMER_MA_RESP>
+    	        <xsl:value-of select="' '"/>
+            </EMER_MA_RESP>
+		    <TB_RESP>
+    	        <xsl:value-of select="' '"/>
+            </TB_RESP>
+		    <HELP_INDICATOR>
+    	        <xsl:value-of select="'0'"/>
+            </HELP_INDICATOR>
+		    <E_SIGN_IND>
+    	        <xsl:value-of select="'0'"/>
+            </E_SIGN_IND>
+		    <SPS_E_SIGN_IND>
+    	        <xsl:value-of select="'0'"/>
+            </SPS_E_SIGN_IND>
+            <PHN_NUM_TYP>
+            	<xsl:choose>
+	        	    <xsl:when test="HSHL_ADDR_DETAILS/PHN_NUM_TYP = 'N'">
+	        	    	<xsl:value-of select="' '"/>
+	        	    </xsl:when>
+	        	    <xsl:when test="string(HSHL_ADDR_DETAILS/PHN_NUM_TYP)">
+	        	    	<xsl:value-of select="HSHL_ADDR_DETAILS/PHN_NUM_TYP"/>
+	        	    </xsl:when>
+	        	    <xsl:otherwise>
+	        	    	<xsl:value-of select="' '"/>
+	        	    </xsl:otherwise>
+	     		</xsl:choose>
+            </PHN_NUM_TYP>            
+            <ALT_ADDR_CHANGED>
+                <xsl:choose>
+            	    <xsl:when test="string(ALT_ADDR_CHANGED)"><xsl:value-of select="ALT_ADDR_CHANGED"/></xsl:when>
+        	        <xsl:otherwise><xsl:value-of select="' '"/></xsl:otherwise>
+ 		    	</xsl:choose>                                        
+            </ALT_ADDR_CHANGED>
+			<!-- START alternative address -->    
+			<ADD_REC_IND>    
+   				<xsl:value-of select="'R'"/>    
+			</ADD_REC_IND>
+            <APT_ADR>
+                <xsl:value-of select="' '"/>
+            </APT_ADR>
+            <CITY_ADR>
+				<xsl:call-template name='convertToUppercase'>
+                	<xsl:with-param name='toConvert' select='ALT_ADDR_DETAILS/ALT_CITY_ADR' />
+                </xsl:call-template>
+            </CITY_ADR>
+            <DIR_ADR>
+                <xsl:value-of select="' '"/>
+            </DIR_ADR>
+            <NUM_ADR>
+                <xsl:value-of select="' '"/>
+            </NUM_ADR>
+            <SFX_ADR>
+                <xsl:value-of select="' '"/>
+            </SFX_ADR>
+            <ST_ADR>
+				<xsl:call-template name='convertToUppercase'>
+                	<xsl:with-param name='toConvert' select='ALT_ADDR_DETAILS/ALT_ST_ADR' />
+                </xsl:call-template>            
+            </ST_ADR>
+            <STA_ADR>
+				<xsl:call-template name='convertToUppercase'>
+                	<xsl:with-param name='toConvert' select='ALT_ADDR_DETAILS/ALT_STA_ADR' />
+                </xsl:call-template>               
+            </STA_ADR>
+            <UNIT_ADR>
+                <xsl:value-of select="' '"/>
+            </UNIT_ADR>
+            <L2_ADR>
+				<xsl:call-template name='convertToUppercase'>
+                	<xsl:with-param name='toConvert' select='ALT_ADDR_DETAILS/ALT_L2_ADR' />
+                </xsl:call-template>             
+            </L2_ADR>
+            <SFX_DIR_ADR>
+                <xsl:value-of select="' '"/>
+            </SFX_DIR_ADR>
+            <ZIP_ADR>
+				<xsl:call-template name='convertToUppercase'>
+                	<xsl:with-param name='toConvert' select='ALT_ADDR_DETAILS/ALT_ZIP_ADR' />
+                </xsl:call-template>            
+            </ZIP_ADR>
+            <!-- END alternative address -->            
+            <!-- MAGI TAX FILING CHANGES PCR 61703 -->              
+             <HOUSEHOLD_TAXFILING_STATUS DATA_EXIST="{HOUSEHOLD_TAXFILING_STATUS/@DATA_EXIST}">
+	              <APP_NUM>
+	      	        	<xsl:value-of select="HOUSEHOLD_TAXFILING_STATUS/APP_NUM"/> 		    	 
+	              </APP_NUM>
+	              <EFF_BEG_MO>
+	        	    <xsl:value-of select="HOUSEHOLD_TAXFILING_STATUS/EFF_BEG_MO"/> 		        
+	              </EFF_BEG_MO>  
+	              <TAX_FILR_CD>
+	              <xsl:choose>
+        	        <xsl:when test="string(HOUSEHOLD_TAXFILING_STATUS/TAX_FILR_CD)">
+        	        	<xsl:value-of select="HOUSEHOLD_TAXFILING_STATUS/TAX_FILR_CD"/>
+        	        </xsl:when>
+    	        	<xsl:otherwise><xsl:value-of select="' '"/></xsl:otherwise>
+ 		    	</xsl:choose>    
+	              </TAX_FILR_CD> 	               
+            </HOUSEHOLD_TAXFILING_STATUS> 
+             <!-- MAGI TAX FILING CHANGES PCR 61703 -->
+            <INDIVIDUALS DATA_EXIST="{INDIVIDUALS/@DATA_EXIST}">
+                <xsl:for-each select="INDIVIDUALS/INDIVIDUAL">
+                    <INDIVIDUAL DATA_EXIST="{INDIVIDUAL/@DATA_EXIST}">
+                        <INDV_SEQ_NUM>
+                            <xsl:value-of select="INDV_SEQ_NUM"/>
+                        </INDV_SEQ_NUM>
+                        <ALN_SPONSER_SW>
+		                    <xsl:choose>
+			            	    <xsl:when test="string(PIN_NUM) = '0' and string(ALN_SPONSER_SW)"><xsl:value-of select="ALN_SPONSER_SW"/></xsl:when>
+			        	        <xsl:otherwise><xsl:value-of select="' '"/></xsl:otherwise>
+		     		    	</xsl:choose>
+                        </ALN_SPONSER_SW>
+                        <BRTH_DT>
+		                    <xsl:choose>
+			            	    <xsl:when test="string(PIN_NUM) = '0'"><xsl:value-of select="BRTH_DT"/></xsl:when>
+			            	    <xsl:when test="string(PIN_NUM) != '0'"><xsl:value-of select="BRTH_DT"/></xsl:when>
+			        	        <xsl:otherwise><xsl:value-of select="'9999-12-31'"/></xsl:otherwise>
+		     		    	</xsl:choose>
+                        </BRTH_DT>
+                        <FST_NAM>
+		                    <xsl:choose>
+			            	    <xsl:when test="string(PIN_NUM) = '0'">
+									<xsl:call-template name='convertToUppercase'>
+					                	<xsl:with-param name='toConvert' select='FST_NAM' />
+					                </xsl:call-template>             
+			            	    </xsl:when>
+			            	    <xsl:when test="string(PIN_NUM) != '0'">
+									<xsl:call-template name='convertToUppercase'>
+					                	<xsl:with-param name='toConvert' select='FST_NAM' />
+					                </xsl:call-template>             
+			            	    </xsl:when>
+			        	        <xsl:otherwise><xsl:value-of select="' '"/></xsl:otherwise>
+		     		    	</xsl:choose>
+                        </FST_NAM>
+                        <INDV_ESTB_STAT_IND>
+		                    <xsl:choose>
+			            	    <xsl:when test="string(PIN_NUM) = '0'"><xsl:value-of select="'R'"/>
+			            	    </xsl:when>
+			        	        <xsl:otherwise><xsl:value-of select="'E'"/></xsl:otherwise>
+		     		    	</xsl:choose>
+                        </INDV_ESTB_STAT_IND>
+                        <RLVN_IND>
+	                        <xsl:value-of select="'R'"/>
+	                    </RLVN_IND>    
+                        <LAST_NAM>
+		                    <xsl:choose>
+			            	    <xsl:when test="string(PIN_NUM) = '0'">
+									<xsl:call-template name='convertToUppercase'>
+					                	<xsl:with-param name='toConvert' select='LAST_NAM' />
+					                </xsl:call-template>             
+			            	    </xsl:when>
+			            	    <xsl:when test="string(PIN_NUM) != '0'">
+									<xsl:call-template name='convertToUppercase'>
+					                	<xsl:with-param name='toConvert' select='LAST_NAM' />
+					                </xsl:call-template>             
+			            	    </xsl:when>
+			        	        <xsl:otherwise><xsl:value-of select="' '"/></xsl:otherwise>
+		     		    	</xsl:choose>
+                        </LAST_NAM>
+                        <SFX_NAM>
+                            <xsl:value-of select="' '"/>
+                        </SFX_NAM>
+                        <MID_INIT>
+		                    <xsl:choose>
+			            	    <xsl:when test="string(PIN_NUM) = '0' and string(MID_INIT)">
+									<xsl:call-template name='convertToUppercase'>
+					                	<xsl:with-param name='toConvert' select='MID_INIT' />
+					                </xsl:call-template>             
+			            	    </xsl:when>
+			            	    <xsl:when test="string(PIN_NUM) != '0' and string(MID_INIT)">
+									<xsl:call-template name='convertToUppercase'>
+					                	<xsl:with-param name='toConvert' select='MID_INIT' />
+					                </xsl:call-template>             
+			            	    </xsl:when>
+			        	        <xsl:otherwise><xsl:value-of select="' '"/></xsl:otherwise>
+		     		    	</xsl:choose>
+				     	</MID_INIT>
+                        <PIN_NUM>
+                            <xsl:value-of select="PIN_NUM"/>
+                        </PIN_NUM>
+                        <PRIM_PRSN_SW>
+		                    <xsl:choose>
+			            	    <xsl:when test="string(PRIM_PRSN_SW) = 'Y'">
+				        	        <xsl:value-of select="'Y'"/>
+			            	    </xsl:when>
+			        	        <xsl:otherwise><xsl:value-of select="'N'"/></xsl:otherwise>
+		     		    	</xsl:choose>
+                        </PRIM_PRSN_SW>
+                        <SEX_IND>
+		                    <xsl:choose>
+			            	    <xsl:when test="string(PIN_NUM) = '0'">
+					                	<xsl:value-of select="SEX_IND"/>
+			            	    </xsl:when>
+			            	    <xsl:when test="string(PIN_NUM) != '0'">
+					                	<xsl:value-of select="SEX_IND"/>
+			            	    </xsl:when>
+			        	        <xsl:otherwise><xsl:value-of select="' '"/></xsl:otherwise>
+		     		    	</xsl:choose>
+		     		    </SEX_IND>
+                        <SNDX_NUM>
+		                    <xsl:choose>
+			            	    <xsl:when test="string(PIN_NUM) = '0'">
+					                	<xsl:value-of select="' '"/>
+			            	    </xsl:when>
+			        	        <xsl:otherwise><xsl:value-of select="'0'"/></xsl:otherwise>
+		     		    	</xsl:choose>
+                        </SNDX_NUM>
+                        <SSN_NUM>
+		                    <xsl:choose>
+			            	    <xsl:when test="string(PIN_NUM) = '0'">
+					                	<xsl:value-of select="SSN_NUM"/>
+			            	    </xsl:when>
+			        	        <xsl:otherwise><xsl:value-of select="'0'"/></xsl:otherwise>
+		     		    	</xsl:choose>
+                        </SSN_NUM>
+                        
+                       <FPW_RQST_SW>
+			            	<xsl:choose><!-- If INDV_FPW_RQST_IND is 1 populate 'Y' else 'N'-->
+				        	    <xsl:when test="string(PIN_NUM) = '0' and INDIVIDUAL_PROFILE/INDV_FPW_RQST_IND = 1">
+				        	    	<xsl:value-of select="'Y'"/>
+				        	    </xsl:when>
+				        	    <xsl:when test="string(PIN_NUM) = '0' and INDIVIDUAL_PROFILE/INDV_FPW_RQST_IND != 1">
+				        	    	<xsl:value-of select="'N'"/>
+				        	    </xsl:when>
+				        	    <xsl:otherwise>
+				        	    	<xsl:value-of select="' '"/>
+				        	    </xsl:otherwise>
+				     		</xsl:choose>
+                        </FPW_RQST_SW>
+                        <FS_RQST_SW>
+			            	<xsl:choose><!-- If INDV_FS_RQST_IND is 1 populate 'Y' else 'N'-->
+				        	    <xsl:when test="string(PIN_NUM) = '0' and INDIVIDUAL_PROFILE/INDV_FS_RQST_IND = 1">
+				        	    	<xsl:value-of select="'Y'"/>
+				        	    </xsl:when>
+				        	    <xsl:when test="string(PIN_NUM) = '0' and INDIVIDUAL_PROFILE/INDV_FS_RQST_IND != 1">
+				        	    	<xsl:value-of select="'N'"/>
+				        	    </xsl:when>
+				        	    <xsl:otherwise>
+				        	    	<xsl:value-of select="' '"/>
+				        	    </xsl:otherwise>
+				     		</xsl:choose>
+                        </FS_RQST_SW>
+                        <CC_RQST_SW>
+			            	<xsl:choose><!-- If INDV_CC_RQST_IND is 1 populate 'Y' else 'N'-->
+				        	    <xsl:when test="string(PIN_NUM) = '0' and INDIVIDUAL_PROFILE/INDV_CC_RQST_IND = 1">
+				        	    	<xsl:value-of select="'Y'"/>
+				        	    </xsl:when>
+				        	    <xsl:when test="string(PIN_NUM) = '0' and INDIVIDUAL_PROFILE/INDV_CC_RQST_IND != 1">
+				        	    	<xsl:value-of select="'N'"/>
+				        	    </xsl:when>
+				        	    <xsl:otherwise>
+				        	    	<xsl:value-of select="' '"/>
+				        	    </xsl:otherwise>
+				     		</xsl:choose>
+                        </CC_RQST_SW>
+                         <SS_NUM_VFCN_CD>
+	                        <xsl:value-of select="' '"/>
+                        </SS_NUM_VFCN_CD>
+                        <MPA_SW>
+	                        <xsl:value-of select="'N'"/>
+                        </MPA_SW>
+                        <BC_RQST_SW>
+			            	<xsl:choose><!-- If BC_RQST_SW is 1 populate 'Y' else 'N'-->
+				        	    <xsl:when test="string(PIN_NUM) = '0' and INDIVIDUAL_PROFILE/INDV_FMA_RQST_IND = 1">
+				        	    	<xsl:value-of select="'Y'"/>
+				        	    </xsl:when>
+				        	    <xsl:when test="string(PIN_NUM) = '0' and INDIVIDUAL_PROFILE/INDV_FMA_RQST_IND != 1">
+				        	    	<xsl:value-of select="'N'"/>
+				        	    </xsl:when>
+				        	    <xsl:otherwise>
+				        	    	<xsl:value-of select="' '"/>
+				        	    </xsl:otherwise>
+				     		</xsl:choose>
+                        </BC_RQST_SW>
+                       <MA_RQST_SW>
+			            	<xsl:choose><!-- If INDV_FMA_RQST_IND is 1 populate 'Y' else 'N'-->
+				        	    <xsl:when test="string(PIN_NUM) = '0' and INDIVIDUAL_PROFILE/INDV_FMA_RQST_IND = 1">
+				        	    	<xsl:value-of select="'Y'"/>
+				        	    </xsl:when>
+				        	    <xsl:when test="string(PIN_NUM) = '0' and INDIVIDUAL_PROFILE/INDV_FMA_RQST_IND != 1">
+				        	    	<xsl:value-of select="'N'"/>
+				        	    </xsl:when>
+				        	    <xsl:otherwise>
+				        	    	<xsl:value-of select="' '"/>
+				        	    </xsl:otherwise>
+				     		</xsl:choose>
+                        </MA_RQST_SW>
+                       <EBD_MEDCD_RQST_SW>
+			            	<xsl:choose><!-- If INDV_FS_RQST_IND is 1 populate 'Y' else 'N'-->
+				        	    <xsl:when test="string(PIN_NUM) = '0' and INDIVIDUAL_PROFILE/INDV_EBD_RQST_IND = 1">
+				        	    	<xsl:value-of select="'Y'"/>
+				        	    </xsl:when>
+				        	    <xsl:when test="string(PIN_NUM) = '0' and INDIVIDUAL_PROFILE/INDV_EBD_RQST_IND != 1">
+				        	    	<xsl:value-of select="'N'"/>
+				        	    </xsl:when>
+				        	    <xsl:otherwise>
+				        	    	<xsl:value-of select="' '"/>
+				        	    </xsl:otherwise>
+				     		</xsl:choose>
+                        </EBD_MEDCD_RQST_SW>
+                        <BCP_FAM_RQST_SW>
+			            	<xsl:choose><!-- If INDV_FS_RQST_IND is 1 populate 'Y' else 'N'-->
+				        	    <xsl:when  test="string(PIN_NUM) = '0' and INDIVIDUAL_PROFILE/BCP_FAM_RQST_SW = 1">
+				        	    	<xsl:value-of select="'Y'"/>
+				        	    </xsl:when>
+				        	    <xsl:when test="string(PIN_NUM) = '0' and INDIVIDUAL_PROFILE/BCP_FAM_RQST_SW != 1">
+				        	    	<xsl:value-of select="'N'"/>
+				        	    </xsl:when>
+				        	    <xsl:otherwise>
+				        	    	<xsl:value-of select="' '"/>
+				        	    </xsl:otherwise>
+				     		</xsl:choose>
+                        </BCP_FAM_RQST_SW>
+                        <BCP_CLA_RQST_SW>
+			            	<xsl:choose><!-- If INDV_FS_RQST_IND is 1 populate 'Y' else 'N'-->
+				        	    <xsl:when  test="string(PIN_NUM) = '0' and INDIVIDUAL_PROFILE/BCP_CLA_RQST_SW = 1">
+				        	    	<xsl:value-of select="'Y'"/>
+				        	    </xsl:when>
+				        	    <xsl:when test="string(PIN_NUM) = '0' and INDIVIDUAL_PROFILE/BCP_CLA_RQST_SW != 1">
+				        	    	<xsl:value-of select="'N'"/>
+				        	    </xsl:when>
+				        	    <xsl:otherwise>
+				        	    	<xsl:value-of select="' '"/>
+				        	    </xsl:otherwise>
+				     		</xsl:choose>
+                        </BCP_CLA_RQST_SW>
+						<INST_MA_RQST_SW>
+    		            	<xsl:choose><!-- If living arrangement type is in ('06','08','20','22') AND HC_RQST_IND=1 populate 'Y' else 'N'-->
+				        	    <xsl:when  test="string(PIN_NUM) = '0' and INDIVIDUAL_PROFILE/INST_MA_RQST_SW = 1">
+				        	    	<xsl:value-of select="'Y'"/>
+				        	    </xsl:when>
+				        	    <xsl:when test="string(PIN_NUM) = '0' and INDIVIDUAL_PROFILE/INST_MA_RQST_SW != 1">
+				        	    	<xsl:value-of select="'N'"/>
+				        	    </xsl:when>
+				        	    <xsl:otherwise>
+				        	    	<xsl:value-of select="' '"/>
+				        	    </xsl:otherwise>
+				     		</xsl:choose>
+                        </INST_MA_RQST_SW>
+                         <!-- MAGI HOUSEHOLD MEMBERS/DEMOGRAPHICS PAGE CHANGES PCR 61703 -->
+                        <APP_TAX_DEP_CO_FIL_IND>
+				              <xsl:choose>
+				       	    	<xsl:when test="string(APP_TAX_DEP_CO_FIL_IND)"><xsl:value-of select="APP_TAX_DEP_CO_FIL_IND"/></xsl:when>
+				   	        	<xsl:otherwise><xsl:value-of select="' '"/></xsl:otherwise>
+					    	 </xsl:choose>
+				            </APP_TAX_DEP_CO_FIL_IND>	
+				            <APP_IND_LIV_OUT_HH_IND>
+				              <xsl:choose>
+				       	    	<xsl:when test="string(APP_IND_LIV_OUT_HH_IND)"><xsl:value-of select="APP_IND_LIV_OUT_HH_IND"/></xsl:when>
+				   	        	<xsl:otherwise><xsl:value-of select="' '"/></xsl:otherwise>
+					    		</xsl:choose>
+				            </APP_IND_LIV_OUT_HH_IND>  
+				            <TAX_INDV_OTSD_RESP>
+				              <xsl:choose>
+				       	    	<xsl:when test="string(TXIND_OTSD_HH_IND)"><xsl:value-of select="TXIND_OTSD_HH_IND"/></xsl:when>
+				   	        	<xsl:otherwise><xsl:value-of select="' '"/></xsl:otherwise>
+					    	  </xsl:choose>
+				        </TAX_INDV_OTSD_RESP> 
+				         <!-- MAGI HOUSEHOLD MEMBERS/DEMOGRAPHICS PAGE CHANGES PCR 61703 -->   
+                        <RELATIONSHIPS DATA_EXIST="{RELATIONSHIPS/@DATA_EXIST}">
+                            <xsl:for-each select="RELATIONSHIPS/RELATIONSHIP">
+                                <RELATIONSHIP DATA_EXIST="{RELATIONSHIP/@DATA_EXIST}">
+                                    <REF_INDV_SEQ_NUM>
+					                    <xsl:choose>
+						            	    <xsl:when test="string(REF_INDV_SEQ_NUM)"><xsl:value-of select="REF_INDV_SEQ_NUM"/></xsl:when>
+						        	        <xsl:otherwise>0</xsl:otherwise>
+					     		    	</xsl:choose>
+                                    </REF_INDV_SEQ_NUM>
+                                    <SRC_INDV_SEQ_NUM>
+					                    <xsl:choose>
+						            	    <xsl:when test="string(SRC_INDV_SEQ_NUM)"><xsl:value-of select="SRC_INDV_SEQ_NUM"/></xsl:when>
+						        	        <xsl:otherwise>0</xsl:otherwise>
+					     		    	</xsl:choose>
+                                    </SRC_INDV_SEQ_NUM>
+                                    <CARE_RESP>
+					                    <xsl:choose>
+						            	    <xsl:when test="string(CARE_RESP)"><xsl:value-of select="CARE_RESP"/></xsl:when>
+						        	        <xsl:otherwise><xsl:value-of select="' '"/></xsl:otherwise>
+					     		    	</xsl:choose>                                    
+                                    </CARE_RESP>
+                                    <EFF_BEG_MO>
+                                        <xsl:value-of select="' '"/>
+                                        <!-- JAVA - If RETRO_MA_RESP in T1002 is '0', populate the CCYYMM of APP_FILE_DT in T1002 else populate 999912.-->
+                                    </EFF_BEG_MO>
+                                    <PNP_TGHR_SW>
+					                    <xsl:choose>
+						            	    <xsl:when test="PNP_TGHR_SW = 'Y'">
+						            	    	<xsl:value-of select="'Y'"/>
+						            	    </xsl:when>
+						            	    <xsl:when test="PNP_TGHR_SW = 'N'">
+						            	    	<xsl:value-of select="'N'"/>
+						            	    </xsl:when>
+						        	        <xsl:otherwise><xsl:value-of select="' '"/></xsl:otherwise>
+					     		    	</xsl:choose>                            
+                                    </PNP_TGHR_SW>
+                                    <RLT_CD>
+										<xsl:call-template name='convertToUppercase'>
+						                	<xsl:with-param name='toConvert' select='RLT_CD' />
+						                </xsl:call-template>             
+                                        <!-- JAVA - If the RLT_CD is 'FTR', read PATER_ESTB_SW for the INDV_SEQ_NUM from APP_IN_ABSNP where PATER_ESTB_SW is not 'M'. If any of the records have a value of Y populate 'FTR' else if any of the records have a value of L populate 'AFR' else If any of the records have a value of N populate 'CFR' else populate spaces.-->
+                                    </RLT_CD>
+                                    <TAX_DPND_RESP>
+					                    <xsl:choose>
+						            	    <xsl:when test="string(TAX_DPND_RESP)"><xsl:value-of select="TAX_DPND_RESP"/></xsl:when>
+						        	        <xsl:otherwise><xsl:value-of select="$defaultSpace"/></xsl:otherwise>
+					     		    	</xsl:choose>                                    
+                                    </TAX_DPND_RESP>
+                                    <PRNT_ROLE_RESP>
+					                    <xsl:choose>
+						            	    <xsl:when test="string(PRNT_ROLE_RESP)"><xsl:value-of select="PRNT_ROLE_RESP"/></xsl:when>
+						        	        <xsl:otherwise><xsl:value-of select="$defaultSpace"/></xsl:otherwise>
+					     		    	</xsl:choose>                                    
+                                    </PRNT_ROLE_RESP>
+                                </RELATIONSHIP>
+                            </xsl:for-each>
+                        </RELATIONSHIPS>
+
+                        <LOSS_OF_EMPLOYMENTS DATA_EXIST="N"></LOSS_OF_EMPLOYMENTS>
+
+			   			<xsl:variable name="INDV_SSI_REQ">
+							<xsl:choose>
+					       	    <xsl:when test="string(INDIVIDUAL_PROFILE/SSI_DCOND_RESP)= 'Y'">
+			    		   	    	<xsl:value-of select="'Y'" />
+			        		    </xsl:when>
+			        	        <xsl:otherwise>
+				        	        <xsl:value-of select="'N'"/>
+			        	        </xsl:otherwise>
+							</xsl:choose>        		    
+						</xsl:variable>
+						                        
+                        <PRIOR_SSI DATA_EXIST="{$INDV_SSI_REQ}">
+                            <ADD_REC_IND>
+			                    <xsl:value-of select="'R'"/>
+							</ADD_REC_IND>
+                            <EFF_BEG_MO>
+                                <xsl:value-of select="' '"/>
+                                <!-- JAVA - If RETRO_MA_RESP in T1002 is '0', populate the CCYYMM of APP_FILE_DT in T1002 else populate 999912.-->
+                            </EFF_BEG_MO>
+                        </PRIOR_SSI>
+
+			   			<xsl:variable name="INDV_PAY_RMR_BRD">
+							<xsl:choose>
+					       	    <xsl:when test="string(INDIVIDUAL_PROFILE/PAY_RMR_BRD_RESP)= 'Y'">
+			    		   	    	<xsl:value-of select="'Y'" />
+			        		    </xsl:when>
+			        	        <xsl:otherwise>
+				        	        <xsl:value-of select="'N'"/>
+			        	        </xsl:otherwise>
+							</xsl:choose>        		    
+						</xsl:variable>
+                        
+                        <ROOM_AND_BOARD_PAID DATA_EXIST="{$INDV_PAY_RMR_BRD}">
+                            <ADD_REC_IND>
+			                    <xsl:value-of select="'R'"/>
+							</ADD_REC_IND>
+                            <EFF_BEG_MO>
+                                <xsl:value-of select="' '"/>
+                                <!-- JAVA - If RETRO_MA_RESP in T1002 is '0', populate the CCYYMM of APP_FILE_DT in T1002 else populate 999912.-->
+                            </EFF_BEG_MO>
+                        </ROOM_AND_BOARD_PAID>
+
+			   			<xsl:variable name="INDV_DRUG_FELON">
+							<xsl:choose>
+					       	    <xsl:when test="string(INDIVIDUAL_PROFILE/DRUG_FELN_RESP)= 'Y'">
+			    		   	    	<xsl:value-of select="'Y'" />
+			        		    </xsl:when>
+			        	        <xsl:otherwise>
+				        	        <xsl:value-of select="'N'"/>
+			        	        </xsl:otherwise>
+							</xsl:choose>        		    
+						</xsl:variable>
+
+                        <DRUG_FELON DATA_EXIST="{$INDV_DRUG_FELON}">
+                            <ADD_REC_IND>
+			                    <xsl:value-of select="'R'"/>
+							</ADD_REC_IND>
+                            <EFF_BEG_MO>
+                                <xsl:value-of select="' '"/>
+                                <!-- JAVA - If RETRO_MA_RESP in T1002 is '0', populate the CCYYMM of APP_FILE_DT in T1002 else populate 999912.-->
+                            </EFF_BEG_MO>
+                            <CVCT_DT>
+                                <xsl:value-of select="' '"/> <!-- High Date Population at CWW side -->
+                            </CVCT_DT>
+                            <DRUG_TEST_RESP>
+								<xsl:value-of select="' '"/>
+                            </DRUG_TEST_RESP>
+                            <PGM_TYP>
+								<xsl:value-of select="' '"/>
+                            </PGM_TYP>
+                        </DRUG_FELON>
+
+			   			<xsl:variable name="INDV_CHLD_SPRT_PAY_RESP">
+							<xsl:choose>
+					       	    <xsl:when test="string(INDIVIDUAL_PROFILE/CHLD_SPRT_PAY_RESP)= 'Y'">
+			    		   	    	<xsl:value-of select="'Y'" />
+			        		    </xsl:when>
+			        	        <xsl:otherwise>
+				        	        <xsl:value-of select="'N'"/>
+			        	        </xsl:otherwise>
+							</xsl:choose>        		    
+						</xsl:variable>
+                        
+                        <CHILD_SUPPORTS DATA_EXIST="{$INDV_CHLD_SPRT_PAY_RESP}">
+                            <ADD_REC_IND>
+			                    <xsl:value-of select="'R'"/>
+							</ADD_REC_IND>
+                            <EFF_BEG_MO>
+                                <xsl:value-of select="' '"/>
+                                <!-- JAVA - If RETRO_MA_RESP in T1002 is '0', populate the CCYYMM of APP_FILE_DT in T1002 else populate 999912.-->
+                            </EFF_BEG_MO>
+                        </CHILD_SUPPORTS>
+
+			   			<xsl:variable name="INDV_MED_EXP_RESP">
+							<xsl:choose>
+					       	    <xsl:when test="string(INDIVIDUAL_PROFILE/MED_EXP_RESP)= 'Y'">
+			    		   	    	<xsl:value-of select="'Y'" />
+			        		    </xsl:when>
+			        	        <xsl:otherwise>
+				        	        <xsl:value-of select="'N'"/>
+			        	        </xsl:otherwise>
+							</xsl:choose>        		    
+						</xsl:variable>
+                        
+                        <MEDICAL_EXPENSES DATA_EXIST="{$INDV_MED_EXP_RESP}">
+                            <ADD_REC_IND>
+			                    <xsl:value-of select="'R'"/>
+							</ADD_REC_IND>
+                            <EFF_BEG_MO>
+                                <xsl:value-of select="' '"/>
+                                <!-- JAVA - If RETRO_MA_RESP in T1002 is '0', populate the CCYYMM of APP_FILE_DT in T1002 else populate 999912.-->
+                            </EFF_BEG_MO>
+                        </MEDICAL_EXPENSES>
+
+			   			<xsl:variable name="INDV_RMR_BRD_INCM">
+							<xsl:choose>
+					       	    <xsl:when test="string(INDIVIDUAL_PROFILE/RMR_BRD_INCM_RESP)= 'Y'">
+			    		   	    	<xsl:value-of select="'Y'" />
+			        		    </xsl:when>
+			        	        <xsl:otherwise>
+				        	        <xsl:value-of select="'N'"/>
+			        	        </xsl:otherwise>
+							</xsl:choose>        		    
+						</xsl:variable>
+
+                        <ROOM_AND_BOARD_EARNINGS DATA_EXIST="{$INDV_RMR_BRD_INCM}">
+                            <ADD_REC_IND>
+			                    <xsl:value-of select="'R'"/>
+							</ADD_REC_IND>
+                            <EFF_BEG_MO>
+                                <xsl:value-of select="' '"/>
+                                <!-- JAVA - If RETRO_MA_RESP in T1002 is '0', populate the CCYYMM of APP_FILE_DT in T1002 else populate 999912.-->
+                            </EFF_BEG_MO>
+                        </ROOM_AND_BOARD_EARNINGS>
+
+                        <AI_IND>
+							<xsl:choose>
+	                       	    <xsl:when test="AI_IND = 1">
+				        	    	<xsl:value-of select="'Y'"/>
+				        	    </xsl:when>
+				        	    <xsl:when test="ASIA_IND = 1 or BLK_IND = 1 or HSPC_IND = 1 or PAC_ISL_IND = 1 or WHT_IND = 1" >
+				        	    	<xsl:value-of select="'N'"/>
+				        	    </xsl:when>
+				        	    <xsl:otherwise>
+				        	    	<xsl:value-of select="' '"/>
+				        	    </xsl:otherwise>
+			        	    </xsl:choose>
+                        </AI_IND>
+                        <ASIA_IND>
+							<xsl:choose>
+	                       	    <xsl:when test="ASIA_IND = 1">
+				        	    	<xsl:value-of select="'Y'"/>
+				        	    </xsl:when>
+				        	    <xsl:when test="AI_IND = 1 or BLK_IND = 1 or HSPC_IND = 1 or PAC_ISL_IND = 1 or WHT_IND = 1" >
+				        	    	<xsl:value-of select="'N'"/>
+				        	    </xsl:when>
+				        	    <xsl:otherwise>
+				        	    	<xsl:value-of select="' '"/>
+				        	    </xsl:otherwise>
+			        	    </xsl:choose>
+                        </ASIA_IND>
+                        <BLK_IND>
+							<xsl:choose>
+	                       	    <xsl:when test="BLK_IND = 1">
+				        	    	<xsl:value-of select="'Y'"/>
+				        	    </xsl:when>
+				        	    <xsl:when test="AI_IND = 1 or ASIA_IND = 1 or HSPC_IND = 1 or PAC_ISL_IND = 1 or WHT_IND = 1" >
+				        	    	<xsl:value-of select="'N'"/>
+				        	    </xsl:when>
+				        	    <xsl:otherwise>
+				        	    	<xsl:value-of select="' '"/>
+				        	    </xsl:otherwise>
+			        	    </xsl:choose>
+                        </BLK_IND>
+                        <HSPC_IND>
+							<xsl:choose>
+	                       	    <xsl:when test="HSPC_IND = 1">
+				        	    	<xsl:value-of select="'Y'"/>
+				        	    </xsl:when>
+				        	    <xsl:when test="AI_IND = 1 or ASIA_IND = 1 or BLK_IND = 1 or PAC_ISL_IND = 1 or WHT_IND = 1" >
+				        	    	<xsl:value-of select="'N'"/>
+				        	    </xsl:when>
+				        	    <xsl:otherwise>
+				        	    	<xsl:value-of select="' '"/>
+				        	    </xsl:otherwise>
+			        	    </xsl:choose>
+                        </HSPC_IND>
+                        <LANG_CD>
+		                    <xsl:choose>
+			            	    <xsl:when test="string(LANG_CD)"><xsl:value-of select="LANG_CD"/></xsl:when>
+			        	        <xsl:otherwise><xsl:value-of select="' '"/></xsl:otherwise>
+		     		    	</xsl:choose>
+                        </LANG_CD>
+                        <PAC_ISL_IND>
+							<xsl:choose>
+	                       	    <xsl:when test="PAC_ISL_IND = 1">
+				        	    	<xsl:value-of select="'Y'"/>
+				        	    </xsl:when>
+				        	    <xsl:when test="AI_IND = 1 or ASIA_IND = 1 or BLK_IND = 1 or HSPC_IND = 1 or WHT_IND = 1" >
+				        	    	<xsl:value-of select="'N'"/>
+				        	    </xsl:when>
+				        	    <xsl:otherwise>
+				        	    	<xsl:value-of select="' '"/>
+				        	    </xsl:otherwise>
+			        	    </xsl:choose>
+                        </PAC_ISL_IND>
+                      	<WHT_IND>
+							<xsl:choose>
+	                       	    <xsl:when test="WHT_IND = 1">
+				        	    	<xsl:value-of select="'Y'"/>
+				        	    </xsl:when>
+				        	    <xsl:when test="AI_IND = 1 or ASIA_IND = 1 or BLK_IND = 1 or HSPC_IND = 1 or PAC_ISL_IND = 1 " >
+				        	    	<xsl:value-of select="'N'"/>
+				        	    </xsl:when>
+				        	    <xsl:otherwise>
+				        	    	<xsl:value-of select="' '"/>
+				        	    </xsl:otherwise>
+			        	    </xsl:choose>
+                        </WHT_IND>
+                        <SS_NUM_APP_DT>
+							<xsl:choose>
+	                       	    <xsl:when test="string(SS_NUM_APP_DT)">
+				        	    	<xsl:value-of select="SS_NUM_APP_DT"/>
+				        	    </xsl:when>
+				        	    <xsl:otherwise>
+				        	    	<xsl:value-of select="'9999-12-31'"/>
+				        	    </xsl:otherwise>
+			        	    </xsl:choose>
+                        </SS_NUM_APP_DT>
+                        <DEATH_DT>
+							<xsl:choose>
+	                       	    <xsl:when test="string(DEATH_DT)">
+				        	    	<xsl:value-of select="DEATH_DT" />
+				        	    </xsl:when>
+				        	    <xsl:otherwise>
+				        	    	<xsl:value-of select="'9999-12-31'"/>
+				        	    </xsl:otherwise>
+			        	    </xsl:choose>
+                        </DEATH_DT>
+                        <US_CTZN_SW>
+		                    <xsl:choose>
+			            	    <xsl:when test="string(US_CTZN_SW)"><xsl:value-of select="US_CTZN_SW"/></xsl:when>
+			        	        <xsl:otherwise><xsl:value-of select="' '"/></xsl:otherwise>
+		     		    	</xsl:choose>
+                        </US_CTZN_SW>
+                        
+                        <INTN_RES_RESP>
+		                    <xsl:choose>
+			            	    <xsl:when test="string(INTN_RES_RESP)"><xsl:value-of select="INTN_RES_RESP"/></xsl:when>
+			        	        <xsl:otherwise><xsl:value-of select="' '"/></xsl:otherwise>
+		     		    	</xsl:choose>
+                        </INTN_RES_RESP>
+                        <LIVE_ARNG_TYP>
+		                    <xsl:choose>
+			            	    <xsl:when test="string(LIVE_ARNG_TYP)"><xsl:value-of select="LIVE_ARNG_TYP"/></xsl:when>
+			        	        <xsl:otherwise><xsl:value-of select="' '"/></xsl:otherwise>
+		     		    	</xsl:choose>
+                        </LIVE_ARNG_TYP>
+                        <LIVE_ARNG_DT>
+		                    <xsl:choose>
+			            	    <xsl:when test="string(LIVE_ARNG_DT)"><xsl:value-of select="LIVE_ARNG_DT"/></xsl:when>
+			        	        <xsl:otherwise><xsl:value-of select="'9999-12-31'"/></xsl:otherwise>
+		     		    	</xsl:choose>                        
+                        </LIVE_ARNG_DT>
+                        <MIG_FARM_WRKR_SW>
+		                    <xsl:choose>
+			            	    <xsl:when test="string(MIG_FARM_WRKR_SW)"><xsl:value-of select="MIG_FARM_WRKR_SW"/></xsl:when>
+			        	        <xsl:otherwise><xsl:value-of select="' '"/></xsl:otherwise>
+		     		    	</xsl:choose>
+                        </MIG_FARM_WRKR_SW>
+                        <MRTL_STAT_CD>
+		                    <xsl:choose>
+			            	    <xsl:when test="string(MRTL_STAT_CD)"><xsl:value-of select="MRTL_STAT_CD"/></xsl:when>
+			        	        <xsl:otherwise><xsl:value-of select="' '"/></xsl:otherwise>
+		     		    	</xsl:choose>                        
+                        </MRTL_STAT_CD>
+                        <RES_WI_SW>
+		                    <xsl:choose>
+			            	    <xsl:when test="string(RES_WI_SW)"><xsl:value-of select="RES_WI_SW"/></xsl:when>
+			        	        <xsl:otherwise><xsl:value-of select="' '"/></xsl:otherwise>
+		     		    	</xsl:choose>
+                        </RES_WI_SW>                        
+
+                        <OP_AODA_TMT_RCV_SW>
+		                    <xsl:choose>
+			            	    <xsl:when test="string(INDIVIDUAL_PROFILE/OP_AODA_TMT_RCV_SW)"><xsl:value-of select="INDIVIDUAL_PROFILE/OP_AODA_TMT_RCV_SW"/></xsl:when>
+			        	        <xsl:otherwise><xsl:value-of select="' '"/></xsl:otherwise>
+		     		    	</xsl:choose>
+                        </OP_AODA_TMT_RCV_SW>
+                        <RCV_FSTR_CARE_SW>
+		                    <xsl:choose>
+			            	    <xsl:when test="string(INDIVIDUAL_PROFILE/FSTR_CARE_RESP)"><xsl:value-of select="INDIVIDUAL_PROFILE/FSTR_CARE_RESP"/></xsl:when>
+			        	        <xsl:otherwise><xsl:value-of select="' '"/></xsl:otherwise>
+		     		    	</xsl:choose>
+                        </RCV_FSTR_CARE_SW>
+                        <RCV_FS_OTH_ST_RESP>
+		                    <xsl:choose>
+			            	    <xsl:when test="string(INDIVIDUAL_PROFILE/RCV_FS_OTH_ST_RESP)"><xsl:value-of select="INDIVIDUAL_PROFILE/RCV_FS_OTH_ST_RESP"/></xsl:when>
+			        	        <xsl:otherwise><xsl:value-of select="' '"/></xsl:otherwise>
+		     		    	</xsl:choose>
+                        </RCV_FS_OTH_ST_RESP>
+                        <RCV_IND_FS_PG_RESP>
+		                    <xsl:choose>
+			            	    <xsl:when test="string(INDIVIDUAL_PROFILE/NEED_IND_RESP)"><xsl:value-of select="INDIVIDUAL_PROFILE/NEED_IND_RESP"/></xsl:when>
+			        	        <xsl:otherwise><xsl:value-of select="' '"/></xsl:otherwise>
+		     		    	</xsl:choose>
+                        </RCV_IND_FS_PG_RESP>
+                        <RCV_SSI_LTR_RESP>
+		                    <xsl:choose>
+			            	    <xsl:when test="string(INDIVIDUAL_PROFILE/RCV_SSI_LTR_RESP)"><xsl:value-of select="INDIVIDUAL_PROFILE/RCV_SSI_LTR_RESP"/></xsl:when>
+			        	        <xsl:otherwise><xsl:value-of select="' '"/></xsl:otherwise>
+		     		    	</xsl:choose>
+                        </RCV_SSI_LTR_RESP>
+                        <RCV_SSI_SW>
+		                    <xsl:choose>
+			            	    <xsl:when test="string(INDIVIDUAL_PROFILE/RCV_SSI_SW)"><xsl:value-of select="INDIVIDUAL_PROFILE/RCV_SSI_SW"/></xsl:when>
+			        	        <xsl:otherwise><xsl:value-of select="' '"/></xsl:otherwise>
+		     		    	</xsl:choose>
+                        </RCV_SSI_SW>
+                        <SSI_1619B_RCV_SW>
+		                    <xsl:choose>
+			            	    <xsl:when test="string(INDIVIDUAL_PROFILE/SSI_1619B_RCV_SW)"><xsl:value-of select="INDIVIDUAL_PROFILE/SSI_1619B_RCV_SW"/></xsl:when>
+			        	        <xsl:otherwise><xsl:value-of select="' '"/></xsl:otherwise>
+		     		    	</xsl:choose>
+                        </SSI_1619B_RCV_SW>
+                        <ACDT_RESP>
+		                    <xsl:choose>
+			            	    <xsl:when test="string(INDIVIDUAL_PROFILE/ACDT_RESP)"><xsl:value-of select="INDIVIDUAL_PROFILE/ACDT_RESP"/></xsl:when>
+			        	        <xsl:otherwise><xsl:value-of select="' '"/></xsl:otherwise>
+		     		    	</xsl:choose>
+                        </ACDT_RESP>
+                        <HC_CVRG_RESP>
+		                    <xsl:choose>
+			            	    <xsl:when test="string(INDIVIDUAL_PROFILE/HC_CVRG_RESP)"><xsl:value-of select="INDIVIDUAL_PROFILE/HC_CVRG_RESP"/></xsl:when>
+			        	        <xsl:otherwise><xsl:value-of select="' '"/></xsl:otherwise>
+		     		    	</xsl:choose>
+                        </HC_CVRG_RESP>
+                        <MED_EXP_RESP>
+		                    <xsl:choose>
+			            	    <xsl:when test="string(INDIVIDUAL_PROFILE/MED_EXP_RESP)"><xsl:value-of select="INDIVIDUAL_PROFILE/MED_EXP_RESP"/></xsl:when>
+			        	        <xsl:otherwise><xsl:value-of select="' '"/></xsl:otherwise>
+		     		    	</xsl:choose>
+                        </MED_EXP_RESP>
+                        <PAY_RMR_BRD_RESP>
+		                    <xsl:choose>
+			            	    <xsl:when test="string(INDIVIDUAL_PROFILE/PAY_RMR_BRD_RESP)"><xsl:value-of select="INDIVIDUAL_PROFILE/PAY_RMR_BRD_RESP"/></xsl:when>
+			        	        <xsl:otherwise><xsl:value-of select="' '"/></xsl:otherwise>
+		     		    	</xsl:choose>
+                        </PAY_RMR_BRD_RESP>
+                        <RMR_BRD_INCM_RESP>
+		                    <xsl:choose>
+			            	    <xsl:when test="string(INDIVIDUAL_PROFILE/RMR_BRD_INCM_RESP)"><xsl:value-of select="INDIVIDUAL_PROFILE/RMR_BRD_INCM_RESP"/></xsl:when>
+			        	        <xsl:otherwise><xsl:value-of select="' '"/></xsl:otherwise>
+		     		    	</xsl:choose>
+                        </RMR_BRD_INCM_RESP>
+                        <SSI_DCOND_RESP>
+		                    <xsl:choose>
+			            	    <xsl:when test="string(INDIVIDUAL_PROFILE/SSI_DCOND_RESP)"><xsl:value-of select="INDIVIDUAL_PROFILE/SSI_DCOND_RESP"/></xsl:when>
+			        	        <xsl:otherwise><xsl:value-of select="' '"/></xsl:otherwise>
+		     		    	</xsl:choose>
+                        </SSI_DCOND_RESP>
+                        <DPND_CARE_RESP>
+		                    <xsl:choose>
+			            	    <xsl:when test="string(INDIVIDUAL_PROFILE/DPND_CARE_RESP)"><xsl:value-of select="INDIVIDUAL_PROFILE/DPND_CARE_RESP"/></xsl:when>
+			        	        <xsl:otherwise><xsl:value-of select="' '"/></xsl:otherwise>
+		     		    	</xsl:choose>
+                        </DPND_CARE_RESP>
+                        <CHLD_SPRT_PAY_RESP>
+		                    <xsl:choose>
+			            	    <xsl:when test="string(INDIVIDUAL_PROFILE/CHLD_SPRT_PAY_RESP)"><xsl:value-of select="INDIVIDUAL_PROFILE/CHLD_SPRT_PAY_RESP"/></xsl:when>
+			        	        <xsl:otherwise><xsl:value-of select="' '"/></xsl:otherwise>
+		     		    	</xsl:choose>
+                        </CHLD_SPRT_PAY_RESP>
+                        <DRUG_FELN_RESP>
+		                    <xsl:choose>
+			            	    <xsl:when test="string(INDIVIDUAL_PROFILE/DRUG_FELN_RESP)"><xsl:value-of select="INDIVIDUAL_PROFILE/DRUG_FELN_RESP"/></xsl:when>
+			        	        <xsl:otherwise><xsl:value-of select="' '"/></xsl:otherwise>
+		     		    	</xsl:choose>
+                        </DRUG_FELN_RESP>
+		                <FLEEING_FROM_A_FELONY_RESP>
+		                      <xsl:choose>
+		            	        <xsl:when test="string(INDIVIDUAL_PROFILE/FF_RESP_SW) = 'DC'">
+		            	        	<xsl:value-of select="' '"/>
+		            	        </xsl:when>
+		            	        <xsl:when test="string(INDIVIDUAL_PROFILE/FF_RESP_SW) != 'DC' and string(INDIVIDUAL_PROFILE/FF_RESP_SW) != ' '">
+		            	        	<xsl:value-of select="INDIVIDUAL_PROFILE/FF_RESP_SW"/>
+		            	        </xsl:when>
+		        	        	<xsl:otherwise><xsl:value-of select="' '"/></xsl:otherwise>
+		     		    	</xsl:choose>
+		                </FLEEING_FROM_A_FELONY_RESP>
+		                <FLEEING_FROM_A_FELONY_SRC_CD>
+		                	<xsl:choose>
+		            	        <xsl:when test="string(INDIVIDUAL_PROFILE/FF_RESP_SW) = 'DC'">
+		            	        	<xsl:value-of select="' '"/>
+		            	        </xsl:when>
+			            		<xsl:when test="string(INDIVIDUAL_PROFILE/FF_RESP_SW) != 'DC' and string(INDIVIDUAL_PROFILE/FF_RESP_SW) != ' '">
+	        	    				<xsl:value-of select="'SD'"/>
+	        	    			</xsl:when>
+				        	    <xsl:otherwise><xsl:value-of select="' '"/></xsl:otherwise>
+							</xsl:choose>					        	    
+		                </FLEEING_FROM_A_FELONY_SRC_CD>
+                        <FSET_SCTN_RESP>
+		                    <xsl:choose>
+			            	    <xsl:when test="string(INDIVIDUAL_PROFILE/FSET_SCTN_RESP)"><xsl:value-of select="INDIVIDUAL_PROFILE/FSET_SCTN_RESP"/></xsl:when>
+			        	        <xsl:otherwise><xsl:value-of select="' '"/></xsl:otherwise>
+		     		    	</xsl:choose>
+                        </FSET_SCTN_RESP>
+                        <EDUC_AID_RESP>
+		                    <xsl:choose>
+			            	    <xsl:when test="string(INDIVIDUAL_PROFILE/EDUC_AID_RESP)"><xsl:value-of select="INDIVIDUAL_PROFILE/EDUC_AID_RESP"/></xsl:when>
+			        	        <xsl:otherwise><xsl:value-of select="' '"/></xsl:otherwise>
+		     		    	</xsl:choose>
+                        </EDUC_AID_RESP>
+                   		<CHLD_TRB_MBR_RESP>
+		                    <xsl:choose>
+		            	        <xsl:when test="string(CHLD_TRB_MBR_RESP)"><xsl:value-of select="CHLD_TRB_MBR_RESP"/></xsl:when>
+		        	        	<xsl:otherwise><xsl:value-of select="' '"/></xsl:otherwise>
+		     		    	</xsl:choose>
+			            </CHLD_TRB_MBR_RESP>
+			            <LTC_RESP>
+							<xsl:choose>
+								<xsl:when test="string(INDIVIDUAL_PROFILE/LTC_RESP)">
+									<xsl:value-of select="INDIVIDUAL_PROFILE/LTC_RESP" />
+								</xsl:when>
+								<xsl:otherwise>
+									<xsl:value-of select="' '" />
+								</xsl:otherwise>
+							</xsl:choose>
+						</LTC_RESP>
+						<!--PCR 70545 CAR 17196 march 2016 release for DABL CWW NON Financial Gatepost conflict issue-->
+						<DABL_RESP>
+		                    <xsl:choose>
+			            	    <xsl:when test="string(INDIVIDUAL_PROFILE/DABL_RESP)">
+			            	    <xsl:value-of select="INDIVIDUAL_PROFILE/DABL_RESP"/>
+			            	    </xsl:when>
+			        	        <xsl:otherwise><xsl:value-of select="' '"/></xsl:otherwise>
+		     		    	</xsl:choose>
+                        </DABL_RESP>
+                        <!--PCR 70545 ends -->
+			            <TRB_MBR_RESP>
+		                    <xsl:choose>
+		            	        <xsl:when test="string(TRB_MBR_RESP)"><xsl:value-of select="TRB_MBR_RESP"/></xsl:when>
+		        	        	<xsl:otherwise><xsl:value-of select="' '"/></xsl:otherwise>
+		     		    	</xsl:choose>
+			            </TRB_MBR_RESP>
+			            <YEHOC_RESP>
+		                    <xsl:choose>
+		            	        <xsl:when test="string(INDIVIDUAL_PROFILE/YEHOC_RESP)"><xsl:value-of select="INDIVIDUAL_PROFILE/YEHOC_RESP"/></xsl:when>
+		        	        	<xsl:otherwise><xsl:value-of select="' '"/></xsl:otherwise>
+		     		    	</xsl:choose>
+			            </YEHOC_RESP>
+                        <CHLD_OUT_HOME_RESP>
+		        	        <xsl:value-of select="' '"/>
+			            </CHLD_OUT_HOME_RESP>
+			            <BNFT_FC_RESP>
+		                    <xsl:choose>
+		            	        <xsl:when test="string(INDIVIDUAL_PROFILE/BNFT_FC_RESP)"><xsl:value-of select="INDIVIDUAL_PROFILE/BNFT_FC_RESP"/></xsl:when>
+		        	        	<xsl:otherwise><xsl:value-of select="' '"/></xsl:otherwise>
+		     		    	</xsl:choose>
+			            </BNFT_FC_RESP>
+			            <BNFT_KC_RESP>
+		                    <xsl:choose>
+		            	        <xsl:when test="string(INDIVIDUAL_PROFILE/BNFT_KC_RESP)"><xsl:value-of select="INDIVIDUAL_PROFILE/BNFT_KC_RESP"/></xsl:when>
+		        	        	<xsl:otherwise><xsl:value-of select="' '"/></xsl:otherwise>
+		     		    	</xsl:choose>
+			            </BNFT_KC_RESP>
+			            <BNFT_SG_RESP>
+		                    <xsl:choose>
+		            	        <xsl:when test="string(INDIVIDUAL_PROFILE/BNFT_SG_RESP)"><xsl:value-of select="INDIVIDUAL_PROFILE/BNFT_SG_RESP"/></xsl:when>
+		        	        	<xsl:otherwise><xsl:value-of select="' '"/></xsl:otherwise>
+		     		    	</xsl:choose>
+			            </BNFT_SG_RESP>
+			            <BNFT_CRT_O_KC_RESP>
+		                    <xsl:choose>
+		            	        <xsl:when test="string(INDIVIDUAL_PROFILE/BNFT_CRT_O_KC_RESP)"><xsl:value-of select="INDIVIDUAL_PROFILE/BNFT_CRT_O_KC_RESP"/></xsl:when>
+		        	        	<xsl:otherwise><xsl:value-of select="' '"/></xsl:otherwise>
+		     		    	</xsl:choose>
+			            </BNFT_CRT_O_KC_RESP>
+			             <!-- MAGI CHANGES PCR 61703 -->   
+						<EDUCATION_AID_SEMESTERS DATA_EXIST="{EDUCATION_AID_SEMESTERS/@DATA_EXIST}">
+                            <xsl:for-each select="EDUCATION_AID_SEMESTERS/EDUCATION_AID_SEMESTER">
+                                <EDUCATION_AID_SEMESTER DATA_EXIST="{EDUCATION_AID_SEMESTER/@DATA_EXIST}">
+									<APP_NUM>
+											<xsl:choose>
+												<xsl:when test="string(APP_NUM)"><xsl:value-of select="APP_NUM"/></xsl:when>
+												<xsl:otherwise>0</xsl:otherwise>
+											</xsl:choose>                                        
+									</APP_NUM>                                
+									<INDV_SEQ_NUM>
+											<xsl:choose>
+												<xsl:when test="string(INDV_SEQ_NUM)"><xsl:value-of select="INDV_SEQ_NUM"/></xsl:when>
+												<xsl:otherwise>0</xsl:otherwise>
+											</xsl:choose>                                        
+									 </INDV_SEQ_NUM>
+									<SEQ_NUM>
+					                    <xsl:choose>
+						            	    <xsl:when test="string(SEQ_NUM)"><xsl:value-of select="SEQ_NUM"/></xsl:when>
+						        	        <xsl:otherwise>0</xsl:otherwise>
+					     		    	</xsl:choose>                                        
+                                    </SEQ_NUM>
+									<ASSC_SEQ_NUM>
+					                    <xsl:choose>
+						            	    <xsl:when test="string(SRC_APP_IND) = 'RN'"><xsl:value-of select="'0'"/></xsl:when>
+						        	        <xsl:otherwise><xsl:value-of select="SEQ_NUM"/></xsl:otherwise>
+					     		    	</xsl:choose>
+                                    </ASSC_SEQ_NUM>
+									<ADD_REC_IND>
+										<xsl:value-of select="'R'"/>				
+									</ADD_REC_IND>
+									<EFF_BEG_MO>
+									   <xsl:value-of select="SEM_TMST_BEG_MO"/>                                                                           
+								   </EFF_BEG_MO>
+									<EFF_END_MO>
+									   <xsl:value-of select="SEM_TMST_END_MO"/>                            
+								   </EFF_END_MO>
+								   <EDUCATION_EIDS DATA_EXIST="{EDUCATION_EIDS/@DATA_EXIST}">
+										<xsl:for-each select="EDUCATION_EIDS/EDUCATION_EID">
+											<EDUCATION_EID DATA_EXIST="{EDUCATION_EID/@DATA_EXIST}">
+											  <APP_NUM>
+													<xsl:choose>
+														<xsl:when test="string(APP_NUM)"><xsl:value-of select="APP_NUM"/></xsl:when>
+														<xsl:otherwise>0</xsl:otherwise>
+													</xsl:choose>                                        
+											  </APP_NUM>                                
+											   <INDV_SEQ_NUM>
+													<xsl:choose>
+														<xsl:when test="string(INDV_SEQ_NUM)"><xsl:value-of select="INDV_SEQ_NUM"/></xsl:when>
+														<xsl:otherwise>0</xsl:otherwise>
+													</xsl:choose>                                        
+												</INDV_SEQ_NUM>
+												<SEQ_NUM>
+													<xsl:choose>
+														<xsl:when test="string(SEQ_NUM)"><xsl:value-of select="SEQ_NUM"/></xsl:when>
+														<xsl:otherwise>0</xsl:otherwise>
+													</xsl:choose>                                        
+												</SEQ_NUM>
+												<EA_SEQ_NUM>
+													<xsl:choose>
+														<xsl:when test="string(EDUC_AID_SEQ_NUM)"><xsl:value-of select="EDUC_AID_SEQ_NUM"/></xsl:when>
+														<xsl:otherwise>0</xsl:otherwise>
+													</xsl:choose> 
+											   </EA_SEQ_NUM>
+												<EDUC_AID_TYP_CD>
+													<xsl:choose>
+														<xsl:when test="string(EDUC_AID_TYP_CD)"><xsl:value-of select="EDUC_AID_TYP_CD"/></xsl:when>
+														<xsl:otherwise><xsl:value-of select="' '"/></xsl:otherwise>
+													</xsl:choose> 
+											   </EDUC_AID_TYP_CD>                                   
+												<BEG_MO>
+														  <xsl:value-of select="SEM_TMST_BEG_MO"/>                                   
+											   </BEG_MO>
+												<END_MO>
+														  <xsl:value-of select="SEM_TMST_END_MO"/>                                   
+											   </END_MO>                                   
+												<EDUC_AID_AMT>
+												   <xsl:choose>
+														<xsl:when test="string(EDUC_AID_AMT)"><xsl:value-of select="EDUC_AID_AMT"/></xsl:when>
+														<xsl:otherwise>0</xsl:otherwise>
+													</xsl:choose>                                         
+												</EDUC_AID_AMT>
+												 <EDUC_AID_AMT_IND>
+													<xsl:call-template name='convertAccessIndToCwwInd'>
+														<xsl:with-param name='toConvert' select='EDUC_AID_AMT_IND' />
+													</xsl:call-template>
+												</EDUC_AID_AMT_IND>  
+											</EDUCATION_EID>
+										</xsl:for-each>
+									</EDUCATION_EIDS>
+								</EDUCATION_AID_SEMESTER>
+                            </xsl:for-each>
+                        </EDUCATION_AID_SEMESTERS>
+                         <!-- MAGI CHANGES PCR 61703 -->     
+						<xsl:variable name="irweDataExist">
+							<xsl:choose>
+			            	    <xsl:when test="string(INDIVIDUAL_PROFILE/IRWE_RESP) = 'Y' or string(DISABILITY/IRWE_SW) = 'Y'"><xsl:value-of select="'Y'" /></xsl:when>
+			     		    	<xsl:otherwise><xsl:value-of select="'N'" /></xsl:otherwise> 
+							</xsl:choose>			     		    	
+						</xsl:variable>
+                        <IRWES DATA_EXIST="{$irweDataExist}">
+		                    <xsl:choose>
+			            	    <xsl:when test="$irweDataExist = 'Y'">
+		                            <ADD_REC_IND>
+					                    <xsl:value-of select="'R'"/>
+					     		    </ADD_REC_IND>
+		                            <EFF_BEG_MO>
+		                                <xsl:value-of select="' '"/>
+		                                <!-- JAVA - If RETRO_MA_RESP in T1002 is '0', populate the CCYYMM of APP_FILE_DT in T1002 else populate 999912.-->
+		                            </EFF_BEG_MO>
+		                            <ASSC_SEQ_NUM>
+					                    <xsl:value-of select="'0'"/>
+					     		    </ASSC_SEQ_NUM>
+		                            <SEQ_NUM>
+					                    <xsl:value-of select="'1'"/>
+					     		    </SEQ_NUM>
+					     		    <EXP_TYP>
+										<xsl:value-of select="$defaultSpace"/>
+					     		    </EXP_TYP>
+					     		    <MO_EXP_AMT>
+		               	            	<xsl:value-of select="$defaultAmount"/>
+					     		    </MO_EXP_AMT>
+					     		    <MO_EXP_IND>
+		               	            	<xsl:value-of select="$defaultAmountIndicator"/>
+					     		    </MO_EXP_IND>
+			            	    </xsl:when>
+		     		    	</xsl:choose>
+                        </IRWES>
+                        <CD_EFF_BEG_MO>
+		        	        <xsl:value-of select="LIV_CHG_EFF_DT"/>
+                        </CD_EFF_BEG_MO>
+                        <CD_INDV_SEQ_NUM>
+		        	        <xsl:value-of select="CDEMO_INDV_SEQ_NUM"/>
+                        </CD_INDV_SEQ_NUM>
+                        <SE_INDV_SEQ_NUM>
+		        	        <xsl:value-of select="SE_INDV_SEQ_NUM"/>
+                        </SE_INDV_SEQ_NUM>
+                        <BR_INDV_SEQ_NUM>
+                        	<xsl:value-of select="INDIVIDUAL_PROFILE/BR_INDV_SEQ_NUM"/>
+                        </BR_INDV_SEQ_NUM>
+                        <EMPLOYMENTS DATA_EXIST="{EMPLOYMENTS/@DATA_EXIST}">
+                            <xsl:for-each select="EMPLOYMENTS/EMPLOYMENT">
+                                <EMPLOYMENT DATA_EXIST="{EMPLOYMENT/@DATA_EXIST}">
+                                    <EMPL_SEQ_NUM>
+					                    <xsl:choose>
+						            	    <xsl:when test="string(EMPL_SEQ_NUM)"><xsl:value-of select="EMPL_SEQ_NUM"/></xsl:when>
+						        	        <xsl:otherwise>0</xsl:otherwise>
+					     		    	</xsl:choose>                                        
+                                    </EMPL_SEQ_NUM>
+                                    <ASSC_EMPL_SEQ_NUM>
+					                    <xsl:choose>
+						        	  		<xsl:when test="SRC_APP_IND = 'RN'">
+										         <xsl:value-of select="'0'"/>
+										    </xsl:when>
+										    <xsl:when test="string(EMPL_SEQ_NUM)">
+										    	<xsl:value-of select="EMPL_SEQ_NUM"/>
+										    </xsl:when>
+						                    <xsl:otherwise> 
+						                    	<xsl:value-of select="'0'"/>
+						                    </xsl:otherwise>
+					     		    	</xsl:choose>                                        
+                                    </ASSC_EMPL_SEQ_NUM>
+                                    <ADD_REC_IND>
+					                    <xsl:value-of select="'R'"/>
+                                    </ADD_REC_IND>
+                                    <EFF_BEG_MO>
+                                        <xsl:value-of select="CHG_EFF_DT"/>
+                                        <!-- JAVA - If RETRO_MA_RESP in T1002 is '0', populate the CCYYMM of APP_FILE_DT in T1002 else populate 999912.-->
+                                    </EFF_BEG_MO>
+                                    <EMPL_BEG_DT>
+                                        <xsl:value-of select="EMPL_BEG_DT"/>
+                                    </EMPL_BEG_DT>
+                                    <EMPL_END_DT>
+                                        <xsl:value-of select="EMPL_END_DT"/>
+                                    </EMPL_END_DT>
+                                    <EMPL_TYP>
+                                       <xsl:choose>
+						                    <xsl:when test="AMER_CORPS_IND='Y'">
+						                        <xsl:value-of select="'M'"/>
+						                    </xsl:when>						                   
+						                    <xsl:otherwise> 
+						                    	<xsl:value-of select="'R'"/>
+						                    </xsl:otherwise>
+										</xsl:choose>
+                                    </EMPL_TYP>
+                                    <ER_NAM>
+										<xsl:call-template name='convertToUppercase'>
+						                	<xsl:with-param name='toConvert' select='ER_NAM' />
+						                </xsl:call-template>             
+                                    </ER_NAM>
+                                    <INCM_DCON_RESP>
+					                    <xsl:value-of select="' '"/>  
+					                    <!-- JAVA - If EMPL_END_DT is not high date, populate 'Y' else spaces.-->                                      
+                                    </INCM_DCON_RESP>
+                                    <FST_PAYCK_DT>
+                                        <xsl:value-of select="FST_PAYCK_DT"/>
+                                    </FST_PAYCK_DT>
+                                    <LAST_PAYCK_DT>
+                                        <xsl:value-of select="LAST_PAYCK_DT"/>
+                                    </LAST_PAYCK_DT>
+                                    <ON_STRK_SW>
+				            	    	<xsl:value-of select="' '"/>
+                                    </ON_STRK_SW>
+                                    <PAY_FREQ_CD>
+					                    <xsl:choose>
+						                    <xsl:when test="EMPL_TYP = 'I'"><xsl:value-of select="'M'"/></xsl:when>
+						            	    <xsl:when test="string(PAY_FREQ_CD)"><xsl:value-of select="PAY_FREQ_CD"/></xsl:when>
+						        	        <xsl:otherwise><xsl:value-of select="' '"/></xsl:otherwise>
+					     		    	</xsl:choose>                                        
+                                    </PAY_FREQ_CD>
+                                    <STRK_BEG_DT>
+                                        <xsl:value-of select="STRK_BEG_DT"/>
+                                    </STRK_BEG_DT>
+                                    <STRK_END_DT>
+	                                    <xsl:value-of select="STRK_END_DT"/>
+                                    </STRK_END_DT>
+                                    <EMPL_BEG_DT>
+                                        <xsl:value-of select="EMPL_BEG_DT"/>
+                                    </EMPL_BEG_DT>
+                                    <EMPL_END_DT>
+                                        <xsl:value-of select="EMPL_END_DT"/>
+                                    </EMPL_END_DT>
+                                    <ER_ADR_TXT>
+										<xsl:call-template name='convertToUppercase'>
+						                	<xsl:with-param name='toConvert' select='ER_L1_ADR' />
+						                </xsl:call-template>             
+                                    </ER_ADR_TXT>
+                                    <ER_CITY_ADR>
+										<xsl:call-template name='convertToUppercase'>
+						                	<xsl:with-param name='toConvert' select='ER_CITY_ADR' />
+						                </xsl:call-template>             
+                                    </ER_CITY_ADR>
+                                    <ER_PHN_NUM>
+										<xsl:call-template name='convertToUppercase'>
+						                	<xsl:with-param name='toConvert' select='ER_PHN_NUM' />
+						                </xsl:call-template>             
+                                    </ER_PHN_NUM>
+                                    <ER_STA_ADR>
+										<xsl:call-template name='convertToUppercase'>
+						                	<xsl:with-param name='toConvert' select='ER_ST_ADR' />
+						                </xsl:call-template>             
+                                    </ER_STA_ADR>
+                                    <ER_ZIP_ADR>
+                                    	<xsl:call-template name='convertToUppercase'>
+						                	<xsl:with-param name='toConvert' select='ER_ZIP_ADR' />
+						                </xsl:call-template>             
+                                    </ER_ZIP_ADR>
+                                    <POSN_TYP_IND>
+							            <xsl:choose>
+						                    <xsl:when test="POSN_TYP_IND='M'">
+						                        <xsl:value-of select="'MA'"/>
+						                    </xsl:when>
+						                    <xsl:when test="POSN_TYP_IND='S'">
+						                        <xsl:value-of select="'ST'"/>
+						                    </xsl:when>
+						                    <xsl:otherwise> 
+						                    	<xsl:value-of select="'UN'"/>
+						                    </xsl:otherwise>
+					                    </xsl:choose>
+                                    </POSN_TYP_IND>
+                                 	<TEMP_JOB_IND>
+							            <xsl:choose>
+						                    <xsl:when test="TEMP_JOB_IND='Y'">
+						                        <xsl:value-of select="'TE'"/>
+						                    </xsl:when>
+						                    <xsl:when test="TEMP_JOB_IND='N'">
+						                        <xsl:value-of select="'PE'"/>
+						                    </xsl:when>
+						                    <xsl:otherwise> 
+						                    	<xsl:value-of select="'UN'"/>
+						                    </xsl:otherwise>
+										</xsl:choose>
+                                    </TEMP_JOB_IND>
+                                    <LOSS_EMPL_GDCS_CD>
+	                                    <xsl:value-of select="' '"/>
+                                    </LOSS_EMPL_GDCS_CD>                                    
+                                    <WAGES DATA_EXIST="{WAGES/@DATA_EXIST}">
+                                        <xsl:for-each select="WAGES/WAGE">
+                                            <WAGE DATA_EXIST="{WAGE/@DATA_EXIST}">
+                                                <SEQ_NUM>
+								                    <xsl:choose>
+									            	    <xsl:when test="string(ADTL_PAY_SEQ_NUM)"><xsl:value-of select="ADTL_PAY_SEQ_NUM"/></xsl:when>
+									        	        <xsl:otherwise>0</xsl:otherwise>
+								     		    	</xsl:choose>                                                     
+                                                </SEQ_NUM>
+                                                <ADTL_PAY_IND><!-- THIS TAG IS USED INTERNALLY FOR CHECKING WAGE -->
+													<xsl:choose>
+									            	    <xsl:when test="string(ADTL_PAY_IND)"><xsl:value-of select="ADTL_PAY_IND"/></xsl:when>
+									        	        <xsl:otherwise><xsl:value-of select="' '"/></xsl:otherwise>
+								     		    	</xsl:choose>                                                 
+                                                </ADTL_PAY_IND>                                                
+                                                <AVG_WORK_HRS_QTY>
+								                    <xsl:choose>
+									            	    <xsl:when test="string(ADTL_HRS_QTY)"><xsl:value-of select="ADTL_HRS_QTY"/></xsl:when>
+									        	        <xsl:otherwise>0</xsl:otherwise>
+								     		    	</xsl:choose>                                                    
+                                                </AVG_WORK_HRS_QTY>
+                                                <AVG_WRK_HR_QTY_IND>
+							                        <xsl:value-of select="'2'"/>
+                                                </AVG_WRK_HR_QTY_IND>
+                                                <EI_TOT_AMT>
+										            <xsl:choose>
+									                    <xsl:when test="ADTL_PAY_TYP = 'SAL'">
+									                        <xsl:value-of select="ADTL_PAY_AMT "/>
+									                    </xsl:when>
+									                    <xsl:when test="ADTL_PAY_TYP = 'I  '">
+									                        <xsl:value-of select="ADTL_PAY_AMT "/>
+									                    </xsl:when>
+														<xsl:when test="ADTL_PAY_TYP = 'TIP'">
+									                        <xsl:value-of select="ADTL_PAY_AMT "/>
+									                    </xsl:when>
+									                    <xsl:when test="ADTL_PAY_TYP = 'COM'">
+									                        <xsl:value-of select="ADTL_PAY_AMT "/>
+									                    </xsl:when>									                    
+									                    <xsl:when test="ADTL_PAY_TYP = ' '">
+									                        <xsl:value-of select="ADTL_PAY_AMT "/>
+									                    </xsl:when>
+									                    <xsl:otherwise> 
+									                    	<xsl:value-of select="'0.00'"/>
+									                    </xsl:otherwise>
+									                </xsl:choose>
+                                                </EI_TOT_AMT>
+                                                <EI_TOT_AMT_IND>
+							                        <xsl:value-of select="'2'"/>
+                                                </EI_TOT_AMT_IND>
+                                                <EI_TYP>
+                                                    <xsl:choose>
+									                    <xsl:when test="SRC_APP_IND = 'CW'">
+									                        <xsl:value-of select="' '"/>
+									                    </xsl:when>
+									                    <xsl:when test="ADTL_PAY_TYP = 'HOR'">
+									                        <xsl:value-of select="'REG'"/>
+									                    </xsl:when>
+									                    <xsl:otherwise>
+									                    	<xsl:value-of select="translate(ADTL_PAY_TYP,$lcletters,$ucletters)"/>
+									                    </xsl:otherwise>
+									                </xsl:choose>
+                                                </EI_TYP>
+                                                <HR_RT>
+													 <xsl:choose>
+									                    <xsl:when test="ADTL_PAY_TYP = 'SAL'">
+									                        <xsl:value-of select="'0.00'"/>
+									                    </xsl:when>
+									                    <xsl:when test="ADTL_PAY_TYP = 'I  '">
+									                        <xsl:value-of select="'0.00'"/>
+									                    </xsl:when>
+									                    <xsl:when test="ADTL_PAY_TYP = 'TIP'">
+									                        <xsl:value-of select="'0.00'"/>
+									                    </xsl:when>
+									                    <xsl:when test="ADTL_PAY_TYP = 'COM'">
+									                        <xsl:value-of select="'0.00'"/>
+									                    </xsl:when>
+									                    <xsl:when test="ADTL_PAY_TYP = ' '">
+									                        <xsl:value-of select="'0.00'"/>
+									                    </xsl:when>
+									                    <xsl:otherwise> 
+									                    	<xsl:value-of select="ADTL_PAY_AMT"/>
+									            	    </xsl:otherwise>
+								     		    	</xsl:choose>                                                    
+                                                </HR_RT>
+                                                <HR_RT_IND>
+							                    	<xsl:value-of select="'2'"/>
+                                                </HR_RT_IND>
+                                            </WAGE>
+                                        </xsl:for-each>
+                                    </WAGES>
+                                     <!-- MAGI CHANGES PCR 61703 -->   
+                                    <PRETAXDEDUCTIONS DATA_EXIST="{PRETAXDEDUCTIONS/@DATA_EXIST}">
+                                        <xsl:for-each select="PRETAXDEDUCTIONS/PRETAXDEDUCTION">
+                                            <PRETAXDEDUCTION DATA_EXIST="{PRETAXDEDUCTION/@DATA_EXIST}">
+                                                <SEQ_NUM>
+								                    <xsl:choose>
+									            	    <xsl:when test="string(ADTL_PAY_SEQ_NUM)"><xsl:value-of select="ADTL_PAY_SEQ_NUM"/></xsl:when>
+									        	        <xsl:otherwise>0</xsl:otherwise>
+								     		    	</xsl:choose>                                                     
+                                                </SEQ_NUM>
+                                                <DDCT_FREQ_CD>
+                                                  <xsl:choose>
+						                   		   <xsl:when test="ADTL_PAY_FREQ_IND='N'">
+						                        		<xsl:value-of select="'AN'"/>
+						                              </xsl:when>
+						                           <xsl:when test="ADTL_PAY_FREQ_IND='T'">
+						                            <xsl:value-of select="'BM'"/>
+						                           </xsl:when>
+						                   		   <xsl:when test="ADTL_PAY_FREQ_IND='B'">
+						                        		<xsl:value-of select="'BW'"/>
+						                              </xsl:when>
+						                           <xsl:when test="ADTL_PAY_FREQ_IND='M'">
+						                            <xsl:value-of select="'MO'"/>
+						                           </xsl:when>
+						                   		   <xsl:when test="ADTL_PAY_FREQ_IND='Q'">
+						                        		<xsl:value-of select="'QT'"/>
+						                              </xsl:when>
+						                           <xsl:when test="ADTL_PAY_FREQ_IND='Y'">
+						                            <xsl:value-of select="'SA'"/>
+						                           </xsl:when>
+						                   		   <xsl:when test="ADTL_PAY_FREQ_IND='S'">
+						                        		<xsl:value-of select="'SM'"/>
+						                              </xsl:when>
+						                           <xsl:when test="ADTL_PAY_FREQ_IND='W'">
+						                            <xsl:value-of select="'WE'"/>
+						                           </xsl:when>						                           						                           						                           
+						                           <xsl:otherwise> 
+						                    	      <xsl:value-of select="'UN'"/>
+						                           </xsl:otherwise>
+										         </xsl:choose>	                                                   
+                                                </DDCT_FREQ_CD>	
+                                                <DDCT_AMT_IND>
+                                                      <xsl:choose>
+									                    <xsl:when test="ADTL_PAY_IND = '0'">
+									                        <xsl:value-of select="'1'"/>
+									                    </xsl:when>
+														<xsl:when test="ADTL_PAY_IND = '2'">
+									                        <xsl:value-of select="'1'"/>
+									                    </xsl:when>
+									                    <xsl:otherwise> 
+									                    	<xsl:value-of select="'2'"/>
+									                    </xsl:otherwise> 
+									                  </xsl:choose>                                                      
+                                                </DDCT_AMT_IND> 
+                                               <DDCT_TYP_CD >
+													<xsl:choose>
+									            	    <xsl:when test="string(ADTL_PAY_TYP)"><xsl:value-of select="ADTL_PAY_TYP"/></xsl:when>
+									        	        <xsl:otherwise><xsl:value-of select="' '"/></xsl:otherwise>
+								     		    	</xsl:choose>                                                 
+                                                </DDCT_TYP_CD >                                                
+                                                <DDCT_AMT>
+										           <xsl:choose>
+									            	    <xsl:when test="string(ADTL_PAY_AMT) and SRC_APP_IND != 'CW'"><xsl:value-of select="ADTL_PAY_AMT"/></xsl:when>
+									            	     <xsl:when test="string(ADTL_PAY_AMT) and SRC_APP_IND = 'CW'">
+									            	     	<xsl:call-template name='getNegative'>
+							            	    				<xsl:with-param name='amount' select="ADTL_PAY_AMT" />
+						            	    			  	</xsl:call-template>
+									            	     </xsl:when>
+									        	        <xsl:otherwise><xsl:value-of select="'0'"/></xsl:otherwise>
+								     		    	</xsl:choose>            
+                                                </DDCT_AMT>   
+                                             </PRETAXDEDUCTION>
+                                        </xsl:for-each>
+                                    </PRETAXDEDUCTIONS>
+                                     <!-- MAGI CHANGES PCR 61703 -->   
+                                </EMPLOYMENT>
+                            </xsl:for-each>
+                        </EMPLOYMENTS>
+
+                        <SELF_EMPLOYMENTS DATA_EXIST="{SELF_EMPLOYMENTS/@DATA_EXIST}">
+                            <xsl:for-each select="SELF_EMPLOYMENTS/SELF_EMPLOYMENT">
+                                <SELF_EMPLOYMENT DATA_EXIST="{SELF_EMPLOYMENT/@DATA_EXIST}">
+                                    <SEQ_NUM>
+					                    <xsl:choose>
+						            	    <xsl:when test="string(SEQ_NUM)"><xsl:value-of select="SEQ_NUM"/></xsl:when>
+						        	        <xsl:otherwise>0</xsl:otherwise>
+					     		    	</xsl:choose>
+                                    </SEQ_NUM>
+                                    <ASSC_SEQ_NUM>
+					                    <xsl:choose>
+						            	    <xsl:when test="string(SRC_APP_IND) = 'RN'"><xsl:value-of select="'0'"/></xsl:when>
+						        	        <xsl:otherwise><xsl:value-of select="SEQ_NUM"/></xsl:otherwise>
+					     		    	</xsl:choose>
+                                    </ASSC_SEQ_NUM>
+                                    <ADD_REC_IND>
+					                    <xsl:value-of select="'R'"/>
+                                    </ADD_REC_IND>
+                                    <AVG_INCM_AMT>
+					                    <xsl:choose>
+						            	    <xsl:when test="string(AVG_INCM_AMT)"><xsl:value-of select="AVG_INCM_AMT"/></xsl:when>
+						        	        <xsl:otherwise>0</xsl:otherwise>
+					     		    	</xsl:choose>                                        
+                                    </AVG_INCM_AMT>
+                                    <AVG_INCM_AMT_IND>
+										<xsl:call-template name='convertAccessIndToCwwInd'>
+						                	<xsl:with-param name='toConvert' select='AVG_INCM_IND' />
+						                </xsl:call-template>
+                                    </AVG_INCM_AMT_IND>
+                                    <AVG_EXP_AMT>
+					                    <xsl:choose>
+						            	    <xsl:when test="string(EXP_AMT)"><xsl:value-of select="EXP_AMT"/></xsl:when>
+						        	        <xsl:otherwise>0.00</xsl:otherwise>
+					     		    	</xsl:choose>                                        
+                                    </AVG_EXP_AMT>
+                                    <AVG_EXP_AMT_IND>
+										<xsl:call-template name='convertAccessIndToCwwInd'>
+						                	<xsl:with-param name='toConvert' select='EXP_IND' />
+						                </xsl:call-template>
+                                    </AVG_EXP_AMT_IND>
+                                    <DPRC_AMT>
+					                    <xsl:choose>
+						            	    <xsl:when test="string(DPRC_AMT)"><xsl:value-of select="DPRC_AMT"/></xsl:when>
+						        	        <xsl:otherwise>0.00</xsl:otherwise>
+					     		    	</xsl:choose>                                         
+                                    </DPRC_AMT>
+                                    <DPRC_AMT_IND>
+										<xsl:call-template name='convertAccessIndToCwwInd'>
+						                	<xsl:with-param name='toConvert' select='DPRC_IND' />
+						                </xsl:call-template>
+                                    </DPRC_AMT_IND>
+                                    <EFF_BEG_MO>
+                                        <xsl:value-of select="''"/>
+                                        <!-- JAVA - If RETRO_MA_RESP in T1002 is '0', populate the CCYYMM of APP_FILE_DT in T1002 else populate 999912.-->
+                                    </EFF_BEG_MO>
+                                    <HR_WORK_MO_QTY>
+					                    <xsl:choose>
+						            	    <xsl:when test="string(HR_WORK_MO_QTY)"><xsl:value-of select="HR_WORK_MO_QTY"/></xsl:when>
+						        	        <xsl:otherwise>0</xsl:otherwise>
+					     		    	</xsl:choose>                                        
+                                    </HR_WORK_MO_QTY>
+                                    <HR_WRK_MO_QTY_IND>
+										<xsl:call-template name='convertAccessIndToCwwInd'>
+						                	<xsl:with-param name='toConvert' select='HR_WORK_MO_IND' />
+						                </xsl:call-template>
+                                    </HR_WRK_MO_QTY_IND>
+                                    <SELF_EMPL_TYP>
+										<xsl:call-template name='convertToUppercase'>
+						                	<xsl:with-param name='toConvert' select='SELF_EMPL_TYP' />
+						                </xsl:call-template>             
+                                    </SELF_EMPL_TYP>
+                                   <EFF_END_MO>
+					                    <xsl:choose>
+						            	    <xsl:when test="string(SRC_APP_IND) and string(SRC_APP_IND)='RE'">
+							            	    <xsl:call-template name='getYYYYMM'>
+							            	    	<xsl:with-param name='date' select="CHG_EFF_DT" />
+						            	    	</xsl:call-template>
+						            	    </xsl:when>
+						        	        <xsl:otherwise><xsl:value-of select="'999912'"/></xsl:otherwise>
+					     		    	</xsl:choose>                                        
+                                    </EFF_END_MO>
+                                    <SELF_MNG_SW>
+                                    	<xsl:choose>
+						                    <xsl:when test="SELF_EMPL_TYP != 'RP'">
+						                        <xsl:value-of select="'Y'"/>
+						                    </xsl:when>
+						                    <xsl:otherwise> 
+						                    	<xsl:choose>
+							                    	<xsl:when test="string(SELF_MNG_SW)"><xsl:value-of select="SELF_MNG_SW"/></xsl:when>
+							        	        	<xsl:otherwise><xsl:value-of select="' '"/></xsl:otherwise>
+						        	        	</xsl:choose>
+						            	    </xsl:otherwise>
+					     		    	</xsl:choose>
+                                    </SELF_MNG_SW>
+                                    <CHG_EFF_DT>
+                                    	<xsl:value-of select="CHG_EFF_DT"/>
+                                    </CHG_EFF_DT>
+                                    <!-- PCR# 43689 - Verification Check List changes for Self Employment - starts -->
+                                    <BUS_NAM>
+										<xsl:call-template name='convertToUppercase'>
+						                	<xsl:with-param name='toConvert' select='BUS_NAM' />
+						                </xsl:call-template>              
+                                    </BUS_NAM>
+                                    <BUS_OWSP_TYP>
+										<xsl:call-template name='convertToUppercase'>
+						                	<xsl:with-param name='toConvert' select='BUS_OWSP_TYP' />
+						                </xsl:call-template>           
+                                    </BUS_OWSP_TYP>
+                                     <BUS_SGNF_CHG_MO>                                                      				
+						    			<xsl:value-of select="BUS_SGNF_CHG_MO"/>                            
+                      				</BUS_SGNF_CHG_MO>
+                                    <BUS_STRT_MO>                                                      				
+						    			<xsl:value-of select="BUS_STRT_MO"/>                 
+                      				</BUS_STRT_MO>
+                      				<BUS_TAX_FILE_YR>
+                						<xsl:value-of select="BUS_TAX_FILE_YR"/>
+            						</BUS_TAX_FILE_YR>
+                                    <BUS_TAX_ID_NUM>
+                						<xsl:value-of select="BUS_TAX_ID_NUM"/>
+            						</BUS_TAX_ID_NUM>
+            						  <!-- PCR# 43689 - Verification Check List changes for Self Employment - ends -->
+                                </SELF_EMPLOYMENT>
+                            </xsl:for-each>
+                        </SELF_EMPLOYMENTS>
+                        
+                        <EDUC_CD>
+                        	<xsl:value-of select="EDUC_CD"/>
+                        </EDUC_CD>
+                        <ENRL_STAT_CD>
+                        	<xsl:value-of select="ENRL_STAT_CD"/>
+                        </ENRL_STAT_CD>
+                        <HS_GRAD_DT>
+		                    <xsl:choose>
+			            	    <xsl:when test="string(HS_GRAD_DT)"><xsl:value-of select="HS_GRAD_DT"/></xsl:when>
+			        	        <xsl:otherwise><xsl:value-of select="'9999-12-31'"/></xsl:otherwise>
+		     		    	</xsl:choose>                        
+                        </HS_GRAD_DT>
+                        <HS_GRAD_STAT_CD>
+                        	<xsl:value-of select="HS_GRAD_STAT_CD"/>
+                        </HS_GRAD_STAT_CD>
+                        <CARE_DEP_REQ_RSP>
+                            <xsl:choose>
+			                    <xsl:when test="CHLD_CARE_IND = '1'">
+			                        <xsl:value-of select="'Y'"/>
+			                    </xsl:when>
+			                    <xsl:when test="ISFC_DY_CARE_IND = '1'">
+			                        <xsl:value-of select="'Y'"/>
+			                    </xsl:when>
+			                    <xsl:otherwise>
+			                    	<xsl:value-of select="' '"/>
+			                    </xsl:otherwise>
+			                </xsl:choose>
+                        </CARE_DEP_REQ_RSP>
+                        <STDT_FS_ELG_CD>
+                            <xsl:choose>
+			                    <xsl:when test="SCHL_PLCM_IND = '1'">
+			                        <xsl:value-of select="'FE'"/>
+			                    </xsl:when>
+			                    <xsl:when test="WORK_STDY_IND = '1'">
+			                        <xsl:value-of select="'WS'"/>
+			                    </xsl:when>
+			                    <xsl:otherwise>
+			                    	<xsl:value-of select="' '"/>
+			                    </xsl:otherwise>
+			                </xsl:choose>
+                        </STDT_FS_ELG_CD>
+
+						<DEPENDENT_CARES DATA_EXIST="{DEPENDENT_CARES/@DATA_EXIST}">
+                            <xsl:for-each select="DEPENDENT_CARES/DEPENDENT_CARE">
+                                <DEPENDENT_CARE DATA_EXIST="{DEPENDENT_CARE/@DATA_EXIST}">
+                                    <SEQ_NUM>
+					                    <xsl:choose>
+						            	    <xsl:when test="string(SEQ_NUM)"><xsl:value-of select="SEQ_NUM"/></xsl:when>
+						        	        <xsl:otherwise>0</xsl:otherwise>
+					     		    	</xsl:choose>                                        
+                                    </SEQ_NUM>
+                                    <ASSC_SEQ_NUM>
+								         <xsl:value-of select="'0'"/>
+                                    </ASSC_SEQ_NUM>
+                                    <ADD_REC_IND>
+					                    <xsl:value-of select="'R'"/>
+                                    </ADD_REC_IND>
+                                    <EFF_BEG_MO>
+                                        <xsl:value-of select="CHG_EFF_DT"/>
+                                        <!-- JAVA - If RETRO_MA_RESP in T1002 is '0', populate the CCYYMM of APP_FILE_DT in T1002 else populate 999912.-->
+                                    </EFF_BEG_MO>
+									<DPND_CARE_EXP_AMT>
+										<xsl:value-of select="DPND_CARE_EXP_AMT"/>
+									</DPND_CARE_EXP_AMT>                                    
+                                    <DPND_CARE_EXP_IND>
+                                    	<xsl:call-template name='convertAccessIndToCwwInd'>
+						                	<xsl:with-param name='toConvert' select='DPND_CARE_EXP_IND' />
+						                </xsl:call-template>
+                                    </DPND_CARE_EXP_IND>
+									<DPND_EXP_PAID_AMT>
+										<xsl:value-of select="DPND_EXP_PAID_AMT"/>
+									</DPND_EXP_PAID_AMT>                                    
+                                    <DPND_EXP_PAID_IND>
+                                    	<xsl:call-template name='convertAccessIndToCwwInd'>
+						                	<xsl:with-param name='toConvert' select='DPND_EXP_PAID_IND' />
+						                </xsl:call-template>
+                                    </DPND_EXP_PAID_IND>
+                                    <PAID_IN_SEQ_NUM>
+					                    <xsl:choose>
+						            	    <xsl:when test="string(PAID_IN_SEQ_NUM)"><xsl:value-of select="PAID_IN_SEQ_NUM"/></xsl:when>
+						        	        <xsl:otherwise>0</xsl:otherwise>
+					     		    	</xsl:choose>                                        
+                                    </PAID_IN_SEQ_NUM>
+                                    <PRVD_LAST_NAM>
+										<xsl:call-template name='convertToUppercase'>
+						                	<xsl:with-param name='toConvert' select='PRVD_LAST_NAM' />
+						                </xsl:call-template>             
+                                    </PRVD_LAST_NAM>
+                                    <PRVD_FST_NAM>
+										<xsl:call-template name='convertToUppercase'>
+						                	<xsl:with-param name='toConvert' select='PRVD_FST_NAM' />
+						                </xsl:call-template>             
+                                    </PRVD_FST_NAM>
+                                    <PRVD_ORG_NAM>
+										<xsl:call-template name='convertToUppercase'>
+						                	<xsl:with-param name='toConvert' select='PRVD_ORG_NAM' />
+						                </xsl:call-template>             
+                                    </PRVD_ORG_NAM>
+                                    <PRVD_IN_SEQ_NUM>
+					                    <xsl:choose>
+						            	    <xsl:when test="string(PRVD_IN_SEQ_NUM)"><xsl:value-of select="PRVD_IN_SEQ_NUM"/></xsl:when>
+						        	        <xsl:otherwise>0</xsl:otherwise>
+					     		    	</xsl:choose>                                        
+                                    </PRVD_IN_SEQ_NUM>
+                                    <PRVD_TYP>
+		                                <xsl:choose>
+						                    <xsl:when test="PRVD_TYP = 'O'">
+						                        <xsl:value-of select="'I'"/>
+						                    </xsl:when>
+						                    <xsl:when test="PRVD_TYP = 'A'">
+						                        <xsl:value-of select="'O'"/>
+						                    </xsl:when>
+						                    <xsl:otherwise>
+						                    	<xsl:value-of select="' '"/>
+						                    </xsl:otherwise>
+						                </xsl:choose>
+                                    </PRVD_TYP>
+                                </DEPENDENT_CARE>
+                            </xsl:for-each>
+                        </DEPENDENT_CARES>
+						<MEDICARES DATA_EXIST="{MEDICARES/@DATA_EXIST}">
+                            <xsl:for-each select="MEDICARES/MEDICARE">
+                                <MEDICARE DATA_EXIST="{MEDICARE/@DATA_EXIST}">
+                                    <SEQ_NUM>
+					                    <xsl:choose>
+						            	    <xsl:when test="string(SEQ_NUM)"><xsl:value-of select="SEQ_NUM"/></xsl:when>
+						        	        <xsl:otherwise>0</xsl:otherwise>
+					     		    	</xsl:choose>                                        
+                                    </SEQ_NUM>
+                                    <ASSC_SEQ_NUM>
+								         <xsl:value-of select="'0'"/>
+                                    </ASSC_SEQ_NUM>
+                                    <ADD_REC_IND>
+					                    <xsl:value-of select="'R'"/>
+                                    </ADD_REC_IND>
+                                    <EFF_BEG_MO>
+                                        <xsl:value-of select="CHG_EFF_DT"/>
+                                        <!-- JAVA - If RETRO_MA_RESP in T1002 is '0', populate the CCYYMM of APP_FILE_DT in T1002 else populate 999912.-->
+                                    </EFF_BEG_MO>
+									<HLTH_INS_CARE_NUM>
+										<xsl:value-of select="HLTH_INS_CARE_NUM"/>
+									</HLTH_INS_CARE_NUM>                                    
+                                    <HLTH_INS_CARE_IND>
+                                    	<xsl:call-template name='convertAccessIndToCwwInd'>
+						                	<xsl:with-param name='toConvert' select='HLTH_INS_CARE_IND' />
+						                </xsl:call-template>
+                                    </HLTH_INS_CARE_IND>
+                                    <PARTA_BEG_DT>
+                                    	<xsl:value-of select="PARTA_BEG_DT"/>
+                                    </PARTA_BEG_DT>
+                                    <PARTA_PREM_AMT>
+                                    	<xsl:value-of select="PARTA_PREM_AMT"/>
+                                    </PARTA_PREM_AMT>
+                                    <PARTA_PREM_IND>
+                                    	<xsl:call-template name='convertAccessIndToCwwInd'>
+						                	<xsl:with-param name='toConvert' select='PARTA_PREM_IND' />
+						                </xsl:call-template>
+                                    </PARTA_PREM_IND>
+                                    <PARTA_PREM_PAYR_CD>
+		                                <xsl:choose>
+						                    <xsl:when test="normalize-space(PARTA_PREM_PAYR_CD) = 'SLF'">
+						                        <xsl:value-of select="'SELF'"/>
+						                    </xsl:when>
+						                    <xsl:otherwise>
+						                    	<xsl:value-of select="normalize-space(PARTA_PREM_PAYR_CD)"/>
+						                    </xsl:otherwise>
+						                </xsl:choose>
+                                    </PARTA_PREM_PAYR_CD>
+                                    <PARTB_BEG_DT>
+                                    	<xsl:value-of select="PARTB_BEG_DT"/>
+                                    </PARTB_BEG_DT>
+                                    <PARTB_PREM_AMT>
+                                    	<xsl:value-of select="PARTB_PREM_AMT"/>
+                                    </PARTB_PREM_AMT>
+                                    <PARTB_PREM_IND>
+                                    	<xsl:call-template name='convertAccessIndToCwwInd'>
+						                	<xsl:with-param name='toConvert' select='PARTB_PREM_IND' />
+						                </xsl:call-template>
+                                    </PARTB_PREM_IND>
+                                    <PARTB_PREM_PAYR_CD>
+		                                <xsl:choose>
+						                    <xsl:when test="normalize-space(PARTB_PREM_PAYR_CD) = 'SLF'">
+						                        <xsl:value-of select="'SELF'"/>
+						                    </xsl:when>
+						                    <xsl:when test="normalize-space(PARTB_PREM_PAYR_CD) = 'CVL'">
+						                        <xsl:value-of select="'CIVIL'"/>
+						                    </xsl:when>
+						                    <xsl:when test="normalize-space(PARTB_PREM_PAYR_CD) = 'PTP'">
+						                        <xsl:value-of select="'PRITP'"/>
+						                    </xsl:when>
+						                    <xsl:otherwise>
+						                    	<xsl:value-of select="normalize-space(PARTB_PREM_PAYR_CD)"/>
+						                    </xsl:otherwise>
+						                </xsl:choose>
+                                    </PARTB_PREM_PAYR_CD>
+                                    <RETR_RESP>
+		                                <xsl:choose>
+						                    <xsl:when test="RETR_RESP = 'N'">
+						                        <xsl:value-of select="'N'"/>
+						                    </xsl:when>
+						                    <xsl:when test="RETR_RESP = ' '">
+						                        <xsl:value-of select="' '"/>
+						                    </xsl:when>
+						                    <xsl:otherwise>
+						                    	<xsl:value-of select="'Y'"/>
+						                    </xsl:otherwise>
+						                </xsl:choose>
+                                    </RETR_RESP>
+                                    <PARTA_ETTL_RESP>
+					                    <xsl:choose>
+						            	    <xsl:when test="string(PARTA_ETTL_RESP)"><xsl:value-of select="PARTA_ETTL_RESP"/></xsl:when>
+						        	        <xsl:otherwise><xsl:value-of select="' '"/></xsl:otherwise>
+					     		    	</xsl:choose>
+                                    </PARTA_ETTL_RESP>
+                                    <PARTB_ETTL_RESP>
+					                    <xsl:choose>
+						            	    <xsl:when test="string(PARTB_ETTL_RESP)"><xsl:value-of select="PARTB_ETTL_RESP"/></xsl:when>
+						        	        <xsl:otherwise><xsl:value-of select="' '"/></xsl:otherwise>
+					     		    	</xsl:choose>
+                                    </PARTB_ETTL_RESP>
+                                </MEDICARE>
+                            </xsl:for-each>
+                        </MEDICARES>
+
+                        <UNEARNED_INCOMES DATA_EXIST="{UNEARNED_INCOMES/@DATA_EXIST}">
+                            <xsl:for-each select="UNEARNED_INCOMES/UNEARNED_INCOME">
+                                <UNEARNED_INCOME DATA_EXIST="{UNEARNED_INCOME/@DATA_EXIST}">
+                                    <SEQ_NUM>
+					                    <xsl:choose>
+						            	    <xsl:when test="string(SEQ_NUM)"><xsl:value-of select="SEQ_NUM"/></xsl:when>
+						        	        <xsl:otherwise>0</xsl:otherwise>
+					     		    	</xsl:choose>                                        
+                                    </SEQ_NUM>
+                                    <ASSC_SEQ_NUM>
+					                    <xsl:choose>
+						            	    <xsl:when test="string(SRC_APP_IND) = 'RN'"><xsl:value-of select="'0'"/></xsl:when>
+						        	        <xsl:otherwise><xsl:value-of select="SEQ_NUM"/></xsl:otherwise>
+					     		    	</xsl:choose>
+                                    </ASSC_SEQ_NUM>
+                                    <ADD_REC_IND>
+					                    <xsl:value-of select="'R'"/>
+                                    </ADD_REC_IND>
+                                    <EFF_BEG_MO>
+					                    <xsl:choose>
+						            	    <xsl:when test="string(SRC_APP_IND)">
+							            	    <xsl:call-template name='getYYYYMM'>
+							            	    	<xsl:with-param name='date' select="CHG_EFF_DT" />
+						            	    	</xsl:call-template>
+						            	    </xsl:when>
+						        	        <xsl:otherwise><xsl:value-of select="'999912'"/></xsl:otherwise>
+					     		    	</xsl:choose>                                        
+                                        <!-- JAVA - If RETRO_MA_RESP in T1002 is '0', populate the CCYYMM of APP_FILE_DT in T1002 else populate 999912.-->
+                                    </EFF_BEG_MO>
+                                    <FREQ_CD>
+					                    <xsl:choose>
+						            	    <xsl:when test="string(FREQ_CD)"><xsl:value-of select="FREQ_CD"/></xsl:when>
+						        	        <xsl:otherwise><xsl:value-of select="' '"/></xsl:otherwise>
+					     		    	</xsl:choose>                                        
+                                    </FREQ_CD>
+                                    <UEI_AMT>
+					                    <xsl:choose>
+						            	    <xsl:when test="string(UEI_AMT)"><xsl:value-of select="UEI_AMT"/></xsl:when>
+						        	        <xsl:otherwise>0</xsl:otherwise>
+					     		    	</xsl:choose>                                        
+                                    </UEI_AMT>
+                                    <UEI_AMT_IND>
+										<xsl:call-template name='convertAccessIndToCwwInd'>
+						                	<xsl:with-param name='toConvert' select='UEI_AMT_IND' />
+						                </xsl:call-template>
+                                    </UEI_AMT_IND>
+                                    <UEI_BEG_DT>
+                                        <xsl:value-of select="UEI_BEG_DT"/>
+                                    </UEI_BEG_DT>
+                                    <EFF_END_MO>
+					                    <xsl:choose>
+						            	    <xsl:when test="string(SRC_APP_IND) and string(SRC_APP_IND)='RE'">
+							            	    <xsl:call-template name='getYYYYMM'>
+							            	    	<xsl:with-param name='date' select="CHG_EFF_DT" />
+						            	    	</xsl:call-template>
+						            	    </xsl:when>
+						        	        <xsl:otherwise><xsl:value-of select="'999912'"/></xsl:otherwise>
+					     		    	</xsl:choose>                                        
+                                    </EFF_END_MO>
+                                    <UEI_STYP>
+										<xsl:choose>
+						                    <xsl:when test="UEI_TYP = 'CS'">
+						                        <xsl:value-of select="'CC'"/>
+						                    </xsl:when>
+						                    <xsl:when test="UEI_TYP = 'SS' and string(SRC_APP_IND)='RN'">
+						                        <xsl:value-of select="'DI'"/>
+						                    </xsl:when>
+					        	        	<xsl:otherwise><xsl:value-of select="' '"/></xsl:otherwise>
+					     		    	</xsl:choose>                                         
+                                    </UEI_STYP>
+                                    <UEI_TYP>
+										<xsl:choose>                                    
+						                    <xsl:when test="UEI_TYP = 'TP'">
+						                        <xsl:value-of select="'TC'"/>
+						                    </xsl:when>
+											<xsl:otherwise>
+												<xsl:call-template name='convertToUppercase'>
+								                	<xsl:with-param name='toConvert' select='UEI_TYP' />
+								                </xsl:call-template>
+						                	</xsl:otherwise>             
+					     		    	</xsl:choose>						                
+                                    </UEI_TYP>
+                                     <MA_MA_TXBL_AMT> 
+					                    <xsl:choose>
+						            	    <xsl:when test="(UEI_TYP = 'PE' or UEI_TYP = 'AN')">
+						            	    <xsl:value-of select="UEI_TXBL_AMT"/>
+						            	    </xsl:when>						            	       						            	    						            	    
+						        	        <xsl:otherwise>0</xsl:otherwise>
+					     		    	</xsl:choose>                                        
+                                    </MA_MA_TXBL_AMT>
+                                    <MA_TXBL_AMT_IND>
+										<xsl:call-template name='convertAccessIndToCwwInd'>
+						                	<xsl:with-param name='toConvert' select='UEI_TXBL_AMT_IND' />
+						                </xsl:call-template>
+                                    </MA_TXBL_AMT_IND>   
+                                     <PRSN_CPTL_LOSS_AMT>
+					                    <xsl:choose>
+						            	    <xsl:when test="string(UEI_LOSS_AMT)">
+						            	    <xsl:value-of select="UEI_LOSS_AMT"/></xsl:when>
+						        	        <xsl:otherwise>0</xsl:otherwise>						            	    
+					     		    	</xsl:choose>                                        
+                                    </PRSN_CPTL_LOSS_AMT>
+                                    <PRSN_CP_LS_AMT_IND>
+										<xsl:call-template name='convertAccessIndToCwwInd'>
+						                	<xsl:with-param name='toConvert' select='UEI_LOSS_AMT_IND' />
+						                </xsl:call-template>
+                                    </PRSN_CP_LS_AMT_IND>                                      
+                                </UNEARNED_INCOME>
+                            </xsl:for-each>
+                        </UNEARNED_INCOMES>
+                         <APP_INDV_CNTCS DATA_EXIST="{APP_INDV_CNTCS/@DATA_EXIST}">
+                            <xsl:for-each select="APP_INDV_CNTCS/APP_INDV_CNTC">
+                                <APP_INDV_CNTC DATA_EXIST="{APP_INDV_CNTC/@DATA_EXIST}">
+									 <EMAIL_ADR>
+										<xsl:call-template name='convertToUppercase'>
+											<xsl:with-param name='toConvert' select='EMAIL_ADR' />
+										</xsl:call-template>             
+									</EMAIL_ADR>
+									<EMAIL_CSNT_IND>
+										<xsl:choose>
+											<xsl:when test="EMAIL_CSNT_IND = 'Y'">
+													<xsl:value-of select="'Y'"/>
+											</xsl:when>
+											<xsl:when test="EMAIL_CSNT_IND = 'N'">
+													<xsl:value-of select="'N'"/>
+											</xsl:when>
+											<xsl:otherwise>
+												<xsl:value-of select="' '"/>
+											</xsl:otherwise>
+										</xsl:choose>
+									 </EMAIL_CSNT_IND>
+									 <PAPRLESS_IND>
+										<xsl:choose>
+											<xsl:when test="PAPRLESS_IND = 'Y'">
+													<xsl:value-of select="'Y'"/>
+											</xsl:when>
+											<xsl:when test="PAPRLESS_IND = 'N'">
+													<xsl:value-of select="'N'"/>
+											</xsl:when>
+											<xsl:otherwise>
+												<xsl:value-of select="' '"/>
+											</xsl:otherwise>
+										</xsl:choose>
+									 </PAPRLESS_IND>                                                                                  
+                                </APP_INDV_CNTC>
+                            </xsl:for-each>
+                        </APP_INDV_CNTCS>
+                         <!-- MAGI CHANGES PCR 61703 -->   
+                        <TAX_DEDUCTIONS DATA_EXIST="{TAX_DEDUCTIONS/@DATA_EXIST}">
+                            <xsl:for-each select="TAX_DEDUCTIONS/TAX_DEDUCTION">
+                                <TAX_DEDUCTION DATA_EXIST="{TAX_DEDUCTION/@DATA_EXIST}">
+                                    <SEQ_NUM>					                    				                    
+										<xsl:value-of select="TAX_DDCT_SEQ_NUM"/>										
+                                    </SEQ_NUM>
+                                   <ASSC_SEQ_NUM>
+                                       <xsl:choose>
+						            	    <xsl:when test="string(SRC_APP_IND) = 'RN'"><xsl:value-of select="'0'"/></xsl:when>
+						        	        <xsl:otherwise><xsl:value-of select="TAX_DDCT_SEQ_NUM"/></xsl:otherwise>
+					     		    	</xsl:choose>
+                                    </ASSC_SEQ_NUM>   
+                                    <ADD_REC_IND>
+					                    <xsl:value-of select="'R'"/>
+                                    </ADD_REC_IND>   
+                                    <ALOW_WRT_IN_EXP_CD>
+										<xsl:value-of select="ALOW_WRT_E_TYP_CD"/>
+                                    </ALOW_WRT_IN_EXP_CD>
+                                    <DDCT_TYP_CD>
+										<xsl:value-of select="TAX_DDCT_TYP_CD"/>
+                                    </DDCT_TYP_CD>
+                                    <EFF_BEG_MO>
+			                      	    <xsl:call-template name='getYYYYMM'>
+					            	    	<xsl:with-param name='date' select="CHG_EFF_DT" />
+				            	    	</xsl:call-template>						            	                                                                                                                   
+                                    </EFF_BEG_MO>  
+									<EFF_END_MO>
+					                    <xsl:choose>
+						            	    <xsl:when test="string(SRC_APP_IND) and string(SRC_APP_IND)='RE'">
+							            	    <xsl:call-template name='getYYYYMM'>
+							            	    	<xsl:with-param name='date' select="CHG_EFF_DT" />
+						            	    	</xsl:call-template>
+						            	    </xsl:when>
+						        	        <xsl:otherwise><xsl:value-of select="'999912'"/></xsl:otherwise>
+					     		    	</xsl:choose>                                        
+                                    </EFF_END_MO>									
+                                    <FREQ_PRD_CD>
+                                        <xsl:choose>
+				                   		   <xsl:when test="TAX_DDCT_FREQ_CD='N'">
+				                        		<xsl:value-of select="'AN'"/>
+				                            </xsl:when>
+				                           <xsl:when test="TAX_DDCT_FREQ_CD='S'">
+				                            <xsl:value-of select="'SM'"/>
+				                           </xsl:when>
+				                   		   <xsl:when test="TAX_DDCT_FREQ_CD='B'">
+				                        		<xsl:value-of select="'BW'"/>
+				                              </xsl:when>
+				                           <xsl:when test="TAX_DDCT_FREQ_CD='M'">
+				                            <xsl:value-of select="'MO'"/>
+				                           </xsl:when>
+				                   		   <xsl:when test="TAX_DDCT_FREQ_CD='Q'">
+				                        		<xsl:value-of select="'QT'"/>
+				                              </xsl:when>
+				                           <xsl:when test="TAX_DDCT_FREQ_CD='Y'">
+				                            <xsl:value-of select="'SA'"/>
+				                           </xsl:when>
+				                   		   <xsl:when test="TAX_DDCT_FREQ_CD='T'">
+				                        		<xsl:value-of select="'BM'"/>
+				                              </xsl:when>
+				                           <xsl:when test="TAX_DDCT_FREQ_CD='W'">
+				                            <xsl:value-of select="'WE'"/>						                         
+				                            </xsl:when>		                           
+				                           <xsl:otherwise> 
+				                    	      <xsl:value-of select="' '"/>
+				                           </xsl:otherwise>
+							         	</xsl:choose>
+							         </FREQ_PRD_CD>
+                                     <CL_YR_TOT_MAGI_AMT>
+					                      <xsl:choose>
+						                    <xsl:when test="TAX_DDCT_TYP_CD = 'MC' or TAX_DDCT_TYP_CD = 'PW'">
+						                        <xsl:value-of select="TAX_DDCT_AMT"/>
+						                    </xsl:when>						                    
+					        	        	 <xsl:otherwise>0</xsl:otherwise>
+					     		    	  </xsl:choose> 						                    
+					        	     </CL_YR_TOT_MAGI_AMT> 
+					        	    
+                                    <ONG_PD_TT_MAGI_AMT>
+                                     	<xsl:choose>
+											<xsl:when test="TAX_DDCT_TYP_CD != 'MC' and TAX_DDCT_TYP_CD != 'PW'">
+						                        <xsl:value-of select="TAX_DDCT_AMT"/>
+						                    </xsl:when>
+						                    <xsl:otherwise>0</xsl:otherwise>
+					     		    	</xsl:choose>                                        
+                                    </ONG_PD_TT_MAGI_AMT>    
+                                     <CL_PRD_T_AMT_IND>
+                                      <xsl:choose>
+										<xsl:when test="TAX_DDCT_TYP_CD = 'MC' or TAX_DDCT_TYP_CD = 'PW'">
+											<xsl:call-template name='convertAccessIndToCwwInd'>
+												<xsl:with-param name='toConvert' select='TAX_DDCT_IND' />
+											</xsl:call-template>
+										 </xsl:when>
+										 <xsl:otherwise>0</xsl:otherwise>
+									  </xsl:choose>  			
+                                    </CL_PRD_T_AMT_IND>  
+                                    <ONG_PRD_T_AMT_IND>
+                                     <xsl:choose>
+										<xsl:when test="TAX_DDCT_TYP_CD != 'MC' and TAX_DDCT_TYP_CD != 'PW'">
+											<xsl:call-template name='convertAccessIndToCwwInd'>
+												<xsl:with-param name='toConvert' select='TAX_DDCT_IND' />
+											</xsl:call-template>
+										</xsl:when>
+										<xsl:otherwise>0</xsl:otherwise>	
+                                       </xsl:choose>  
+                                    </ONG_PRD_T_AMT_IND> 
+                                    <DDCT_SEL_CD>
+					                   <xsl:choose>
+						                    <xsl:when test="TAX_DDCT_TYP_CD = 'MC' or TAX_DDCT_TYP_CD = 'PW'">
+						                        <xsl:value-of select="'CL'"/>
+						                    </xsl:when>						                    
+					        	        	 <xsl:otherwise> <xsl:value-of select="'OG'"/></xsl:otherwise>
+					     		    	</xsl:choose>                                         
+                                    </DDCT_SEL_CD>                                    
+                                    <CL_YR_INCUR_MO>
+										<xsl:choose>
+						                    <xsl:when test="TAX_DDCT_TYP_CD = 'MC' or TAX_DDCT_TYP_CD = 'PW'">
+						                        <xsl:value-of select="TAX_DDCT_BEG_MO"/>  
+						                    </xsl:when>						                    
+					        	        	 <xsl:otherwise> <xsl:value-of select="'999912'"/></xsl:otherwise>
+					     		    	</xsl:choose>
+									</CL_YR_INCUR_MO>                                                                                                                                                                                                                                                                                   
+                                </TAX_DEDUCTION>
+                            </xsl:for-each>
+                        </TAX_DEDUCTIONS>
+                         <!-- MAGI CHANGES PCR 61703 -->   
+                        <UTILITY_COSTS DATA_EXIST="{UTILITY_COSTS/@DATA_EXIST}">
+                            <xsl:for-each select="UTILITY_COSTS/UTILITY_COST">
+                                <UTILITY_COST DATA_EXIST="{UTILITY_COST/@DATA_EXIST}">
+                                    <SEQ_NUM>
+					                    <xsl:choose>
+						            	    <xsl:when test="string(SEQ_NUM)"><xsl:value-of select="SEQ_NUM"/></xsl:when>
+						        	        <xsl:otherwise>0</xsl:otherwise>
+					     		    	</xsl:choose>                                            
+                                    </SEQ_NUM>
+                                    <ASSC_SEQ_NUM>
+					                    <xsl:choose>
+						            	    <xsl:when test="string(SRC_APP_IND) = 'RN'"><xsl:value-of select="'0'"/></xsl:when>
+						        	        <xsl:otherwise><xsl:value-of select="SEQ_NUM"/></xsl:otherwise>
+					     		    	</xsl:choose>
+                                    </ASSC_SEQ_NUM>
+                                    <ADD_REC_IND>
+					                    <xsl:value-of select="'R'"/>
+                                    </ADD_REC_IND>
+                                    <BILL_EXP_RESP>
+					                    <xsl:choose>
+						            	    <xsl:when test="string(BILL_EXP_RESP)"><xsl:value-of select="BILL_EXP_RESP"/></xsl:when>
+						        	        <xsl:otherwise><xsl:value-of select="' '"/></xsl:otherwise>
+					     		    	</xsl:choose>                                        
+                                    </BILL_EXP_RESP>
+                                    <EFF_BEG_MO>
+					                    <xsl:choose>
+						            	    <xsl:when test="string(SRC_APP_IND)">
+							            	    <xsl:call-template name='getYYYYMM'>
+							            	    	<xsl:with-param name='date' select="CHG_EFF_DT" />
+						            	    	</xsl:call-template>
+						            	    </xsl:when>
+						        	        <xsl:otherwise><xsl:value-of select="'999912'"/></xsl:otherwise>
+					     		    	</xsl:choose>                                        
+                                        <!-- JAVA - If RETRO_MA_RESP in T1002 is '0', populate the CCYYMM of APP_FILE_DT in T1002 else populate 999912.-->
+                                    </EFF_BEG_MO>
+                                    <HEAT_SW>
+					                    <xsl:choose>
+						            	    <xsl:when test="string(HEAT_SW)"><xsl:value-of select="HEAT_SW"/></xsl:when>
+						        	        <xsl:otherwise><xsl:value-of select="'N'"/></xsl:otherwise>
+					     		    	</xsl:choose>                                        
+                                    </HEAT_SW>
+                                    <MO_OBLG_AMT>
+					                    <xsl:choose>
+						            	    <xsl:when test="string(MO_OBLG_AMT)"><xsl:value-of select="MO_OBLG_AMT"/></xsl:when>
+						        	        <xsl:otherwise>0</xsl:otherwise>
+					     		    	</xsl:choose>                                         
+                                    </MO_OBLG_AMT>
+                                   <MO_OBLG_AMT_IND>
+										<xsl:call-template name='convertAccessIndToCwwInd'>
+						                	<xsl:with-param name='toConvert' select='MO_OBLG_IND' />
+						                </xsl:call-template>
+                                    </MO_OBLG_AMT_IND>
+                                    <UTIL_TYP>
+										<xsl:call-template name='convertToUppercase'>
+						                	<xsl:with-param name='toConvert' select='UTIL_TYP' />
+						                </xsl:call-template>             
+                                    </UTIL_TYP>
+                                    <EFF_END_MO>
+					                    <xsl:choose>
+						            	    <xsl:when test="string(SRC_APP_IND) and string(SRC_APP_IND)='RE'">
+							            	    <xsl:call-template name='getYYYYMM'>
+							            	    	<xsl:with-param name='date' select="CHG_EFF_DT" />
+						            	    	</xsl:call-template>
+						            	    </xsl:when>
+						        	        <xsl:otherwise><xsl:value-of select="'999912'"/></xsl:otherwise>
+					     		    	</xsl:choose>                                        
+                                    </EFF_END_MO>
+                                </UTILITY_COST>
+                            </xsl:for-each>
+                        </UTILITY_COSTS>
+                        
+                        <SHELTER_COSTS DATA_EXIST="{SHELTER_COSTS/@DATA_EXIST}">
+                            <xsl:for-each select="SHELTER_COSTS/SHELTER_COST">
+                                <SHELTER_COST DATA_EXIST="{SHELTER_COST/@DATA_EXIST}">
+                                    <SEQ_NUM>
+					                    <xsl:choose>
+						            	    <xsl:when test="string(SEQ_NUM)"><xsl:value-of select="SEQ_NUM"/></xsl:when>
+						        	        <xsl:otherwise>0</xsl:otherwise>
+					     		    	</xsl:choose>                                         
+                                    </SEQ_NUM>
+                                    <ASSC_SEQ_NUM>
+					                    <xsl:choose>
+						            	    <xsl:when test="string(SRC_APP_IND) = 'RN'"><xsl:value-of select="'0'"/></xsl:when>
+						        	        <xsl:otherwise><xsl:value-of select="SEQ_NUM"/></xsl:otherwise>
+					     		    	</xsl:choose>
+                                    </ASSC_SEQ_NUM>
+                                    <ADD_REC_IND>
+					                    <xsl:value-of select="'R'"/>
+                                    </ADD_REC_IND>
+                                    <EFF_BEG_MO>
+					                    <xsl:choose>
+						            	    <xsl:when test="string(SRC_APP_IND)">
+							            	    <xsl:call-template name='getYYYYMM'>
+							            	    	<xsl:with-param name='date' select="CHG_EFF_DT" />
+						            	    	</xsl:call-template>
+						            	    </xsl:when>
+						        	        <xsl:otherwise><xsl:value-of select="'999912'"/></xsl:otherwise>
+					     		    	</xsl:choose>                                        
+                                        <!-- JAVA - If RETRO_MA_RESP in T1002 is '0', populate the CCYYMM of APP_FILE_DT in T1002 else populate 999912.-->
+                                    </EFF_BEG_MO>
+                                    <SHLT_OBLG_AMT>
+					                    <xsl:choose>
+						            	    <xsl:when test="string(SHLT_OBLG_AMT)"><xsl:value-of select="SHLT_OBLG_AMT"/></xsl:when>
+						        	        <xsl:otherwise>0</xsl:otherwise>
+					     		    	</xsl:choose>                                         
+                                    </SHLT_OBLG_AMT>
+                                    <SHLT_OBLG_AMT_IND>
+										<xsl:call-template name='convertAccessIndToCwwInd'>
+						                	<xsl:with-param name='toConvert' select='SHLT_OBLG_IND' />
+						                </xsl:call-template>
+                                    </SHLT_OBLG_AMT_IND>
+                                    <SHLT_TYP>
+										<xsl:call-template name='convertToUppercase'>
+						                	<xsl:with-param name='toConvert' select='SHLT_TYP' />
+						                </xsl:call-template>             
+                                    </SHLT_TYP>
+                                    <UNK_CTRB_SW>
+					                    <xsl:value-of select="' '"/>                                        
+                                    </UNK_CTRB_SW>
+                                    <EFF_END_MO>
+					                    <xsl:choose>
+						            	    <xsl:when test="string(SRC_APP_IND) and string(SRC_APP_IND)='RE'">
+							            	    <xsl:call-template name='getYYYYMM'>
+							            	    	<xsl:with-param name='date' select="CHG_EFF_DT" />
+						            	    	</xsl:call-template>
+						            	    </xsl:when>
+						        	        <xsl:otherwise><xsl:value-of select="'999912'"/></xsl:otherwise>
+					     		    	</xsl:choose>                                        
+                                    </EFF_END_MO>
+                                </SHELTER_COST>
+                            </xsl:for-each>
+                        </SHELTER_COSTS>
+                        
+                        <PREGNANCY DATA_EXIST="{PREGNANCY/@DATA_EXIST}">
+                            <ADD_REC_IND>
+			                    <xsl:value-of select="'R'"/>
+                            </ADD_REC_IND>
+                            <EFF_BEG_MO>
+                                <xsl:value-of select="' '"/>
+                                <!-- JAVA - If RETRO_MA_RESP in T1002 is '0', populate the CCYYMM of APP_FILE_DT in T1002 else populate 999912.-->
+                            </EFF_BEG_MO>
+                            <FETUS_CT>
+			                    <xsl:choose>
+				            	    <xsl:when test="string(PREGNANCY/FETUS_CT)"><xsl:value-of select="PREGNANCY/FETUS_CT"/></xsl:when>
+				        	        <xsl:otherwise>0</xsl:otherwise>
+			     		    	</xsl:choose>                                
+                            </FETUS_CT>
+                            <FETUS_CT_IND>
+								<xsl:call-template name='convertAccessIndToCwwInd'>
+				                	<xsl:with-param name='toConvert' select='FETUS_CT_IND' />
+				                </xsl:call-template>
+                            </FETUS_CT_IND>
+                            <PREG_DUE_DT>
+                                <xsl:value-of select="PREGNANCY/PREG_DUE_DT"/>
+                            </PREG_DUE_DT>
+                            <PREG_END_DT>
+                                <xsl:value-of select="PREGNANCY/PREG_END_DT"/>
+                            </PREG_END_DT>
+                        </PREGNANCY>
+                        
+                        <DISABILITY DATA_EXIST="{DISABILITY/@DATA_EXIST}">
+                            <ADD_REC_IND>
+			                    <xsl:value-of select="'R'"/>
+			     		    </ADD_REC_IND>
+                            <DABL_BEG_DT>
+                            	<xsl:choose>
+				            	    <xsl:when test="string(DISABILITY/DABL_BEG_DT)"><xsl:value-of select="DISABILITY/DABL_BEG_DT"/></xsl:when>
+				        	        <xsl:otherwise><xsl:value-of select="'9999-12-31'"/></xsl:otherwise>
+			     		    	</xsl:choose>                                   
+                                <!-- JAVA - Default to High Date.-->
+                            </DABL_BEG_DT>
+                            <EFF_BEG_MO>
+                                <xsl:value-of select="' '"/>
+                                <!-- JAVA - If RETRO_MA_RESP in T1002 is '0', populate the CCYYMM of APP_FILE_DT in T1002 else populate 999912.-->
+                            </EFF_BEG_MO>
+                            <ESTB_BLND_RESP>
+                            	<xsl:choose>
+				            	    <xsl:when test="string(DISABILITY/ESTB_BLND_RESP)"><xsl:value-of select="DISABILITY/ESTB_BLND_RESP"/></xsl:when>
+				        	        <xsl:otherwise><xsl:value-of select="' '"/></xsl:otherwise>
+			     		    	</xsl:choose>                                   
+                            </ESTB_BLND_RESP>
+                            <ESTB_DABL_SW>
+                            	<xsl:choose>
+				            	    <xsl:when test="string(DISABILITY/ESTB_DABL_RESP)"><xsl:value-of select="DISABILITY/ESTB_DABL_RESP"/></xsl:when>
+				        	        <xsl:otherwise><xsl:value-of select="' '"/></xsl:otherwise>
+			     		    	</xsl:choose>                                   
+                            </ESTB_DABL_SW>
+                            <FS_DABL_SW>
+                            	<xsl:choose>
+				            	    <xsl:when test="string(DISABILITY/UABL_WORK_SW)"><xsl:value-of select="DISABILITY/UABL_WORK_SW"/></xsl:when>
+				        	        <xsl:otherwise><xsl:value-of select="' '"/></xsl:otherwise>
+			     		    	</xsl:choose>                                   
+                            </FS_DABL_SW>
+                        </DISABILITY>                        
+                        <NEWBORN DATA_EXIST="{NEWBORN/@DATA_EXIST}">
+                            <ADD_REC_IND>
+			                    <xsl:value-of select="'R'"/>
+                            </ADD_REC_IND>
+                            <EFF_BEG_MO>
+                                <xsl:value-of select="' '"/>
+                                <!-- JAVA - If RETRO_MA_RESP in T1002 is '0', populate the CCYYMM of APP_FILE_DT in T1002 else populate 999912.-->
+                            </EFF_BEG_MO>
+                            <LIVE_WITH_MOM_RESP>
+			                    <xsl:choose>
+				            	    <xsl:when test="string(NEWBORN/LIVE_WITH_MOM_RESP)"><xsl:value-of select="NEWBORN/LIVE_WITH_MOM_RESP"/></xsl:when>
+				        	        <xsl:otherwise><xsl:value-of select="' '"/></xsl:otherwise>
+			     		    	</xsl:choose>                                   
+                            </LIVE_WITH_MOM_RESP>
+                        </NEWBORN>
+
+                        <YOUTH_EXITING_OUT_OF_HOME DATA_EXIST="{YEOHC_RESP/@DATA_EXIST}">
+                            <ADD_REC_IND>
+			                    <xsl:value-of select="'R'"/>
+                            </ADD_REC_IND>
+                            <EFF_BEG_MO>
+                                <xsl:value-of select="''"/>
+                                <!-- JAVA - If RETRO_MA_RESP in T1002 is '0', populate the CCYYMM of APP_FILE_DT in T1002 else populate 999912.-->
+                            </EFF_BEG_MO>
+                        </YOUTH_EXITING_OUT_OF_HOME>
+                                                                        
+				    </INDIVIDUAL>
+                </xsl:for-each>
+            </INDIVIDUALS>
+
+            <ABSENT_PARENTS DATA_EXIST="{ABSENT_PARENTS/@DATA_EXIST}">
+                <xsl:for-each select="ABSENT_PARENTS/ABSENT_PARENT">
+                    <ABSENT_PARENT DATA_EXIST="{ABSENT_PARENT/@DATA_EXIST}">
+                        <AP_SEQ_NUM>
+		                    <xsl:choose>
+			            	    <xsl:when test="string(AP_SEQ_NUM)"><xsl:value-of select="AP_SEQ_NUM"/></xsl:when>
+			        	        <xsl:otherwise>0</xsl:otherwise>
+		     		    	</xsl:choose>
+                        </AP_SEQ_NUM>
+                        <ASSC_AP_SEQ_NUM>
+                            <xsl:value-of select="'0'"/>
+                        </ASSC_AP_SEQ_NUM>
+                        <ADD_REC_IND>
+		                    <xsl:value-of select="'R'"/>
+                        </ADD_REC_IND>
+                        <AP_ABSN_DT>
+                            <xsl:value-of select="AP_ABSN_DT"/>
+                        </AP_ABSN_DT>
+                        <AP_ABSN_RSN_CD>
+                            <xsl:value-of select="AP_ABSN_RSN_CD"/>
+                        </AP_ABSN_RSN_CD>
+                        <AP_BRTH_DT>
+                            <xsl:value-of select="' '"/>
+                            <!-- JAVA - Default to High Date.-->
+                        </AP_BRTH_DT>
+                        <AP_FST_NAM>
+							<xsl:call-template name='convertToUppercase'>
+			                	<xsl:with-param name='toConvert' select='AP_FST_NAM' />
+			                </xsl:call-template>             
+                        </AP_FST_NAM>
+                        <AP_LAST_NAM>
+							<xsl:call-template name='convertToUppercase'>
+			                	<xsl:with-param name='toConvert' select='AP_LAST_NAM' />
+			                </xsl:call-template>             
+                        </AP_LAST_NAM>
+                        <AP_MID_INIT>
+							<xsl:choose>
+				        	    <xsl:when test="string(AP_MID_INIT)"><xsl:value-of select="translate(AP_MID_INIT,$lcletters,$ucletters)"/></xsl:when>
+				        	    <xsl:otherwise><xsl:value-of select="' '"/></xsl:otherwise>
+				     		</xsl:choose>                           
+                        </AP_MID_INIT>
+                        <AP_RLT_CD>
+                            <xsl:value-of select="' '"/>
+                        </AP_RLT_CD>
+                        <AP_SEX_IND>
+		                    <xsl:choose>
+			            	    <xsl:when test="string(AP_SEX_IND)"><xsl:value-of select="AP_SEX_IND"/></xsl:when>
+			        	        <xsl:otherwise><xsl:value-of select="' '"/></xsl:otherwise>
+		     		    	</xsl:choose>
+                        </AP_SEX_IND>
+                        <AP_SS_NUM>
+                            <xsl:value-of select="'0'"/>
+                        </AP_SS_NUM>
+                        <CASE_GDCS_CLM_SW>
+		                    <xsl:choose>
+			            	    <xsl:when test="CASE_GDCS_CLM_SW = 'Y'">
+			            	    	<xsl:value-of select="'Y'"/>
+			            	    </xsl:when>
+			            	    <xsl:when test="CASE_GDCS_CLM_SW = 'N'">
+			            	    	<xsl:value-of select="'N'"/>
+			            	    </xsl:when>
+			        	        <xsl:otherwise><xsl:value-of select="' '"/></xsl:otherwise>
+		     		    	</xsl:choose>                            
+                        </CASE_GDCS_CLM_SW>
+                        <LAST_CNTC_DT>
+                            <xsl:value-of select="' '"/>
+                            <!-- JAVA - Default to High Date.-->
+                        </LAST_CNTC_DT>
+                        <ABSENT_PARENT_CHILDREN DATA_EXIST="{ABSENT_PARENT_CHILDREN/@DATA_EXIST}">
+                            <xsl:for-each select="ABSENT_PARENT_CHILDREN/ABSENT_PARENT_CHILD">
+                                <ABSENT_PARENT_CHILD DATA_EXIST="{ABSENT_PARENT_CHILD/@DATA_EXIST}">
+                                    <INDV_SEQ_NUM>
+					                    <xsl:choose>
+						            	    <xsl:when test="string(INDV_SEQ_NUM)"><xsl:value-of select="INDV_SEQ_NUM"/></xsl:when>
+						        	        <xsl:otherwise>0</xsl:otherwise>
+					     		    	</xsl:choose>                                         
+                                    </INDV_SEQ_NUM>
+                                    <ADD_REC_IND>
+					                    <xsl:value-of select="'R'"/>
+                                    </ADD_REC_IND>
+                                    <PATER_ESTB_SW>
+					                    <xsl:choose>
+						            	    <xsl:when test="PATER_ESTB_SW = 'Y'">
+						            	    	<xsl:value-of select="'Y'"/>
+						            	    </xsl:when>
+						            	    <xsl:when test="PATER_ESTB_SW = 'L'">
+						            	    	<xsl:value-of select="'Y'"/>
+						            	    </xsl:when>
+						            	    <xsl:when test="PATER_ESTB_SW = 'M'">
+						            	    	<xsl:value-of select="'M'"/>
+						            	    </xsl:when>
+						            	    <xsl:when test="PATER_ESTB_SW = 'N'">
+						            	    	<xsl:value-of select="'N'"/>
+						            	    </xsl:when>
+						        	        <xsl:otherwise><xsl:value-of select="' '"/></xsl:otherwise>
+					     		    	</xsl:choose>                            
+                                    </PATER_ESTB_SW>
+                                </ABSENT_PARENT_CHILD>
+                            </xsl:for-each>
+                        </ABSENT_PARENT_CHILDREN>
+                    </ABSENT_PARENT>
+                </xsl:for-each>
+            </ABSENT_PARENTS>
+                        
+            <MEDICAL_COVERAGES DATA_EXIST="N"></MEDICAL_COVERAGES>
+            <LTC_FOR_APPLICATION_INDICATOR>
+				<xsl:value-of select="$defaultSpace"/>/>
+			</LTC_FOR_APPLICATION_INDICATOR>
+        </APPLICATION>
+    </xsl:template>
+</xsl:stylesheet>

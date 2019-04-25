@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?><launchConfiguration type="com.ibm.ws.ast.st.admin.launchConfigurationType">
+<booleanAttribute key="org.eclipse.jdt.launching.ATTR_USE_START_ON_FIRST_THREAD" value="true"/>
+<stringAttribute key="runtime_id" value=""/>
+<booleanAttribute key="target_server_secure" value="true"/>
+</launchConfiguration>

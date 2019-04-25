@@ -1,0 +1,46 @@
+###################
+##	 FRAMEWORK   ##
+###################
+FWTME.method = doTime
+FWTME.class  = gov.wisconsin.accessmobile.business.ExampleBO
+
+FWSAC.method = getDetailsFromCares
+FWSAC.class  = gov.wisconsin.accessmobile.business.AccountCreationBO
+
+FWCAA.method = createAccount
+FWCAA.class  = gov.wisconsin.accessmobile.business.AccountCreationBO
+
+FWCAC.method = convertExistingAfbToCmbAccount
+FWCAC.class  = gov.wisconsin.accessmobile.business.AccountCreationBO
+
+FWGSQ.method = getSecretQuesstions
+FWGSQ.class  = gov.wisconsin.accessmobile.business.AccountCreationBO
+
+FWUAC.method = updateAccount
+FWUAC.class  = gov.wisconsin.accessmobile.business.AccountCreationBO
+
+FWLAA.method = lockMyAccessAccount
+FWLAA.class  = gov.wisconsin.accessmobile.business.AccountCreationBO
+
+###################
+##	  ACCESS     ##
+###################
+AMRRT.method = refreshRefTableByName
+AMRRT.class  = gov.wisconsin.accessmobile.business.ExampleBO
+
+AMXPL.method = getMyAccessDataMaster
+AMXPL.class  = gov.wisconsin.accessmobile.business.BenefitSummaryBO
+
+###################
+##    Doc Sub    ##
+###################
+
+DSUSD.method = uploadDocument
+DSUSD.class  = gov.wisconsin.accessmobile.business.DocumentSubmissionBO
+
+###################
+##      CMB      ##
+###################
+
+CMELG.method = getEligibilityInfo
+CMELG.class  = gov.wisconsin.accessmobile.business.EligibilityInformationBO

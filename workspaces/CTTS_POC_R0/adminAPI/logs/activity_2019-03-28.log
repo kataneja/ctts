@@ -1,0 +1,6 @@
+2019-03-28 14.15.16 : Sample logging message
+2019-03-28 14.15.16 : Activity | requestID: 70d33b68-c34b-4557-930e-04c9785d17d6, sessionID: BuA099b4dq30WtHWbjYKkm3, requestedResource: http://localhost:9091/admin/poc/log, urlTemplate: poc/log, subSystem: ???, wid: , incomingTime: 2019-03-28 14.15.15.913000, outgoingTime: 2019-03-28 14.15.16.086000
+2019-03-28 15.11.39 : Activity | requestID: b9f2d33e-3902-4f5f-907c-3611c2f17f11, sessionID: 5QXORhS_nT7xBpvUhp8yuyI, requestedResource: http://localhost:9091/admin/poc/email, urlTemplate: poc/email, subSystem: ???, wid: , incomingTime: 2019-03-28 15.11.38.774000, outgoingTime: 2019-03-28 15.11.39.499000
+2019-03-28 15.58.38 : Sample logging message
+2019-03-28 15.58.38 : Activity | requestID: c3a34838-b62d-4613-a2f1-cafe1fd60c89, sessionID: XH_GdeauVs_8UOU-eGshb7E, requestedResource: http://localhost:9091/admin/poc/log, urlTemplate: poc/log, subSystem: ???, wid: , incomingTime: 2019-03-28 15.58.38.003000, outgoingTime: 2019-03-28 15.58.38.170000
+2019-03-28 15.59.23 : Activity | requestID: df738365-d421-4ebf-ae5d-2f4febdeb5b1, sessionID: XH_GdeauVs_8UOU-eGshb7E, requestedResource: http://localhost:9091/admin/poc/email, urlTemplate: poc/email, subSystem: ???, wid: , incomingTime: 2019-03-28 15.59.21.661000, outgoingTime: 2019-03-28 15.59.23.756000

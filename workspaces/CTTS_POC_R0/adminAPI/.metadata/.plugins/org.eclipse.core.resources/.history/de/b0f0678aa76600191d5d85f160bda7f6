@@ -1,0 +1,13 @@
+package gov.wisconsin.admin.data.pojo;
+
+public class T019_T023_Security_Profile_Response_Cargo {
+	private String prfl_id;
+	private Boolean showSubmitTimesheet;
+	private Boolean showDasboard;
+	private Boolean showApproveTimesheet;
+	private Boolean showSubmitTimeoff;
+	private Boolean showReports;
+	private Boolean showAdminPanel;
+	private Boolean showUserManagement;
+	
+}

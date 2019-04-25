@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<sqlstatements>
+	 <sql id="sql-000" value="SELECT APP_NUM, INDV_SEQ_NUM, SRC_APP_IND, UPDATED_DT, PAPRLESS_IND, EMAIL_ADR FROM ~SCHEMA~APP_INDV_CNTC WHERE APP_NUM = ?" type="static" sqlType="select" />
+	 
+	 <sql id="sql-RM22" value ="SELECT APP_NUM, INDV_SEQ_NUM,MOVE_OUT_DT, SRC_APP_IND, LIVE_ARNG_TYP FROM ~SCHEMA~INDV_LIVE_CHG WHERE APP_NUM=? AND LIVE_ARNG_TYP NOT IN ('SD','MA','DV') AND SRC_APP_IND='RN' with ur" type="static" />
+	 <sql id="sql-BR1" value="SELECT BNFT_PIN_NUM,BRTH_DT,DTH_DT,FST_NAM,LAST_NAM,MID_INIT,SEX_IND,SFX_NAM,IC_FLG FROM ~SCHEMA~BNFT_INDV WHERE BNFT_PIN_NUM IN(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?) AND BNFT_PIN_NUM != 0" type="static"/>
+	 <sql id="sql-RM25" value ="SELECT APP_NUM, INDV_SEQ_NUM, FETUS_CT, PREG_DUE_DT, CHG_EFF_DT, SRC_APP_IND FROM ~SCHEMA~APP_IN_PREG WHERE APP_NUM=? with ur" type="static" />
+	 <sql id="sql-RM210" value="SELECT APP_NUM, INDV_SEQ_NUM, SEQ_NUM, SRC_APP_IND, BRD_INCM_AMT, BRDER_SW, CHG_EFF_DT, PAID_FOR_QTY, PAYR_INDV_SEQ_NUM, ROOM_INCM_AMT, ROOMER_SW FROM ~SCHEMA~APP_IN_RM_BRD_INCM WHERE APP_NUM =? AND INDV_SEQ_NUM =? ORDER BY INDV_SEQ_NUM, SRC_APP_IND with ur" type="static" sqlType="select" />
+	 <sql id = "sql-BR2" value = "SELECT COUNT(*) FROM ~SCHEMA~IC_BNFT_INFO_RFRSH WHERE MCI_ID = ? AND DATE(RFRSH_TMS) = ?" type="static" />
+	 <sql id = "sql-BR3" value = "SELECT COUNT(*) FROM ~SCHEMA~BNFT_INFO_RFRSH WHERE BNFT_PIN_NUM=? AND DATE(RFRSH_TMS) = ? " type="static" />
+</sqlstatements>

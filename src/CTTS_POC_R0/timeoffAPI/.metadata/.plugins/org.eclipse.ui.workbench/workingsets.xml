@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<workingSetManager>
+<workingSet editPageId="com.ibm.ccl.sca.SCAWorkingSet" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1554305809490_0" label="SCA 1.0 Projects" name="com.ibm.ccl.sca.SCAWorkingSet"/>
+<workingSet editPageId="com.ibm.etools.aries.bundleWorkingSet" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1554305809496_1" label="OSGi Bundle Projects" name="OSGi Bundle Projects"/>
+<workingSet editPageId="com.ibm.etools.aries.fragmentBundleWorkingSet" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1554305809499_2" label="OSGi Fragment Bundle Projects" name="OSGi Fragment Bundle Projects"/>
+<workingSet editPageId="com.ibm.etools.aries.applicationWorkingSet" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1554305809503_3" label="OSGi Application Projects" name="OSGi Application Projects"/>
+<workingSet editPageId="com.ibm.etools.aries.compositeBundleWorkingSet" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1554305809507_4" label="OSGi Composite Bundle Projects" name="OSGi Composite Bundle Projects"/>
+<workingSet editPageId="com.ibm.etools.aries.subsystemWorkingSet" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1554305809511_5" label="Liberty Feature Projects" name="Liberty Feature Projects"/>
+<workingSet editPageId="com.ibm.etools.project.OthersWorkingSet" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1554305809516_6" label="Uncategorized Projects" name="OthersWorkingSet.name">
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/RemoteSystemsTempFiles" type="4"/>
+</workingSet>
+<workingSet editPageId="com.ibm.etools.j2ee.ui.EARWorkingSetPage" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1554305809526_7" label="EAR Projects" name="EARWorkingSetPage.name"/>
+<workingSet editPageId="com.ibm.etools.j2ee.ui.AppClientWorkingSetPage" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1554305809538_8" label="Application Client Projects" name="AppClientWorkingSetPage.name"/>
+<workingSet editPageId="com.ibm.etools.j2ee.ui.EjbWorkingSetPage" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1554305809545_9" label="EJB Projects" name="EjbWorkingSetPage.name"/>
+<workingSet editPageId="com.ibm.etools.j2ee.ui.ConnectorWorkingSetPage" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1554305809552_10" label="Connector Projects" name="ConnectorWorkingSetPage.name"/>
+<workingSet editPageId="com.ibm.etools.j2ee.ui.WebWorkingSetPage" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1554305809560_11" label="Web Projects" name="NewWebWorkingSetPage.name"/>
+<workingSet editPageId="com.ibm.etools.j2ee.ui.JPAWorkingSet" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1554305809568_12" label="JPA Projects" name="JPAWorkingSet.name"/>
+<workingSet editPageId="com.ibm.etools.j2ee.ui.UtilWorkingSet" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1554305809577_13" label="Utility Projects" name="WS_UTIL"/>
+<workingSet editPageId="com.ibm.etools.j2ee.ui.WebFragmentWorkingSet" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1554305809586_14" label="Web Fragment Projects" name="WebFragmentWorkingSetPage.name"/>
+<workingSet aggregate="true" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1554305809690_15" label="Multiple Working Sets" name="Aggregate:com.ibm.ccl.sca.SCAWorkingSet:OSGi Bundle Projects:OSGi Fragment Bundle Projects:OSGi Application Projects:OSGi Composite Bundle Projects:Liberty Feature Projects:OthersWorkingSet.name:EARWorkingSetPage.name:AppClientWorkingSetPage.name:EjbWorkingSetPage.name:ConnectorWorkingSetPage.name:NewWebWorkingSetPage.name:JPAWorkingSet.name:WS_UTIL:WebFragmentWorkingSetPage.name:">
+<workingSet IMemento.internal.id="com.ibm.ccl.sca.SCAWorkingSet"/>
+<workingSet IMemento.internal.id="OSGi Bundle Projects"/>
+<workingSet IMemento.internal.id="OSGi Fragment Bundle Projects"/>
+<workingSet IMemento.internal.id="OSGi Application Projects"/>
+<workingSet IMemento.internal.id="OSGi Composite Bundle Projects"/>
+<workingSet IMemento.internal.id="Liberty Feature Projects"/>
+<workingSet IMemento.internal.id="OthersWorkingSet.name"/>
+<workingSet IMemento.internal.id="EARWorkingSetPage.name"/>
+<workingSet IMemento.internal.id="AppClientWorkingSetPage.name"/>
+<workingSet IMemento.internal.id="EjbWorkingSetPage.name"/>
+<workingSet IMemento.internal.id="ConnectorWorkingSetPage.name"/>
+<workingSet IMemento.internal.id="NewWebWorkingSetPage.name"/>
+<workingSet IMemento.internal.id="JPAWorkingSet.name"/>
+<workingSet IMemento.internal.id="WS_UTIL"/>
+<workingSet IMemento.internal.id="WebFragmentWorkingSetPage.name"/>
+</workingSet>
+</workingSetManager>

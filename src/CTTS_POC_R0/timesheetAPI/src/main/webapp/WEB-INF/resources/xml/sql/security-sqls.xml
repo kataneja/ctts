@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<selectsql>
+
+	<!--  Security sqls  -->
+	<sql id="sql-AS1" value="SELECT MCI_ID, BNFT_PIN_NUM, SS_NUM, ACS_ID, BNFT_RGST_IND,CASE_ID_NUM FROM ~SCHEMA~ACS_USER WHERE WAMS_INTL_USER_ID=?" type="static" /> 
+	<sql id="sql-AS2" value="SELECT BNFT_PIN_NUM, ACS_ID, MCI_ID, BNFT_RGST_IND FROM ~SCHEMA~ACS_USER WHERE SS_NUM=?" type="static" /> 
+	<sql id="sql-AS3" value="SELECT ACS_ID FROM ~SCHEMA~ACS_USER WHERE WAMS_INTL_USER_ID=?" type="static" /> 
+	<sql id="sql-AS4" value="SELECT DISTINCT WAMS_INTL_USER_ID FROM ~SCHEMA~ACS_USER WHERE ACS_ID=?" type="static" /> 
+	<sql id="sql-AS5" value="SELECT BNFT_RGST_IND, SS_NUM, BRTH_DT FROM ~SCHEMA~ACS_USER WHERE BNFT_PIN_NUM=?" type="static" /> 
+	<sql id="sql-AS6" value="SELECT ACS_ID FROM ~SCHEMA~ACS_USER WHERE SS_NUM=? AND BRTH_DT=?" type="static" /> 
+	<sql id="sql-AS7" value="SELECT WAMS_INTL_USER_ID FROM ~SCHEMA~ACS_USER WHERE SS_NUM=? AND BRTH_DT=?" type="static" />
+	<sql id="sql-AS8" value="SELECT WAMS_INTL_USER_ID, ACS_ID FROM ~SCHEMA~ACS_USER WHERE BNFT_PIN_NUM=? AND BNFT_RGST_IND='N'" type="static" />
+	<sql id="sql-AS9" value="SELECT COUNT(WAMS_INTL_USER_ID) as WID FROM ~SCHEMA~ACS_USER WHERE ACS_ID=?" type="static" /> 
+	<sql id="sql-AS10" value="SELECT ACS_ID FROM ~SCHEMA~ACS_USER WHERE BNFT_PIN_NUM=? AND BRTH_DT=?" type="static" /> 
+	<sql id="sql-AS11" value="SELECT WAMS_INTL_USER_ID FROM ~SCHEMA~ACS_USER WHERE BNFT_PIN_NUM=? AND BRTH_DT=?" type="static" />
+	<sql id="sql-AS12" value="SELECT ACS_ID FROM ~SCHEMA~ACS_USER WHERE BNFT_PIN_NUM=?" type="static" />
+	<sql id="sql-AS13" value="SELECT ACS_ID, SS_NUM FROM ~SCHEMA~IVR_ACS_USER WHERE BNFT_PIN_NUM=?" type="static" />
+	<sql id="sql-AS14" value="SELECT ACS_ID, BNFT_PIN_NUM, CASE_ID_NUM FROM ~SCHEMA~ACS_USER WHERE MCI_ID=? AND BRTH_DT=?" type="static" />
+	<!-- The 'ORDER BY WAMS_INTL_USER_ID' in the following query ensures that we retrieve the most recently created account -->
+	<sql id="sql-AS18" value="SELECT WAMS_INTL_USER_ID FROM ~SCHEMA~ACS_USER AS ACS_USER where ACS_ID = (SELECT ACS_ID FROM ~SCHEMA~APP_USER AS APP_USER Where APP_NUM = ?) ORDER BY WAMS_INTL_USER_ID DESC" type="static" />
+	<sql id="sql-APS1" value="select USER_ID, FST_NAM, LAST_NAM, MID_INIT, USER_TYP, WAMS_LOGN_ID FROM ~SCHEMA~PE_USER WHERE WAMS_INTL_USER_ID = ?" type="static" />
+	<sql id="sql-APV2" value="SELECT  B.APP_NUM FROM ~SCHEMA~ACS_USER A, ~SCHEMA~APP_USER B  WHERE A.ACS_ID=B.ACS_ID AND  A.WAMS_INTL_USER_ID=?" type="static" />
+	 
+</selectsql>

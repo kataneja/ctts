@@ -1,0 +1,36 @@
+package gov.wisconsin.admin.business;
+
+
+
+import java.util.List;
+
+import gov.wisconsin.admin.data.dao.T019_Staff_Profile_DAO;
+import gov.wisconsin.admin.data.pojo.T019_Staff_Profile_Cargo;
+import gov.wisconsin.framework.base.FwAbstractBO;
+import gov.wisconsin.framework.constant.FwConstants;
+import gov.wisconsin.framework.exception.FwExceptionManager;
+
+import org.springframework.stereotype.Component;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
+
+@Component
+@Scope(value = FwConstants.PROTOTYPE_SCOPE)
+public class StaffBO  extends FwAbstractBO{
+	
+	private @Autowired T019_Staff_Profile_DAO staffProfileDAO;
+	
+	public StaffBO(){
+		// TODO Auto-generated constructor stub
+	}
+
+	public List<T019_Staff_Profile_Cargo> getStaffProfileList(String wid){
+		try{
+			return staffProfileDAO.findByWid(wid);
+		}
+		catch(Exception e){
+			FwExceptionManager.handleException(this.getClass(),e);
+		}
+		return null;
+	}
+}

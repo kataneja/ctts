@@ -1,0 +1,12 @@
+package gov.wisconsin.admin.business;
+
+@Component
+@Scope(value = FwConstants.PROTOTYPE_SCOPE)
+public class StaffBO  extends FwAbstractBO{
+
+	
+	public StaffBO(){
+		// TODO Auto-generated constructor stub
+	}
+
+}

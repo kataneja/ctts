@@ -1,0 +1,251 @@
+<wsdl:definitions
+	xmlns:impl="http://profilev2.services.business.wisa.wisconsin.gov"
+	xmlns:intf="http://profilev2.services.business.wisa.wisconsin.gov"
+	xmlns:tns2="http://profilev2.webservice.customEntities.business.wisa.wisconsin.gov"
+	xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns:wsi="http://ws-i.org/profiles/basic/1.1/xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	targetNamespace="http://profilev2.services.business.wisa.wisconsin.gov">
+	<wsdl:types>
+		<xsd:schema xmlns="http://www.w3.org/2001/XMLSchema"
+			xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+			targetNamespace="http://profilev2.webservice.customEntities.business.wisa.wisconsin.gov">
+			<complexType name="WebServiceException">
+				<sequence>
+					<element name="exceptionID" type="xsd:int" />
+					<element name="message" nillable="true" type="xsd:string" />
+				</sequence>
+			</complexType>
+			<element name="WebServiceException" nillable="true"
+				type="tns2:WebServiceException" />
+			<xsd:complexType name="ArrayOf_xsd_nillable_string">
+				<xsd:sequence>
+					<xsd:element maxOccurs="unbounded" minOccurs="0" name="string"
+						nillable="true" type="xsd:string" />
+				</xsd:sequence>
+			</xsd:complexType>
+			<xsd:complexType name="UserProfileDetail">
+				<xsd:sequence>
+					<xsd:element name="prflIDs" nillable="true"
+						type="tns2:ArrayOf_xsd_nillable_string" />
+					<xsd:element name="userID" nillable="true" type="xsd:string" />
+				</xsd:sequence>
+			</xsd:complexType>
+			<xsd:complexType name="AppIDWID">
+				<xsd:sequence>
+					<xsd:element name="aAppId" nillable="true" type="xsd:string" />
+					<xsd:element name="aWID" nillable="true" type="xsd:string" />
+				</xsd:sequence>
+			</xsd:complexType>
+			<xsd:simpleType name="aAppID">
+				<xsd:restriction base="xsd:string"></xsd:restriction>
+			</xsd:simpleType>
+			<xsd:complexType name="AppProfiles">
+				<xsd:sequence>
+					<xsd:element name="appID" nillable="true" type="xsd:string" />
+					<xsd:element name="prflIDs" nillable="true"
+						type="tns2:ArrayOf_xsd_nillable_string" />
+				</xsd:sequence>
+			</xsd:complexType>
+			<xsd:complexType name="AppPrflCpnt">
+				<xsd:sequence>
+					<xsd:element name="appID" nillable="true" type="xsd:string" />
+					<xsd:element name="prflCpnt" nillable="true"
+						type="tns2:ArrayOf_tns2_nillable_PrflCpnt" />
+				</xsd:sequence>
+			</xsd:complexType>
+			<xsd:complexType name="PrflCpnt">
+				<xsd:sequence>
+					<xsd:element name="prflID" nillable="true" type="xsd:string" />
+					<xsd:element name="cpntID" nillable="true"
+						type="tns2:ArrayOf_xsd_nillable_string" />
+				</xsd:sequence>
+			</xsd:complexType>
+			<xsd:complexType name="ArrayOf_tns2_nillable_PrflCpnt">
+				<xsd:sequence>
+					<xsd:element maxOccurs="unbounded" minOccurs="0" name="PrflCpnt"
+						nillable="true" type="tns2:PrflCpnt" />
+				</xsd:sequence>
+			</xsd:complexType>
+			<xsd:complexType name="ResourceDetails">
+				<xsd:sequence>
+					<xsd:element name="appProfileDetail" nillable="true"
+						type="tns2:ArrayOf_tns2_nillable_AppProfileDetail" />
+				</xsd:sequence>
+			</xsd:complexType>
+			<xsd:complexType name="ArrayOf_tns2_nillable_AppProfileDetail">
+				<xsd:sequence>
+					<xsd:element maxOccurs="unbounded" minOccurs="0"
+						name="AppProfileDetail" nillable="true" type="tns2:AppProfileDetail" />
+				</xsd:sequence>
+			</xsd:complexType>
+			<xsd:complexType name="AppProfileDetail">
+				<xsd:sequence>
+					<xsd:element name="profileID" nillable="true" type="xsd:string" />
+					<xsd:element name="resourceDetails" nillable="true"
+						type="tns2:ArrayOf_tns2_nillable_ResourceDetail" />
+					<xsd:element name="profileName" nillable="true" type="xsd:string" />
+					<xsd:element name="appID" type="xsd:short" />
+					<xsd:element name="subProfiles"
+						type="tns2:ArrayOf_tns2_nillable_AppProfileDetail" />
+				</xsd:sequence>
+			</xsd:complexType>
+			<xsd:complexType name="ArrayOf_tns2_nillable_ResourceDetail">
+				<xsd:sequence>
+					<xsd:element maxOccurs="unbounded" minOccurs="0"
+						name="ResourceDetail" nillable="true" type="tns2:ResourceDetail" />
+				</xsd:sequence>
+			</xsd:complexType>
+			<xsd:complexType name="ResourceDetail">
+				<xsd:sequence>
+					<xsd:element name="accessType" nillable="true" type="xsd:string" />
+					<xsd:element name="attributeRestrictions" nillable="true"
+						type="tns2:ArrayOf_tns2_nillable_AttributeRestrictions" />
+					<xsd:element name="resourceId" nillable="true" type="xsd:string" />
+				</xsd:sequence>
+			</xsd:complexType>
+			<xsd:complexType name="ArrayOf_tns2_nillable_AttributeRestrictions">
+				<xsd:sequence>
+					<xsd:element maxOccurs="unbounded" minOccurs="0"
+						name="AttributeRestrictions" nillable="true" type="tns2:AttributeRestrictions" />
+				</xsd:sequence>
+			</xsd:complexType>
+			<xsd:complexType name="AttributeRestrictions">
+				<xsd:sequence>
+					<xsd:element name="attributeId" nillable="true" type="xsd:string" />
+					<xsd:element name="restrictionType" nillable="true"
+						type="xsd:string" />
+				</xsd:sequence>
+			</xsd:complexType>
+		</xsd:schema>
+	</wsdl:types>
+	<wsdl:message name="getAllProfileDetailsRequest">
+		<wsdl:part name="aAppProfiles" type="tns2:AppProfiles"></wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="getProfileIDforWIDResponse">
+		<wsdl:part name="getProfileIDforWIDReturn" type="tns2:UserProfileDetail"></wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="getProfilesforAppIDResponse">
+		<wsdl:part name="getProfilesforAppIDReturn" type="tns2:AppProfiles"></wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="getProfilesforAppIDRequest">
+		<wsdl:part name="aAppID" type="tns2:aAppID"></wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="getPrflCpntsforAppIDResponse">
+		<wsdl:part name="getPrflCpntsforAppIDReturn" type="tns2:AppPrflCpnt"></wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="getPrflCpntsforAppIDRequest">
+		<wsdl:part name="aAppId" type="tns2:aAppID"></wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="WebServiceException">
+		<wsdl:part name="fault" type="tns2:WebServiceException"></wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="getProfileIDforWIDRequest">
+		<wsdl:part name="aAppIDWID" type="tns2:AppIDWID"></wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="getAllProfileDetailsResponse">
+		<wsdl:part name="getAllProfileDetailsReturn" type="tns2:ResourceDetails"></wsdl:part>
+	</wsdl:message>
+	<wsdl:portType name="ProfileSecurityV2EJB">
+		<wsdl:operation name="getProfilesforAppID">
+			<wsdl:input message="impl:getProfilesforAppIDRequest"
+				name="getProfilesforAppIDRequest"></wsdl:input>
+			<wsdl:output message="impl:getProfilesforAppIDResponse"
+				name="getProfilesforAppIDResponse"></wsdl:output>
+			<wsdl:fault message="impl:WebServiceException" name="WebServiceException"></wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="getAllProfileDetails">
+			<wsdl:input message="impl:getAllProfileDetailsRequest"
+				name="getAllProfileDetailsRequest"></wsdl:input>
+			<wsdl:output message="impl:getAllProfileDetailsResponse"
+				name="getAllProfileDetailsResponse"></wsdl:output>
+			<wsdl:fault message="impl:WebServiceException" name="WebServiceException"></wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="getProfileIDforWID">
+			<wsdl:input message="impl:getProfileIDforWIDRequest" name="getProfileIDforWIDRequest"></wsdl:input>
+			<wsdl:output message="impl:getProfileIDforWIDResponse"
+				name="getProfileIDforWIDResponse"></wsdl:output>
+			<wsdl:fault message="impl:WebServiceException" name="WebServiceException"></wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="getPrflCpntsforAppID">
+			<wsdl:input message="impl:getPrflCpntsforAppIDRequest"
+				name="getPrflCpntsforAppIDRequest"></wsdl:input>
+			<wsdl:output message="impl:getPrflCpntsforAppIDResponse"
+				name="getPrflCpntsforAppIDResponse"></wsdl:output>
+			<wsdl:fault message="impl:WebServiceException" name="WebServiceException"></wsdl:fault>
+		</wsdl:operation>
+	</wsdl:portType>
+	<wsdl:binding name="ProfileSecurityV2" type="impl:ProfileSecurityV2EJB">
+		<wsdlsoap:binding style="document"
+			transport="http://schemas.xmlsoap.org/soap/http" />
+		<wsdl:operation name="getProfilesforAppID">
+			<wsdlsoap:operation soapAction="" />
+			<wsdl:input name="getProfilesforAppIDRequest">
+				<wsdlsoap:body
+					namespace="http://profilev2.services.business.wisa.wisconsin.gov"
+					use="literal" />
+			</wsdl:input>
+			<wsdl:output name="getProfilesforAppIDResponse">
+				<wsdlsoap:body
+					namespace="http://profilev2.services.business.wisa.wisconsin.gov"
+					use="literal" />
+			</wsdl:output>
+			<wsdl:fault name="WebServiceException">
+				<wsdlsoap:fault name="WebServiceException" use="literal" />
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="getAllProfileDetails">
+			<wsdlsoap:operation soapAction="" />
+			<wsdl:input name="getAllProfileDetailsRequest">
+				<wsdlsoap:body
+					namespace="http://profilev2.services.business.wisa.wisconsin.gov"
+					use="literal" />
+			</wsdl:input>
+			<wsdl:output name="getAllProfileDetailsResponse">
+				<wsdlsoap:body
+					namespace="http://profilev2.services.business.wisa.wisconsin.gov"
+					use="literal" />
+			</wsdl:output>
+			<wsdl:fault name="WebServiceException">
+				<wsdlsoap:fault name="WebServiceException" use="literal" />
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="getProfileIDforWID">
+			<wsdlsoap:operation soapAction="" />
+			<wsdl:input name="getProfileIDforWIDRequest">
+				<wsdlsoap:body
+					namespace="http://profilev2.services.business.wisa.wisconsin.gov"
+					use="literal" />
+			</wsdl:input>
+			<wsdl:output name="getProfileIDforWIDResponse">
+				<wsdlsoap:body
+					namespace="http://profilev2.services.business.wisa.wisconsin.gov"
+					use="literal" />
+			</wsdl:output>
+			<wsdl:fault name="WebServiceException">
+				<wsdlsoap:fault name="WebServiceException" use="literal" />
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="getPrflCpntsforAppID">
+			<wsdlsoap:operation soapAction="" />
+			<wsdl:input name="getPrflCpntsforAppIDRequest">
+				<wsdlsoap:body
+					namespace="http://profilev2.services.business.wisa.wisconsin.gov"
+					use="literal" />
+			</wsdl:input>
+			<wsdl:output name="getPrflCpntsforAppIDResponse">
+				<wsdlsoap:body
+					namespace="http://profilev2.services.business.wisa.wisconsin.gov"
+					use="literal" />
+			</wsdl:output>
+			<wsdl:fault name="WebServiceException">
+				<wsdlsoap:fault name="WebServiceException" use="literal" />
+			</wsdl:fault>
+		</wsdl:operation>
+	</wsdl:binding>
+	<wsdl:service name="ProfileSecurityV2EJBService">
+		<wsdl:port binding="impl:ProfileSecurityV2" name="ProfileSecurityV2EJB">
+			<wsdlsoap:address
+				location="http://sys.services.wisa.enterprise.wistate.us:80/wisa/services/ProfileSecurityV2EJB" />
+		</wsdl:port>
+	</wsdl:service>
+</wsdl:definitions>

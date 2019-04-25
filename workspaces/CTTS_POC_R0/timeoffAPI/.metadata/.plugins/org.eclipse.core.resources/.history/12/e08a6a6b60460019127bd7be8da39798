@@ -1,0 +1,773 @@
+<?xml version="1.0" encoding="UTF-8"?><wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" targetNamespace="http://individual.services.business.cares.wisconsin.gov" xmlns:impl="http://individual.services.business.cares.wisconsin.gov" xmlns:intf="http://individual.services.business.cares.wisconsin.gov" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsi="http://ws-i.org/profiles/basic/1.1/xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+ <wsdl:types>
+  <schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://individual.services.business.cares.wisconsin.gov">
+   <complexType name="IndivSearchCriteria">
+    <sequence>
+     <element name="DOB" nillable="true" type="xsd:string"/>
+     <element name="SSN" nillable="true" type="xsd:string"/>
+     <element name="criteria" nillable="true" type="xsd:string"/>
+     <element name="criteriaType" nillable="true" type="xsd:string"/>
+     <element name="PIN" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   
+   <element name="IndivSearchCriteria" nillable="true" type="impl:IndivSearchCriteria"/>
+   <complexType name="IndivSearchResult">
+    <sequence>
+     <element name="firstName" nillable="true" type="xsd:string"/>
+     <element name="lastName" nillable="true" type="xsd:string"/>
+     <element name="middleInitial" nillable="true" type="xsd:string"/>
+     <element name="pinNum" nillable="true" type="xsd:string"/>
+     <element name="suffixName" nillable="true" type="xsd:string"/>
+
+    </sequence>
+   </complexType>
+   <element name="IndivSearchResult" nillable="true" type="impl:IndivSearchResult"/>
+   <complexType name="WebServiceException">
+    <sequence>
+     <element name="exceptionID" type="xsd:int"/>
+     <element name="message" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <element name="WebServiceException" nillable="true" type="impl:WebServiceException"/>
+   <complexType name="IndividualDetailsResult">
+   		<sequence>
+   			<element name="ResultCode" type="string"/>
+   			<element name="ResultMessage" type="string"/>
+   			<element name="CaseNumber" type="long"/>
+   			<element maxOccurs="unbounded" minOccurs="0" name="IndividualInformation" type="impl:IndividualInformation"/>
+   		</sequence>
+   	</complexType>
+   <element name="IndividualDetailsResult" type="impl:IndividualDetailsResult"/>
+  
+   <simpleType name="char">
+    <restriction base="string">
+     <length value="1"/>
+    </restriction>
+   </simpleType>
+   
+   <simpleType name="IndividualDetailsResquest">
+    <xsd:list id="pin" itemType="long"/>
+   </simpleType>
+    <element name="IndividualDetailsResquest" type="impl:IndividualDetailsResquest"/>
+    
+   <complexType name="IndividualInformation">
+   	<sequence>
+   		<element name="PIN" type="long"/>
+   		<element name="IndivSearchResult" type="impl:IndivSearchResult"/>
+   		<element name="primaryPersonInd" type="string"/>
+   		<element name="primaryPersonRelationship" type="string"/>
+   		<element name="DOB" type="dateTime"/>
+   		<element name="sexInd" type="string"/>
+   		<element name="amrIndnInd" type="string"/>
+   		<element name="migrantWrkSw" type="string"/>
+   		<element name="homelessSw" type="string"/>
+   	</sequence>
+   </complexType>
+
+   <complexType name="IndividualContactInfo">
+   	<sequence>
+   		<element name="emailAddress" type="string"/>
+   		<element name="homePhoneNumber" type="long"/>
+   		<element name="mailingAdrCity" type="string"/>
+   		<element name="mailingAdrLine1" type="string"/>
+   		<element name="mailingAdrLine2" type="string"/>
+   		<element name="mailingAdrState" type="string"/>
+   		<element name="mailingAdrZip" type="string"/>
+   		<element name="messagePhoneNumber" type="string"/>
+   		<element name="messagePhoneNumberExt" type="string"/>
+   		<element name="residenceCounty" type="string"/>
+   		<element name="livingArrangementCode" type="string"/>
+   		<element name="workPhoneNumber" type="string"/>
+   		<element name="workPhoneNumberExt" type="string"/>
+   	</sequence>
+   </complexType>
+
+   <complexType name="IndividualDemoInfo">
+   	<sequence>
+   		<element name="genderIndicator" type="string"/>
+   		<element name="dateOfBirth" type="dateTime"/>
+   		<element name="dateOfDeath" type="dateTime"/>
+   		<element name="firstName" type="string"/>
+   		<element name="middleInitial" type="impl:char"/>
+   		<element name="lastName" type="string"/>
+   		<element name="language" type="impl:char"/>
+   		<element name="socialSecurityNum" type="long"/>
+   	</sequence>
+   </complexType>
+
+   <complexType name="WaitlistIndividualResult">
+   	<sequence>
+   		<element name="waitlistStatus" type="string"/>
+   		<element name="applicationNumber" type="long"/>
+   		<element name="individualSequenceNumber" type="short"/>
+   		<element name="programGroup" type="string"/>
+   		<element name="waitlistAddedDate" type="dateTime"/>
+   		<element name="waitlistSecurityCode" type="long"/>
+   		<element name="waitlistSequenceNum" type="long"/>
+   		<element name="waitlistTerminationCode" type="string"/>
+   		<element name="securityCodeDueDate" type="dateTime"/>
+   		<element name="individualDemoInfo" type="impl:IndividualDemoInfo"/>
+   		<element name="individualContactInfo" type="impl:IndividualContactInfo"/>
+   	</sequence>
+   </complexType>
+
+   <complexType name="WaitlistDetailsResult">
+   	<sequence>
+   		<element name="resultCode" type="string"/>
+   		<element name="resultMessage" type="string"/>
+   		<element maxOccurs="unbounded" minOccurs="0" name="waitlistIndividualResult" type="impl:WaitlistIndividualResult">
+   		</element>
+   	</sequence>
+   </complexType>
+
+   <complexType name="WaitlistIndividualDetails">
+   	<sequence>
+   		<element name="dateofBirth" type="dateTime"/>
+   		<element name="socialSecurityNumber" type="long"/>
+   		<element name="waitlistSecurityCode" type="long"/>
+   		<element name="trackingNumber" type="long"/>
+   		<element name="programCode" type="string"/>
+   		<element name="contactInfoRequiredInd" type="impl:char"/>
+   		<element name="individualSequenceNumber" type="short"/>
+   	</sequence>
+   </complexType>
+
+   <complexType name="WaitlistDetailsRequest">
+   	<sequence>
+   		<element maxOccurs="unbounded" minOccurs="0" name="waitlistIndividualDetails" type="impl:WaitlistIndividualDetails"/>
+   	</sequence>
+   </complexType>
+
+   <element name="WaitlistDetailsRequest" type="impl:WaitlistDetailsRequest"/>
+
+   <element name="WaitlistDetailsResult" type="impl:WaitlistDetailsResult"/>
+
+   <element name="Result" type="impl:Result">
+   	
+   </element>
+   <complexType name="Result">
+   	<sequence>
+   		<element name="resultCode" type="string"/>
+   		<element name="resultMessage" type="string"/>
+   	</sequence>
+   </complexType>
+
+   <element name="updateWaitlistDetailsRequest" type="impl:updateWaitlistDetailsRequest">
+   	</element>
+   <complexType name="updateWaitlistDetailsRequest">
+   	<sequence>
+   		<element maxOccurs="unbounded" minOccurs="0" name="waitlistIndividualDetails" type="impl:WaitlistIndividualDetails"/>
+   	</sequence>
+   </complexType>
+
+   <complexType name="PhysicalExamIndividual">
+   	<sequence>
+   		<element name="PinNum" type="long"/>
+   	</sequence>
+   </complexType>
+
+   <element name="PhysicalExamRequest" type="impl:PhysicalExamInfo"/>
+
+   <complexType name="PhysicalExamInfo">
+   	<sequence>
+   		<element maxOccurs="unbounded" minOccurs="0" name="PhysicalExamIndividual" type="impl:PhysicalExamIndividual"/>
+   	</sequence>
+   </complexType>
+
+   <complexType name="PhysicalExamIndividualInformation">
+   	<sequence>
+   		<element name="PinNum" type="long"/>
+   		<element name="PHY_EXAM_CPLT_IND" type="string"/>
+   		<element name="PHY_EXAM_DT" type="date"/>
+   		<element name="PHY_EXAM_GDCS_CD" type="string"/>
+   	</sequence>
+   </complexType>
+
+   <complexType name="PhysicalExamInformation">
+   	<sequence>
+   		<element maxOccurs="unbounded" minOccurs="0" name="PhysicalExamInformation" type="impl:PhysicalExamIndividualInformation"/>
+   		<element name="ResultCode" type="string"/>
+   		<element name="ResultMessage" type="string"/>
+   	</sequence>
+   </complexType>
+
+   <complexType name="RRPIndividual">
+   	<sequence>
+   		<element name="PinNum" type="long"/>
+   	</sequence>
+   </complexType>
+
+   <complexType name="RRPInfo">
+   	<sequence>
+   		<element maxOccurs="unbounded" minOccurs="0" name="RRPIndividual" type="intf:RRPIndividual"/>
+   	</sequence>
+   </complexType>
+
+   <complexType name="RRPIndividualInformation">
+   	<sequence>
+   		<element name="PinNum" type="long"/>
+   		<element name="PROGRAM_CD" type="string"/>
+   		<element name="OVRD_RRP_END_DT" type="date"/>
+   		<element name="OVRD_RRP_RSN_CD" type="string"/>
+   		<element name="RRP_BEG_DT" type="date"/>
+   		<element name="RRP_END_DT" type="date"/>
+   		<element name="RRP_CMT_TXT" type="string"/>
+   	</sequence>
+   </complexType>
+
+   <complexType name="RRPInformation">
+   	<sequence>
+   		<element maxOccurs="unbounded" minOccurs="0" name="RRPIndividualInformation" type="intf:RRPIndividualInformation"/>
+   		<element name="ResultCode" type="string"/>
+   		<element name="ResultMessage" type="string"/>
+   	</sequence>
+   </complexType>
+
+   <element name="PhysicalExamResult" type="impl:PhysicalExamInformation"/>
+
+   <element name="RRPRequest" type="intf:RRPInfo"/>
+
+   <element name="RRPResult" type="impl:RRPInformation"/>
+
+   <complexType name="IndividualDetailsResultsFromMAID">
+   	<sequence>
+   		<element name="caseNum" type="long"/>
+   		<element maxOccurs="unbounded" name="pinNum" type="long"/>
+   		<element name="verificationResult" type="boolean"/>
+   		<element name="resultCode" type="string"/>
+   		<element name="resultMessage" type="string"/>
+   	</sequence>
+   </complexType>
+
+   <element name="IndividualDetailsResultFromMAID" type="impl:IndividualDetailsResultsFromMAID"/>
+
+   <element name="IndividualDetailsRequestByMAID" type="impl:IndividualDetailsRequestByMAID"/>
+
+   <complexType name="IndividualDetailsRequestByMAID">
+   	<sequence>
+   		<element name="maidNum" type="long"/>
+   	</sequence>
+   </complexType>
+
+  
+   <complexType name="WaitlistCountRequest">
+   	<sequence>
+   		<element name="programCode" type="string"/>
+   	</sequence>
+   </complexType>
+  
+   <complexType name="WaitlistCountResponse">
+   	<sequence>
+   		<element name="waitlistCount" type="int"/>
+   		<element name="resultCode" type="string"/>
+   		<element name="resultMessage" type="string"/>
+   	</sequence>
+   </complexType>
+   <element name="WaitlistCountRequest" type="impl:WaitlistCountRequest">
+   </element>
+   <element name="WaitlistCountResponse" type="impl:WaitlistCountResponse">
+   </element>
+   
+   <element name="ACPPrescrRuleEligRequest" type="impl:ACPPrescrRuleEligRequest">
+   </element>
+   <element name="ACPPrescrRuleEligResponse" type="impl:ACPPrescrRuleEligResponse">
+   </element>
+   <complexType name="ACPPrescrRuleEligRequest">
+   	<sequence>
+   		<element name="appNum" type="long"/>
+   		<element name="appFileDate" type="date"/>
+   		<element name="appBackDate" type="date"/>
+   		<element maxOccurs="unbounded" minOccurs="0" name="appIndvDetailsReq" type="impl:AppIndvDetailsReq"/>
+   	</sequence>
+   </complexType>
+   <complexType name="ACPPrescrRuleEligResponse">
+   	<sequence>
+   		<element name="appNum" type="long"/>
+   		<element name="errorCd" type="string"/>
+   		<element name="errorMsg" type="string"/>
+   		<element maxOccurs="unbounded" minOccurs="0" name="appIndvDetailsResp" type="impl:AppIndvDetailsResp"/>
+   	</sequence>
+   </complexType>
+
+   <complexType name="AppIndvDetailsReq">
+   	<sequence>
+   		<element name="appSSNNum" type="long"/>
+   		<element name="appFirstName" type="string"/>
+   		<element name="appLastName" type="string"/>
+   		<element name="appMidName" type="impl:char"/>
+   		<element name="appSuffName" type="string"/>
+   		<element name="appBirthDate" type="date"/>
+   		<element name="appGender" type="impl:char"/>
+   		<element name="appFFCYReqInd" type="impl:char"/>
+   		<element name="appTribeMembInd" type="impl:char"/>
+   		<element name="appIHSEligInd" type="impl:char"/>
+   		<element name="appPPInd" type="impl:char"/>
+   		<element name="appEAIDReqInd" type="impl:char"/>
+   		<element name="appEAIDBegMonth" type="long"/>
+   		<element name="appEAIDEndMonth" type="long"/>
+   	</sequence>
+   </complexType>
+  
+   <complexType name="AppIndvDetailsResp">
+   	<sequence>
+   		<element name="appSSNNum" type="long"/>
+   		<element name="prescrMCIClearInd" type="impl:char"/>
+   		<element name="prescrCaseClearInd" type="impl:char"/>
+   		<element name="prescrRFAClearInd" type="impl:char"/>
+   		<element name="prescrGPOAClearInd" type="impl:char"/>
+   		<element name="prescrRelSubClearInd" type="impl:char"/>
+   		<element name="prescrFFCYClearInd" type="impl:char"/>
+   		<element name="prescrTribeClearInd" type="impl:char"/>
+   		<element name="prescrEAIDClearInd" type="impl:char"/>
+   		<element name="PrescrSimClearInd" type="impl:char"/>
+   		<element name="PrescrRMBClearInd" type="impl:char"/>
+   		<element name="PrescrSMRFClearInd" type="impl:char"/>
+   		<element name="PrescrPgmAddClearInd" type="impl:char"/>
+   		<element name="PrescrRMCClearInd" type="impl:char"/>
+   		<element name="PrescrDelIndvClearInd" type="impl:char"/>
+   		<element name="PrescrCaseCnfdClearInd" type="impl:char"/>
+   		<element name="PrescrMfCaseClearInd" type="impl:char"/>
+   	</sequence>
+   </complexType>
+   
+   <element name="CMBAppointmentDetailsRequest" type="impl:CMBAppointmentDetailsRequest">
+   </element>
+   <element name="CMBAppointmentDetailsResponse" type="impl:CMBAppointmentDetailsResponse">
+   </element>
+   <complexType name="CMBAppointmentDetailsRequest">
+   	<sequence>
+   		<element name="caseNum" type="xsd:long"/>
+   	</sequence>
+   </complexType>
+   <complexType name="CMBAppointmentDetailsResponse">
+   	<xsd:sequence>
+		<xsd:element maxOccurs="unbounded" minOccurs="0" name="CMBAppointmentResponse" type="impl:CMBAppointmentResponse"/>
+                    <element name="caseNum" type="long"/>
+                </xsd:sequence>
+   </complexType>
+   <complexType name="CMBAppointmentResponse">
+   	<sequence>
+   		<element name="pinNum" type="xsd:long"/>
+   		<element name="appointmentType" type="xsd:string"/>
+   		<element name="appointmentDate" type="xsd:date"/>
+   		<element name="appointmentTime" type="xsd:time"/>
+   		<element name="locationAddress" type="impl:Address"/>
+   		<element name="appointmentStatus" type="xsd:string"/>
+   	</sequence>
+   </complexType>
+
+   <xsd:complexType name="Address">
+	<xsd:sequence>
+		<xsd:element name="AgencyName" type="xsd:string"/>
+		<xsd:element name="Line1Address" type="xsd:string"/>
+		<xsd:element name="Line2Address" type="xsd:string"/>
+		<xsd:element name="State" type="xsd:string"/>
+		<xsd:element name="City" type="xsd:string"/>
+		<xsd:element name="Zip" type="xsd:string"/>
+	</xsd:sequence>
+   </xsd:complexType>
+   <complexType name="searchIndividualCombinedSsnPinRequest">
+   	<sequence>
+   		<element name="ssnOrPin" type="string" maxOccurs="1" minOccurs="1"></element>
+   		<element name="dateOfBirth" type="string" maxOccurs="1" minOccurs="1"></element>
+   		<element name="caseNumber" type="string"></element>
+   		<element name="maidNumber" type="string"></element>
+   		<element name="ebtNumber" type="string"></element>
+   	</sequence>
+   </complexType>
+   <complexType name="searchIndividualCombinedSsnPinResponse">
+   	<sequence>
+   		<element name="pin" type="string"></element>
+   		<element name="ssn" type="string"></element>
+   		<element name="dateOfBirth" type="string" maxOccurs="1" minOccurs="1"></element>
+   		<element name="nonPPlessThan18yrs" type="boolean"
+   			maxOccurs="1" minOccurs="1">
+   		</element>
+   		<element name="confidentialFlag" type="boolean" maxOccurs="1"
+   			minOccurs="1">
+   		</element>
+   		<element name="firstName" type="string" maxOccurs="1" minOccurs="1"></element>
+   		<element name="middleInitial" type="string" maxOccurs="1" minOccurs="1"></element>
+   		<element name="suffixName" type="string" maxOccurs="1" minOccurs="1"></element>
+   		<element name="lastName" type="string" maxOccurs="1" minOccurs="1"></element>
+   	</sequence>
+   </complexType>
+  </schema>
+ </wsdl:types>
+
+   <wsdl:message name="getPINforIVRfromCWWResponse">
+     <wsdl:part name="getPINforIVRfromCWWReturn" type="impl:IndivSearchResult"/>
+
+  </wsdl:message>
+
+   <wsdl:message name="getPINforIVRfromCWWRequest">
+     <wsdl:part name="searchCriteria" type="impl:IndivSearchCriteria"/>
+
+  </wsdl:message>
+
+   <wsdl:message name="searchIndividualRequest">
+     <wsdl:part name="criteria" type="impl:IndivSearchCriteria"/>
+
+  </wsdl:message>
+
+   <wsdl:message name="searchIndividualResponse">
+     <wsdl:part name="searchIndividualReturn" type="impl:IndivSearchResult"/>
+
+  </wsdl:message>
+
+   <wsdl:message name="getIndividualDetailsByCaseResponse">
+   	<wsdl:part element="impl:IndividualDetailsResult" name="getIndividualDetailsByCaseResponse">
+   	</wsdl:part>
+   </wsdl:message>
+   <wsdl:message name="getIndividualDetailsByCaseRequest">
+   	<wsdl:part name="getIndividualDetailsByCaseRequest" type="xsd:long">
+   	</wsdl:part>
+   </wsdl:message>
+   <wsdl:message name="WebServiceException">
+   	<wsdl:part element="impl:WebServiceException" name="WebServiceException">
+   	</wsdl:part>
+   </wsdl:message>
+   <wsdl:message name="getIndividualDetailsByPinResponse">
+   	<wsdl:part element="impl:IndividualDetailsResult" name="getIndividualDetailsByPinResponse">
+   	</wsdl:part>
+   </wsdl:message>
+   <wsdl:message name="getIndividualDetailsByPinRequest">
+   	<wsdl:part element="impl:IndividualDetailsResquest" name="getIndividualDetailsByPinRequest">
+   	</wsdl:part>
+   </wsdl:message>
+   <wsdl:message name="getWaitlistDetailsRequest">
+   	<wsdl:part element="impl:WaitlistDetailsRequest" name="getWaitlistDetailsRequest"/>
+   </wsdl:message>
+   <wsdl:message name="getWaitlistDetailsResponse">
+   	<wsdl:part element="impl:WaitlistDetailsResult" name="getWaitlistDetailsResponse"/>
+   </wsdl:message>
+
+
+    <wsdl:message name="updateWaitlistDetailsRequest">
+    <wsdl:part element="impl:updateWaitlistDetailsRequest" name="updateWaitlistDetailsRequest"/>
+  </wsdl:message>
+    <wsdl:message name="updateWaitlistDetailsResponse">
+    <wsdl:part element="impl:Result" name="updateWaitlistDetailsResponse"/>
+  </wsdl:message>
+    <wsdl:message name="getPhysicalExamInformationResponse">
+    	<wsdl:part element="impl:PhysicalExamResult" name="getPhysicalExamInformationResponse">
+    	</wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="getPhysicalExamInformationRequest">
+    	<wsdl:part element="impl:PhysicalExamRequest" name="getPhysicalExamInformationRequest">
+    	</wsdl:part>
+    </wsdl:message>
+    
+    <wsdl:message name="getRRPInformationResponse">
+    	<wsdl:part element="impl:RRPResult" name="getRRPInformationResponse"/>
+    </wsdl:message>
+    <wsdl:message name="getRRPInformationRequest">
+    	<wsdl:part element="impl:RRPRequest" name="getRRPInformationRequest"/>
+    </wsdl:message>
+ 
+    <wsdl:message name="getIndividualDetailsbyMAIdResponse">
+    	<wsdl:part element="impl:IndividualDetailsResultFromMAID" name="getIndividualDetailsbyMAIdResponse">
+    	</wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="getIndividualDetailsbyMAIdRequest">
+    	<wsdl:part element="impl:IndividualDetailsRequestByMAID" name="getIndividualDetailsbyMAIdRequest">
+    	</wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="getWaitlistPositionRequest">
+    	<wsdl:part element="impl:WaitlistCountRequest" name="getWaitlistPositionRequest">
+    	</wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="getWaitlistPositionResponse">
+    	<wsdl:part element="impl:WaitlistCountResponse" name="getWaitlistPositionResponse"/>
+    </wsdl:message>
+   
+    <wsdl:message name="NewOperationRequest">
+    	<wsdl:part name="NewOperationRequest" type="xsd:string"/>
+    </wsdl:message>
+    <wsdl:message name="NewOperationResponse">
+    	<wsdl:part name="NewOperationResponse" type="xsd:string"/>
+    </wsdl:message>
+    <wsdl:message name="ACPPrescrRuleEligRequest">
+    	<wsdl:part element="impl:ACPPrescrRuleEligRequest" name="ACPPrescrRuleEligRequest"/>
+    </wsdl:message>
+    <wsdl:message name="ACPPrescrRuleEligResponse">
+    	<wsdl:part element="impl:ACPPrescrRuleEligResponse" name="ACPPrescrRuleEligResponse"/>
+    </wsdl:message>
+    <wsdl:message name="CMBAppointmentDetailsRequest">
+    	<wsdl:part element="impl:CMBAppointmentDetailsRequest" name="CMBAppointmentDetailsRequest">
+    	</wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="CMBAppointmentDetailsResponse">
+    	<wsdl:part element="impl:CMBAppointmentDetailsResponse" name="CMBAppointmentDetailsResponse"/>
+    </wsdl:message>
+    <wsdl:message name="searchIndividualCombinedSsnPinRequest">
+    	<wsdl:part name="searchIndividualCombinedSsnPinRequest" type="impl:searchIndividualCombinedSsnPinRequest"></wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="searchIndividualCombinedSsnPinResponse">
+    	<wsdl:part name="searchIndividualCombinedSsnPinResponse" type="impl:searchIndividualCombinedSsnPinResponse"></wsdl:part>
+    </wsdl:message>
+    <wsdl:portType name="IndividualServicesEJB">
+     <wsdl:operation name="getPINforIVRfromCWW" parameterOrder="searchCriteria">
+       <wsdl:input message="impl:getPINforIVRfromCWWRequest" name="getPINforIVRfromCWWRequest"/>
+
+       <wsdl:output message="impl:getPINforIVRfromCWWResponse" name="getPINforIVRfromCWWResponse"/>
+
+    </wsdl:operation>
+
+     <wsdl:operation name="searchIndividual" parameterOrder="criteria">
+       <wsdl:input message="impl:searchIndividualRequest" name="searchIndividualRequest"/>
+
+       <wsdl:output message="impl:searchIndividualResponse" name="searchIndividualResponse"/>
+
+    </wsdl:operation>
+
+     <wsdl:operation name="getIndividualDetailsByCase">
+     	<wsdl:input message="impl:getIndividualDetailsByCaseRequest" name="getIndividualDetailsByCaseRequest"/>
+     	<wsdl:output message="impl:getIndividualDetailsByCaseResponse" name="getIndividualDetailsByCaseResponse"/>
+     	<wsdl:fault message="impl:WebServiceException" name="WebServiceException">
+     	</wsdl:fault>
+     </wsdl:operation>
+     <wsdl:operation name="getIndividualDetailsByPin">
+     	<wsdl:input message="impl:getIndividualDetailsByPinRequest" name="getIndividualDetailsByPinRequest"/>
+     	<wsdl:output message="impl:getIndividualDetailsByPinResponse" name="getIndividualDetailsByPinResponse">
+     	</wsdl:output>
+     	<wsdl:fault message="impl:WebServiceException" name="WebServiceException">
+     	</wsdl:fault>
+     </wsdl:operation>
+     <wsdl:operation name="getWaitlistDetails">
+     	<wsdl:input message="impl:getWaitlistDetailsRequest" name="getWaitlistDetailsRequest"/>
+     	<wsdl:output message="impl:getWaitlistDetailsResponse" name="getWaitlistDetailsResponse"/>
+     	<wsdl:fault message="impl:WebServiceException" name="WebServiceException">
+     	</wsdl:fault>
+     </wsdl:operation>
+
+     <wsdl:operation name="updateWaitlistDetails">
+     	<wsdl:input message="impl:updateWaitlistDetailsRequest" name="updateWaitlistDetailsRequest"/>
+     	<wsdl:output message="impl:updateWaitlistDetailsResponse" name="updateWaitlistDetailsResponse"/>
+     	<wsdl:fault message="impl:WebServiceException" name="WebServiceException">
+     	</wsdl:fault>
+     </wsdl:operation>
+     <wsdl:operation name="getPhysicalExamInformation">
+     	<wsdl:input message="impl:getPhysicalExamInformationRequest" name="getPhysicalExamInformationRequest"/>
+     	<wsdl:output message="impl:getPhysicalExamInformationResponse" name="getPhysicalExamInformationResponse">
+     	</wsdl:output>
+     	<wsdl:fault message="impl:WebServiceException" name="WebServiceException">
+     	</wsdl:fault>
+     </wsdl:operation>
+     <wsdl:operation name="getRRPInformation">
+     	<wsdl:input message="impl:getRRPInformationRequest" name="getRRPInformationRequest"/>
+     	<wsdl:output message="impl:getRRPInformationResponse" name="getRRPInformationResponse"/>
+     	<wsdl:fault message="impl:WebServiceException" name="WebServiceException">
+     	</wsdl:fault>
+     </wsdl:operation>
+     <wsdl:operation name="getIndividualDetailsbyMAId">
+     	<wsdl:input message="impl:getIndividualDetailsbyMAIdRequest" name="getIndividualDetailsbyMAIdRequest"/>
+     	<wsdl:output message="impl:getIndividualDetailsbyMAIdResponse" name="getIndividualDetailsbyMAIdResponse">
+     	</wsdl:output>
+     	<wsdl:fault message="impl:WebServiceException" name="WebServiceException">
+     	</wsdl:fault>
+     </wsdl:operation>
+     <wsdl:operation name="getWaitlistPosition">
+     	<wsdl:input message="impl:getWaitlistPositionRequest" name="getWaitlistPositionRequest"/>
+     	<wsdl:output message="impl:getWaitlistPositionResponse" name="getWaitlistPositionResponse"/>
+        <wsdl:fault message="impl:WebServiceException" name="WebServiceException"/>
+      </wsdl:operation>
+     <wsdl:operation name="getACPPrescrRuleElig">
+     	<wsdl:input message="impl:ACPPrescrRuleEligRequest" name="ACPPrescrRuleEligRequest"/>
+     	<wsdl:output message="impl:ACPPrescrRuleEligResponse" name="ACPPrescrRuleEligResponse"/>
+        </wsdl:operation>
+     <wsdl:operation name="getCMBAppointmentDetails">
+     	<wsdl:input message="impl:CMBAppointmentDetailsRequest" name="CMBAppointmentDetailsRequest"/>
+     	<wsdl:output message="impl:CMBAppointmentDetailsResponse" name="CMBAppointmentDetailsResponse"/>
+        <wsdl:fault message="impl:WebServiceException" name="WebServiceException"/>
+      </wsdl:operation>
+     <wsdl:operation name="searchIndividualCombinedSsnPin">
+     	<wsdl:input message="impl:searchIndividualCombinedSsnPinRequest"></wsdl:input>
+     	<wsdl:output message="impl:searchIndividualCombinedSsnPinResponse"></wsdl:output>
+     	 <wsdl:fault message="impl:WebServiceException" name="WebServiceException"/>
+     </wsdl:operation>
+    </wsdl:portType>
+
+   <wsdl:binding name="IndividualServicesEJBSoapBinding" type="impl:IndividualServicesEJB">
+     <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+     <wsdl:operation name="getPINforIVRfromCWW">
+       <wsdlsoap:operation soapAction=""/>
+
+       <wsdl:input name="getPINforIVRfromCWWRequest">
+         <wsdlsoap:body namespace="http://individual.services.business.cares.wisconsin.gov" use="literal"/>
+
+      </wsdl:input>
+
+       <wsdl:output name="getPINforIVRfromCWWResponse">
+         <wsdlsoap:body namespace="http://individual.services.business.cares.wisconsin.gov" use="literal"/>
+
+      </wsdl:output>
+
+    </wsdl:operation>
+
+     <wsdl:operation name="searchIndividual">
+       <wsdlsoap:operation soapAction=""/>
+
+       <wsdl:input name="searchIndividualRequest">
+         <wsdlsoap:body namespace="http://individual.services.business.cares.wisconsin.gov" use="literal"/>
+
+      </wsdl:input>
+
+       <wsdl:output name="searchIndividualResponse">
+         <wsdlsoap:body namespace="http://individual.services.business.cares.wisconsin.gov" use="literal"/>
+
+      </wsdl:output>
+
+    </wsdl:operation>
+
+     <wsdl:operation name="getIndividualDetailsByCase">
+     	<wsdlsoap:operation soapAction=""/>
+
+       <wsdl:input name="getIndividualDetailsByCaseRequest">
+         <wsdlsoap:body namespace="http://individual.services.business.cares.wisconsin.gov" use="literal"/>
+
+      </wsdl:input>
+
+       <wsdl:output name="getIndividualDetailsByCaseResponse">
+         <wsdlsoap:body namespace="http://individual.services.business.cares.wisconsin.gov" use="literal"/>
+
+      </wsdl:output>
+     	<wsdl:fault name="WebServiceException">
+           <wsdlsoap:fault name="WebServiceException" use="literal"/>
+      	</wsdl:fault>
+     </wsdl:operation>
+     
+     <wsdl:operation name="getIndividualDetailsByPin">
+     	<wsdlsoap:operation soapAction=""/>
+
+       <wsdl:input name="getIndividualDetailsByPinRequest">
+         <wsdlsoap:body namespace="http://individual.services.business.cares.wisconsin.gov" use="literal"/>
+
+      </wsdl:input>
+
+       <wsdl:output name="getIndividualDetailsByPinResponse">
+         <wsdlsoap:body namespace="http://individual.services.business.cares.wisconsin.gov" use="literal"/>
+
+       </wsdl:output>
+         <wsdl:fault name="WebServiceException">
+    	    <wsdlsoap:fault name="WebServiceException" use="literal"/>
+    		</wsdl:fault>
+    	</wsdl:operation>
+    	<wsdl:operation name="getWaitlistDetails">
+    		<wsdlsoap:operation soapAction=""/>
+    		<wsdl:input name="getWaitlistDetailsRequest">
+				<wsdlsoap:body namespace="http://individual.services.business.cares.wisconsin.gov" use="literal"/>
+    		</wsdl:input>
+    		<wsdl:output name="getWaitlistDetailsResponse">
+		   <wsdlsoap:body namespace="http://individual.services.business.cares.wisconsin.gov" use="literal"/>
+    		</wsdl:output>
+    		<wsdl:fault name="WebServiceException">
+    			<wsdlsoap:fault name="WebServiceException" use="literal"/>
+    		</wsdl:fault>
+    	</wsdl:operation>
+    	<wsdl:operation name="updateWaitlistDetails">
+    		<wsdlsoap:operation soapAction=""/>
+    		<wsdl:input name="updateWaitlistDetailsRequest">
+		    			<wsdlsoap:body namespace="http://individual.services.business.cares.wisconsin.gov" use="literal"/>
+    		</wsdl:input>
+    		<wsdl:output name="updateWaitlistDetailsResponse"> 
+				<wsdlsoap:body namespace="http://individual.services.business.cares.wisconsin.gov" use="literal"/>
+    		</wsdl:output>
+    		<wsdl:fault name="WebServiceException"> 
+    			<wsdlsoap:fault name="WebServiceException" use="literal"/>
+    		</wsdl:fault>
+    	</wsdl:operation>
+    	<wsdl:operation name="getPhysicalExamInformation">
+    		<wsdlsoap:operation soapAction=""/>
+    		<wsdl:input name="getPhysicalExamInformationRequest">
+		 	<wsdlsoap:body namespace="http://individual.services.business.cares.wisconsin.gov" use="literal"/>
+    		</wsdl:input>
+    		<wsdl:output name="getPhysicalExamInformationResponse">
+			 <wsdlsoap:body namespace="http://individual.services.business.cares.wisconsin.gov" use="literal"/>
+    		</wsdl:output>
+    		<wsdl:fault name="WebServiceException">
+    			<wsdlsoap:fault name="WebServiceException" use="literal"/>
+    		</wsdl:fault>
+    	</wsdl:operation>
+    	<wsdl:operation name="getRRPInformation">
+    		<wsdlsoap:operation soapAction=""/>
+    		<wsdl:input name="getRRPInformationRequest"> 
+		<wsdlsoap:body namespace="http://individual.services.business.cares.wisconsin.gov" use="literal"/>
+    		</wsdl:input>
+    		<wsdl:output name="getRRPInformationResponse">
+		<wsdlsoap:body namespace="http://individual.services.business.cares.wisconsin.gov" use="literal"/>
+    		</wsdl:output>
+    		<wsdl:fault name="WebServiceException">
+    			<wsdlsoap:fault name="WebServiceException" use="literal"/>
+    		</wsdl:fault>
+    	</wsdl:operation>
+    	<wsdl:operation name="getIndividualDetailsbyMAId">
+    		<wsdlsoap:operation/>
+    		<wsdl:input name="getIndividualDetailsbyMAIdRequest">
+			<wsdlsoap:body namespace="http://individual.services.business.cares.wisconsin.gov" use="literal"/>
+    		</wsdl:input>
+    		<wsdl:output name="getIndividualDetailsbyMAIdResponse">
+			<wsdlsoap:body namespace="http://individual.services.business.cares.wisconsin.gov" use="literal"/>
+    		</wsdl:output>
+    		<wsdl:fault name="WebServiceException"> 
+			<wsdlsoap:fault name="WebServiceException" use="literal"/>
+		</wsdl:fault>
+    	</wsdl:operation>
+    	<wsdl:operation name="getWaitlistPosition">
+    		<wsdlsoap:operation/>    			
+    		<wsdl:input name="getWaitlistPositionRequest">
+    			<wsdlsoap:body namespace="http://individual.services.business.cares.wisconsin.gov" use="literal"/>
+    		</wsdl:input>
+    		<wsdl:output name="getWaitlistPositionResponse">
+    			<wsdlsoap:body namespace="http://individual.services.business.cares.wisconsin.gov" use="literal"/>
+    		</wsdl:output>
+    		<wsdl:fault name="WebServiceException">
+    			<wsdlsoap:fault name="WebServiceException" use="literal"/>
+    		</wsdl:fault>
+    	</wsdl:operation>
+    	<wsdl:operation name="getACPPrescrRuleElig">
+    		<wsdlsoap:operation/>    			
+    		<wsdl:input name="ACPPrescrRuleEligRequest">
+    			<wsdlsoap:body namespace="http://individual.services.business.cares.wisconsin.gov" use="literal"/>
+    		</wsdl:input>
+    		<wsdl:output name="ACPPrescrRuleEligResponse">
+    			<wsdlsoap:body namespace="http://individual.services.business.cares.wisconsin.gov" use="literal"/>
+    		</wsdl:output>
+    	</wsdl:operation>
+    	<wsdl:operation name="getCMBAppointmentDetails">
+    		<wsdlsoap:operation/>    			
+    		<wsdl:input name="CMBAppointmentDetailsRequest">
+    			<wsdlsoap:body namespace="http://individual.services.business.cares.wisconsin.gov" use="literal"/>
+    		</wsdl:input>
+    		<wsdl:output name="CMBAppointmentDetailsResponse">
+    			<wsdlsoap:body namespace="http://individual.services.business.cares.wisconsin.gov" use="literal"/>
+    		</wsdl:output>
+    		<wsdl:fault name="WebServiceException">
+    			<wsdlsoap:fault name="WebServiceException" use="literal"/>
+    		</wsdl:fault>
+    	</wsdl:operation>
+    	<wsdl:operation name="searchIndividualCombinedSsnPin">
+	<wsdlsoap:operation	soapAction="http://individual.services.business.cares.wisconsin.gov/searchIndividualCombinedSsnPin" />
+	<wsdl:input>
+		<wsdlsoap:body use="literal" />
+	</wsdl:input>
+	<wsdl:output>
+		<wsdlsoap:body use="literal" />
+	</wsdl:output>
+	<wsdl:fault name="WebServiceException">
+		<wsdlsoap:fault use="literal" name="WebServiceException" />
+	</wsdl:fault>
+	</wsdl:operation>
+    </wsdl:binding>
+
+    <wsdl:service name="IndividualServicesEJBService">
+     <wsdl:port binding="impl:IndividualServicesEJBSoapBinding" name="IndividualServicesEJB">
+       <wsdlsoap:address location="http://localhost:9080//cares/services/IndividualServicesEJB"/>
+
+    </wsdl:port>
+
+  </wsdl:service>
+
+</wsdl:definitions>

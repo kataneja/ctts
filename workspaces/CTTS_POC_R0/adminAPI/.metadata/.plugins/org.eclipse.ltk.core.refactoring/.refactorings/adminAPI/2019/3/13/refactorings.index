@@ -1,0 +1,55 @@
+1553522317962	Move compilation unit
+1553522553383	Delete element
+1553522809353	Delete element
+1553524895784	Delete element
+1553527781177	Rename local variable 'repos'
+1553527799291	Rename local variable 'current'
+1553527820975	Rename local variable 'name'
+1553541660526	Copy compilation unit
+1553541671780	Copy compilation unit
+1553541945598	Encapsulate field 'message'
+1553549096507	Delete element
+1553699964705	Rename type 'JPAConfig'
+1553701494167	Rename field 'jmsMessage'
+1553709225212	Rename local variable 'template'
+1553711191953	Copy compilation unit
+1553711414097	Rename field 'cttsJMSTemplate'
+1553711426192	Rename field 'auditJMSTemplate'
+1553719314821	Delete element
+1553719350933	Delete element
+1553721744562	Move compilation unit
+1553721748902	Move compilation units
+1553721765630	Delete element
+1553721770954	Copy compilation unit
+1553782092080	Copy compilation unit
+1553782101464	Copy compilation unit
+1553783670941	Copy compilation unit
+1553783682345	Delete element
+1553784372040	Move compilation units
+1553784383623	Move compilation units
+1553784402975	Rename package 'gov.wisconsin.admin.pojo.request'
+1553784409716	Rename package 'gov.wisconsin.admin.pojo.response'
+1553784536805	Delete element
+1553787047537	Delete element
+1553788282504	Delete element
+1553788878950	Delete element
+1553797525611	Delete element
+1553797527567	Delete element
+1553797529615	Delete element
+1553797531446	Delete element
+1553797533383	Delete element
+1553797535128	Delete element
+1553797578003	Delete elements
+1553798084678	Delete element
+1553798129272	Copy compilation unit
+1553798136289	Copy compilation unit
+1553798450462	Delete element
+1553798968281	Delete element
+1553799471157	Delete element
+1553800409382	Delete element
+1553803016952	Copy compilation unit
+1553803030200	Copy compilation unit
+1553806633064	Delete element
+1553867109839	Delete element
+1553867889656	Delete element
+1553882879812	Delete element

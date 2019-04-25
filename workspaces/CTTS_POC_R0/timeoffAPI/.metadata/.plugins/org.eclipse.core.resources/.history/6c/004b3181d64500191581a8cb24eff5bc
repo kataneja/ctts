@@ -1,0 +1,27 @@
+package gov.wisconsin.accessmobile;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.builder.SpringApplicationBuilder;
+import org.springframework.boot.web.support.SpringBootServletInitializer;
+import org.springframework.context.annotation.EnableAspectJAutoProxy;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
+import org.springframework.web.WebApplicationInitializer;
+
+@SpringBootApplication
+@EnableAspectJAutoProxy
+@EnableTransactionManagement
+public class Application extends SpringBootServletInitializer implements WebApplicationInitializer {
+
+	public static void main(String[] args) {
+		System.out.println("Access API project starting - main()");
+		SpringApplication.run(Application.class, args);
+	}
+
+	@Override
+    protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
+		System.out.println("Access API project starting - main()");
+        return application.sources(Application.class);
+    }
+
+}

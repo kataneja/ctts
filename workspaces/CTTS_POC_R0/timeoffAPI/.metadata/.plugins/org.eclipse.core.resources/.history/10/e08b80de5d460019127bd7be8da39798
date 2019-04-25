@@ -1,0 +1,302 @@
+package gov.wisconsin.accessmobile.controller;
+
+import gov.wisconsin.accessmobile.business.AccountCreationBO;
+import gov.wisconsin.accessmobile.business.EligibilityInformationBO;
+import gov.wisconsin.accessmobile.business.PushNotificationBO;
+import gov.wisconsin.accessmobile.business.ServiceRequestBO;
+import gov.wisconsin.accessmobile.constant.AppConstants;
+import gov.wisconsin.accessmobile.constant.FwConstants;
+import gov.wisconsin.accessmobile.exception.FwException;
+import gov.wisconsin.accessmobile.exception.FwWrappedException;
+import gov.wisconsin.accessmobile.framework.base.FwAbstractController;
+import gov.wisconsin.accessmobile.framework.transport.APIRequest;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+@RequestMapping(FwConstants.URL_CONTROLLER_ACCOUNTS)
+public class AccountsController extends FwAbstractController {
+	
+	@PostMapping(value = "/deviceToken", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<APIRequest> updateDeviceToken(@RequestBody APIRequest apiRequest, HttpServletRequest httpRequest, HttpSession httpSession) {
+		Map<String, Object> responseMap = null;
+		
+		try {
+			Map<String, Object> requestMap = apiRequest.getRequestMap();
+			PushNotificationBO pushNotificationBO = applicationContext.getBean(PushNotificationBO.class);
+			
+			requestMap.put(FwConstants.PAYLOAD_HEADER_USER_AGENT, httpRequest.getHeader(FwConstants.PAYLOAD_HEADER_USER_AGENT));
+			requestMap.put(FwConstants.PAYLOAD_HEADER_DEVICE_LANGUAGE, httpRequest.getHeader(FwConstants.PAYLOAD_HEADER_DEVICE_LANGUAGE));
+			
+			responseMap = pushNotificationBO.updateDeviceToken(requestMap);
+		} catch (FwException fe) {
+			throw new FwWrappedException(this.getClass(), fe, apiRequest, httpRequest);
+		}
+		
+		apiRequest.setResponseMap(responseMap);
+		return ResponseEntity.status(200).body(apiRequest);
+	}
+	
+	@GetMapping(value = "/userId", produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<APIRequest> loadDashboard(HttpServletRequest httpRequest, HttpSession httpSession) {
+		APIRequest apiRequest = new APIRequest();
+		Map<String, Object> responseMap = null;
+		String deviceLang = FwConstants.ENGLISH;
+		String userId = FwConstants.EMPTY_STRING;
+		
+		try {
+			Map<String, Object> requestMap = new HashMap<String, Object>();
+			
+			if (httpRequest.getHeader(FwConstants.USER_ID) != null) {
+				userId = httpRequest.getHeader(FwConstants.USER_ID);
+				requestMap.put(FwConstants.USER_ID, userId);
+			}
+			
+			if (httpRequest.getHeader(FwConstants.PAYLOAD_HEADER_DEVICE_LANGUAGE) != null && httpRequest.getHeader(FwConstants.PAYLOAD_HEADER_DEVICE_LANGUAGE).equals(FwConstants.SPANISH)) {
+				deviceLang = FwConstants.SPANISH;
+			}
+			
+			requestMap.put(FwConstants.PAYLOAD_HEADER_DEVICE_LANGUAGE, deviceLang);
+			
+			if (httpRequest.getHeader(FwConstants.PAYLOAD_HEADER_WID) != null) {
+				requestMap.put(FwConstants.LDAP_WID, httpRequest.getHeader(FwConstants.PAYLOAD_HEADER_WID));
+			}
+			
+			EligibilityInformationBO eligInfoBo = applicationContext.getBean(EligibilityInformationBO.class);
+			responseMap = eligInfoBo.loadDashboardForAccount(requestMap);
+			
+			responseMap.put(FwConstants.RETURN_URL, "/accounts/" + userId);
+			
+			apiRequest.setResponseMap(responseMap);
+		} catch(FwException fe) {
+			throw new FwWrappedException(this.getClass(), fe, apiRequest, httpRequest);
+		}
+		
+		return ResponseEntity.status(200).body(apiRequest);
+	}
+	
+	@PutMapping(value = "/userId", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<APIRequest> convertAfbToCmb(@RequestBody APIRequest apiRequest, HttpServletRequest httpRequest, HttpSession httpSession) {
+		Map<String, Object> responseMap = null;
+		String userId = FwConstants.EMPTY_STRING;
+
+		try {
+			Map<String, Object> requestMap = apiRequest.getRequestMap();
+			
+			if (httpRequest.getHeader(FwConstants.USER_ID) != null) {
+				userId = httpRequest.getHeader(FwConstants.USER_ID);
+				requestMap.put(FwConstants.USER_ID, userId);
+			}
+			
+			AccountCreationBO accountCreationBO = applicationContext.getBean(AccountCreationBO.class);
+			responseMap = accountCreationBO.convertExistingAfbToCmbAccount(requestMap);
+
+			responseMap.put(FwConstants.RETURN_URL, FwConstants.URL_CONTROLLER_ACCOUNTS + "/" + userId);
+			
+			apiRequest.setResponseMap(responseMap);
+		} catch (FwException fe) {
+			throw new FwWrappedException(this.getClass(), fe, apiRequest, httpRequest);
+		}
+
+		return ResponseEntity.status(200).body(apiRequest);
+	}
+
+	/*
+	@GetMapping(value = "/userId/secretQuestions", produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<APIRequest> getSecretQuestions(HttpServletRequest httpRequest, HttpSession httpSession) {
+		Map<String, Object> responseMap = null;
+		APIRequest apiRequest = new APIRequest();
+		Map<String, Object> requestMap = new HashMap<String, Object>();
+		String userId = FwConstants.EMPTY_STRING;
+		
+		try {
+			if (httpRequest.getHeader(FwConstants.USER_ID) != null) {
+				userId = httpRequest.getHeader(FwConstants.USER_ID);
+				requestMap.put(FwConstants.USER_ID, userId);
+			}
+			
+			if (httpRequest.getHeader(FwConstants.PAYLOAD_HEADER_WID) != null) {
+				requestMap.put(FwConstants.LDAP_WID, httpRequest.getHeader(FwConstants.PAYLOAD_HEADER_WID)); 
+			}
+			
+			AccountCreationBO accountCreationBO = applicationContext.getBean(AccountCreationBO.class);
+			responseMap = accountCreationBO.getSecretQuestions(requestMap, FwConstants.YES);
+			
+			responseMap.put(FwConstants.RETURN_URL, FwConstants.URL_CONTROLLER_ACCOUNTS + "/" + userId + "/passwords");
+
+			apiRequest.setResponseMap(responseMap);
+		} catch (FwException fe) {
+			throw new FwWrappedException(this.getClass(), fe, apiRequest, httpRequest);
+		}
+
+		return ResponseEntity.status(200).body(apiRequest);
+	}
+	*/
+
+	@PutMapping(value = "/userId/secretQuestions", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<APIRequest> updateSecretQuestions(@RequestBody APIRequest apiRequest, HttpServletRequest httpRequest, HttpSession httpSession) {
+		Map<String, Object> responseMap = null;
+		String userId = FwConstants.EMPTY_STRING;
+
+		try {
+			Map<String, Object> requestMap = apiRequest.getRequestMap();
+			
+			if (httpRequest.getHeader(FwConstants.USER_ID) != null) {
+				userId = httpRequest.getHeader(FwConstants.USER_ID);
+				requestMap.put(FwConstants.USER_ID, userId);
+			}
+			
+			AccountCreationBO accountCreationBO = applicationContext.getBean(AccountCreationBO.class);
+			responseMap = accountCreationBO.updateSecretQuestions(requestMap);
+			
+			responseMap.put(FwConstants.RETURN_URL, FwConstants.URL_CONTROLLER_ACCOUNTS + "/" + userId + "/passwords");
+
+			apiRequest.setResponseMap(responseMap);
+		} catch (FwException fe) {
+			throw new FwWrappedException(this.getClass(), fe, apiRequest, httpRequest);
+		}
+
+		return ResponseEntity.status(200).body(apiRequest);
+	}
+	
+	@PostMapping(value = "/userId/verificationChecklist", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<APIRequest> getVerificationChecklist(@RequestBody APIRequest apiRequest, HttpServletRequest httpRequest, HttpSession httpSession) {
+		Map<String, Object> responseMap = null;
+		String userId = FwConstants.EMPTY_STRING;
+		
+		try {
+			Map<String, Object> requestMap = apiRequest.getRequestMap();
+			
+			if (httpRequest.getHeader(FwConstants.USER_ID) != null) {
+				userId = httpRequest.getHeader(FwConstants.USER_ID);
+				requestMap.put(FwConstants.USER_ID, userId);
+			}
+			
+			ServiceRequestBO serviceRequestBO = applicationContext.getBean(ServiceRequestBO.class);
+			responseMap = serviceRequestBO.viewVCL(requestMap);
+			
+			responseMap.put(FwConstants.RETURN_URL, FwConstants.URL_CONTROLLER_ACCOUNTS + "/" + userId);
+
+			apiRequest.setResponseMap(responseMap);
+		} catch (FwException fe) {
+			throw new FwWrappedException(this.getClass(), fe, apiRequest, httpRequest);
+		}
+
+		return ResponseEntity.status(200).body(apiRequest);
+	}
+
+	@PostMapping(value = "/broadcasts", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<APIRequest> publishBroadcastNotifications(@RequestBody APIRequest apiRequest, HttpServletRequest httpRequest, HttpSession httpSession) {
+		Map<String, Object> responseMap = new HashMap<String, Object>();
+		
+		try {
+			responseMap.put(AppConstants.SUCCESS_FLAG, false);
+			Map<String, Object> requestMap = apiRequest.getRequestMap();
+			
+			if(requestMap.get("notifications") != null) {
+				List<Object> notificationList =  (List<Object>) requestMap.get("notifications");
+				broadcastManager.updateBroadcastCache(notificationList);
+				responseMap.put(AppConstants.SUCCESS_FLAG, true);
+			}
+
+			apiRequest.setResponseMap(responseMap);
+		} catch (FwException fe) {
+			throw new FwWrappedException(this.getClass(), fe, apiRequest, httpRequest);
+		}
+
+		return ResponseEntity.status(200).body(apiRequest);
+	}
+	
+	/*
+	@PutMapping(value = "/userId/passwords", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<APIRequest> changePassword(@RequestBody APIRequest apiRequest, HttpServletRequest httpRequest, HttpSession httpSession) {
+		Map<String, Object> responseMap = null;
+		String userId = FwConstants.EMPTY_STRING;
+		
+		try {
+			Map<String, Object> requestMap = apiRequest.getRequestMap();
+			
+			if (httpRequest.getHeader(FwConstants.USER_ID) != null) {
+				userId = httpRequest.getHeader(FwConstants.USER_ID);
+				requestMap.put(FwConstants.USER_ID, userId);
+			}
+			
+			responseMap = new HashMap<String, Object>();
+			responseMap.put(FwConstants.RETURN_URL, FwConstants.URL_CONTROLLER_ACCOUNTS + "/" + userId);
+			
+			apiRequest.setResponseMap(responseMap);
+		} catch (FwException fe) {
+			throw new FwWrappedException(this.getClass(), fe, apiRequest, httpRequest);
+		}
+
+		return ResponseEntity.status(200).body(apiRequest);
+	}
+	*/
+	
+	/*
+	@PostMapping(value = "/userId/lockStatus", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<APIRequest> lockAccount(@RequestBody APIRequest apiRequest, HttpServletRequest httpRequest, HttpSession httpSession) {
+		Map<String, Object> responseMap = null;
+		
+		try {
+			Map<String, Object> requestMap = apiRequest.getRequestMap();
+			
+			if (httpRequest.getHeader(FwConstants.USER_ID) != null) {
+				requestMap.put(FwConstants.USER_ID, httpRequest.getHeader(FwConstants.USER_ID));
+			}
+			
+			AccountCreationBO accountCreationBO = applicationContext.getBean(AccountCreationBO.class);
+			responseMap = accountCreationBO.lockMyAccessAccount(requestMap);
+
+			apiRequest.setResponseMap(responseMap);
+		} catch (FwException fe) {
+			throw new FwWrappedException(this.getClass(), fe, apiRequest, httpRequest);
+		}
+
+		return ResponseEntity.status(200).body(apiRequest);
+	}
+	*/
+	
+	/*
+	@GetMapping(value = "/userId/cases", produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<APIRequest> getCases(HttpServletRequest httpRequest, HttpSession httpSession) {
+		APIRequest apiRequest = new APIRequest();
+		Map<String, Object> responseMap = null;
+		
+		try {
+			Map<String, Object> requestMap = new HashMap<String, Object>();
+			
+			if (httpRequest.getHeader(FwConstants.USER_ID) != null) {
+				requestMap.put(FwConstants.USER_ID, httpRequest.getHeader(FwConstants.USER_ID));
+			}
+			
+			if (httpRequest.getHeader(FwConstants.PAYLOAD_HEADER_WID) != null) {
+				requestMap.put(FwConstants.LDAP_WID, httpRequest.getHeader(FwConstants.PAYLOAD_HEADER_WID));
+			}
+			
+			EligibilityInformationBO eligInfoBo = applicationContext.getBean(EligibilityInformationBO.class);
+			responseMap = eligInfoBo.getCasesForAccount(requestMap);
+			
+			apiRequest.setResponseMap(responseMap);
+		} catch(FwException fe) {
+			throw new FwWrappedException(this.getClass(), fe, apiRequest, httpRequest);
+		}
+		
+		return ResponseEntity.status(200).body(apiRequest);
+	}
+	*/
+}

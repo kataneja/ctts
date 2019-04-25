@@ -1,0 +1,38 @@
+package gov.wisconsin.admin.controller;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+@RequestMapping("admin")
+public class AdminController extends FwAbstractController {
+	
+	@GetMapping(value = "", produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<APIPayload> getExample(HttpServletRequest httpRequest, HttpSession httpSession) {
+		APIPayload apiRequest = new APIPayload();
+		Map<String, Object> responseMap = new HashMap<String, Object>();
+		
+		try {
+			responseMap.put("status", false);
+			
+			responseMap.put("message", "Success! GET in AdminController");
+			
+			responseMap.put("status", true);
+			
+			apiRequest.setResponseMap(responseMap);
+		} catch(FwException fe) {
+			throw new FwWrappedException(this.getClass(), fe, apiRequest, httpRequest);
+		}
+		
+		return ResponseEntity.status(200).body(apiRequest);
+	}
+}

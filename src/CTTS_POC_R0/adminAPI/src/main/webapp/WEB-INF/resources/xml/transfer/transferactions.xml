@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<transferActions>
+	<transferAction id="Test">
+		<direction>Outbound</direction>
+		<translator>
+			<class>gov.wisconsin.framework.persistence.transfer.translators.TestTranslator</class>
+			<method>translate</method>
+		</translator>
+		<configuration>
+			<endpoint>googleSearchURL</endpoint>
+			<headerParameters />
+			<queryStringParameters />
+		</configuration>
+	</transferAction>
+	<transferAction id="USBankReturnPaymentConfirmation">
+		<direction>inbound</direction>
+		<translator>
+			<class>gov.wisconsin.access.business.translation.USBankTranslator</class>
+			<method>translateConfirmationRequest</method>
+		</translator>
+		<configuration>
+			<endpoint></endpoint>
+			<headerParameters />
+			<queryStringParameters >
+				<queryStringParameter name="USBReturnRTPC" value="USBReturnRTPC"/>
+			</queryStringParameters>
+		</configuration>
+	</transferAction>
+	<transferAction id="USBankSendPaymentConfirmation">
+		<direction>outbound</direction>
+		<translator>
+			<class>gov.wisconsin.access.business.translation.USBankTranslator</class>
+			<method>translateRTPCSendRequest</method>
+		</translator>
+		<configuration>
+			<endpoint>makePaymentURL</endpoint>
+			<headerParameters />
+			<queryStringParameters />
+		</configuration>
+	</transferAction>
+	<transferAction id="GoogleGeocode">
+		<direction>Outbound</direction>
+		<translator>
+			<class>gov.wisconsin.access.business.translation.GeocodeTranslator</class>
+			<method>translate</method>
+		</translator>
+		<configuration>
+			<endpoint>geocodeURL</endpoint>
+			<headerParameters />
+			<queryStringParameters>
+				<queryStringParameter name="client" value="googleClientID" />
+				<queryStringParameter name="oe" value="utf-8" />
+				<queryStringParameter name="file" value="api" />
+				<queryStringParameter name="v" value="2" />												
+				<queryStringParameter name="output" value="xml" />
+			</queryStringParameters>
+		</configuration>
+	</transferAction>
+	<transferAction id="PaymentTransfer">
+		<direction>Inbound</direction>
+		<translator>
+			<class>gov.wisconsin.access.business.translation.USBankTranslator</class>
+			<method>translate</method>
+		</translator>
+		<configuration>
+			<endpoint/>
+			<headerParameters />
+			<queryStringParameters />
+		</configuration>
+	</transferAction>	
+</transferActions>

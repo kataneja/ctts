@@ -1,0 +1,11 @@
+AdminTask.setJVMProperties('[-serverName server1 -initialHeapSize 1024]')
+AdminTask.setJVMProperties('[-serverName server1 -maximumHeapSize 1580]')
+
+classpathEntries = (
+  "C:/mobile/src/ACCESSMOBILE_CCDPG_R3/api/accessAPI/src/main/webapp/WEB-INF/resources;"
+  "C:/mobile/src/ACCESSMOBILE_CCDPG_R3/api/accessAPI/src/main/webapp/WEB-INF/resources/environments/dev;"
+)
+
+AdminTask.setJVMProperties('[-serverName server1 -classpath "' + classpathEntries + '"]')
+
+AdminConfig.save()

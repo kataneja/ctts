@@ -1,0 +1,14 @@
+package gov.wisconsin.timeoff.controller;
+
+import gov.wisconsin.framework.base.FwAbstractController;
+import gov.wisconsin.framework.constant.FwConstants;
+
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+@RequestMapping(FwConstants.EMPTY_STRING)
+public class TimeoffController extends FwAbstractController {
+
+	
+}

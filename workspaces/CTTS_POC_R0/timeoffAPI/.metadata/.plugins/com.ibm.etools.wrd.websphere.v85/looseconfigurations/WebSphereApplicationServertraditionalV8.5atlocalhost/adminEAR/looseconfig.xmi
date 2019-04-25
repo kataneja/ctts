@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<org.eclipse.jst.j2ee.commonarchivecore.looseconfig:LooseArchive xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:org.eclipse.jst.j2ee.commonarchivecore.looseconfig="commonarchive.looseconfig.xmi" uri="C:\ctts\src\CTTS_POC_R0\adminEAR" binariesPath="C:\ctts\src\CTTS_POC_R0\adminEAR" resourcesPath="C:\ctts\src\CTTS_POC_R0\adminEAR" archiveType="EAR">
+  <looseChildren uri="adminAPI.war" binariesPath="C:/ctts/workspaces/CTTS_POC_R0/adminAPI/.metadata/.plugins/org.eclipse.wst.server.core/tmp0\adminAPI" resourcesPath="C:/ctts/workspaces/CTTS_POC_R0/adminAPI/.metadata/.plugins/org.eclipse.wst.server.core/tmp0\adminAPI" archiveType="WAR"/>
+</org.eclipse.jst.j2ee.commonarchivecore.looseconfig:LooseArchive>

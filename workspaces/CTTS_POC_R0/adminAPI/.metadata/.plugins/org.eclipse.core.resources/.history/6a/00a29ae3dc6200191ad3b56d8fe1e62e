@@ -1,0 +1,18 @@
+package gov.wisconsin.admin.transport.response;
+
+import gov.wisconsin.admin.data.pojo.T019_Staff_Profile_Cargo;
+import gov.wisconsin.framework.transport.FwResponse;
+
+public class GetStaffProfileResponse extends FwResponse{
+
+	private T019_Staff_Profile_Cargo profileCargo;
+
+	public T019_Staff_Profile_Cargo getProfileCargo() {
+		return profileCargo;
+	}
+
+	public void setProfileCargo(T019_Staff_Profile_Cargo profileCargo) {
+		this.profileCargo = profileCargo;
+	}
+
+}

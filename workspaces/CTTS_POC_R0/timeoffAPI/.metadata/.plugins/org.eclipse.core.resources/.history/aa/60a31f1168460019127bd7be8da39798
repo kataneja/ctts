@@ -1,0 +1,5 @@
+package gov.wisconsin.admin.pojo.request;
+
+public class GetAllCategoryRequest {
+
+}

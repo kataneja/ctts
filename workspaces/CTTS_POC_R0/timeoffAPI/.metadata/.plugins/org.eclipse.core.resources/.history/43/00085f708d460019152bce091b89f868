@@ -1,0 +1,39 @@
+spring.profiles.active  = dev
+spring.profiles.include = db, log, email, queue, ldap, login
+
+env.name = DEVELOPMENT
+application_id = 4
+
+mwResponseCache            = services/cache/apiResponse
+broadcastNotificationCache = services/cache/broadcastNotification
+
+emailProcess = on
+
+sqlFolder    = /xml/sql
+emailFolder  = /xml/email
+driverxml    = /xml/driver
+sharedSQL    = /xml/sql/access_sharedsql.xml
+frameworkSQL = /xml/sql/framework-sqls.xml
+
+propertyFolder         = /environments/dev
+operationFolder        = /operations
+xsltFolder             = /xslt
+schematronFolder       = /xsd/schematron
+schematronSchemaFolder = /xsd/schematronSchema
+documentFolder         = C:/ctts/workspaces/CTTS_POC_R0/adminAPI/doc
+
+swagger.protocol          = http
+swagger.host              = localhost:9082
+swagger.controllerPackage = gov.wisconsin.timeoff.controller
+swagger.title             = TimeoffAPI
+
+esb.endpoint = http://access/mobile_V1
+api.endpoint = http://localhost:9082
+
+exceptionPath = C:/ctts/workspaces/CTTS_POC_R0/adminAPI/logs/batchRetry.log
+
+accessOnlineURL = https://dev.access.wisconsin.gov/access/
+wisaProfileURL  = http://sys.services.wisa.enterprise.wistate.us/wisa/services/ProfileSecurityV2EJB
+individualURL   = http://dev.services.cares.enterprise.wistate.us/cares/services/IndividualServicesEJB
+interChangeURL  = https://www.forwardhealth.wi.gov/testaccess/test_ws/recipientTransfer.asmx
+notificationServiceURL = http://sys.services.wisa.enterprise.wistate.us/wisa/services/Notification

@@ -1,0 +1,5 @@
+package gov.wisconsin.admin.data.pojo;
+
+public class T019_T023_Staff_Security_Profile {
+
+}

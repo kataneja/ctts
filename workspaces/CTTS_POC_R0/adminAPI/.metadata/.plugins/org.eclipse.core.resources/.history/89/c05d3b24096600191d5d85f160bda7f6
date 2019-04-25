@@ -1,0 +1,70 @@
+package gov.wisconsin.admin.data.pojo;
+
+public class T019_T023_Staff_Security_Profile {
+	private String staff_id;
+	private String first_nam;
+	private String last_nam;
+	private String Wi_uniq_user_id;
+	private String prfl_id;
+	private String window_id;
+	private String access_cd;
+	public T019_T023_Staff_Security_Profile() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+	public T019_T023_Staff_Security_Profile(String staff_id, String first_nam,
+			String last_nam, String wi_uniq_user_id, String prfl_id,
+			String window_id, String access_cd) {
+		super();
+		this.staff_id = staff_id;
+		this.first_nam = first_nam;
+		this.last_nam = last_nam;
+		Wi_uniq_user_id = wi_uniq_user_id;
+		this.prfl_id = prfl_id;
+		this.window_id = window_id;
+		this.access_cd = access_cd;
+	}
+	public String getStaff_id() {
+		return staff_id;
+	}
+	public void setStaff_id(String staff_id) {
+		this.staff_id = staff_id;
+	}
+	public String getFirst_nam() {
+		return first_nam;
+	}
+	public void setFirst_nam(String first_nam) {
+		this.first_nam = first_nam;
+	}
+	public String getLast_nam() {
+		return last_nam;
+	}
+	public void setLast_nam(String last_nam) {
+		this.last_nam = last_nam;
+	}
+	public String getWi_uniq_user_id() {
+		return Wi_uniq_user_id;
+	}
+	public void setWi_uniq_user_id(String wi_uniq_user_id) {
+		Wi_uniq_user_id = wi_uniq_user_id;
+	}
+	public String getPrfl_id() {
+		return prfl_id;
+	}
+	public void setPrfl_id(String prfl_id) {
+		this.prfl_id = prfl_id;
+	}
+	public String getWindow_id() {
+		return window_id;
+	}
+	public void setWindow_id(String window_id) {
+		this.window_id = window_id;
+	}
+	public String getAccess_cd() {
+		return access_cd;
+	}
+	public void setAccess_cd(String access_cd) {
+		this.access_cd = access_cd;
+	}
+	
+}

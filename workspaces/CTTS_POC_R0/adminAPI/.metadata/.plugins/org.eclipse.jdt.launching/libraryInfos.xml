@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?><libraryInfos>
+<libraryInfo home="C:\Program Files (x86)\IBM\WebSphere\AppServer\java_1.8_32\jre" version="1.8.0">
+<bootpath>
+<entry path="C:\Program Files (x86)\IBM\WebSphere\AppServer\java_1.8_32\jre\bin\default\jclSC180\vm.jar"/>
+<entry path="C:\Program Files (x86)\IBM\WebSphere\AppServer\java_1.8_32\jre\lib\se-service.jar"/>
+<entry path="C:\Program Files (x86)\IBM\WebSphere\AppServer\java_1.8_32\jre\lib\math.jar"/>
+<entry path="C:\Program Files (x86)\IBM\WebSphere\AppServer\java_1.8_32\jre\lib\ibmorb.jar"/>
+<entry path="C:\Program Files (x86)\IBM\WebSphere\AppServer\java_1.8_32\jre\lib\ibmorbapi.jar"/>
+<entry path="C:\Program Files (x86)\IBM\WebSphere\AppServer\java_1.8_32\jre\lib\ibmcfw.jar"/>
+<entry path="C:\Program Files (x86)\IBM\WebSphere\AppServer\java_1.8_32\jre\lib\ibmpkcs.jar"/>
+<entry path="C:\Program Files (x86)\IBM\WebSphere\AppServer\java_1.8_32\jre\lib\ibmcertpathfw.jar"/>
+<entry path="C:\Program Files (x86)\IBM\WebSphere\AppServer\java_1.8_32\jre\lib\ibmjgssfw.jar"/>
+<entry path="C:\Program Files (x86)\IBM\WebSphere\AppServer\java_1.8_32\jre\lib\ibmjssefw.jar"/>
+<entry path="C:\Program Files (x86)\IBM\WebSphere\AppServer\java_1.8_32\jre\lib\ibmsaslfw.jar"/>
+<entry path="C:\Program Files (x86)\IBM\WebSphere\AppServer\java_1.8_32\jre\lib\ibmjcefw.jar"/>
+<entry path="C:\Program Files (x86)\IBM\WebSphere\AppServer\java_1.8_32\jre\lib\ibmjgssprovider.jar"/>
+<entry path="C:\Program Files (x86)\IBM\WebSphere\AppServer\java_1.8_32\jre\lib\ibmjsseprovider2.jar"/>
+<entry path="C:\Program Files (x86)\IBM\WebSphere\AppServer\java_1.8_32\jre\lib\ibmcertpathprovider.jar"/>
+<entry path="C:\Program Files (x86)\IBM\WebSphere\AppServer\java_1.8_32\jre\lib\xmldsigfw.jar"/>
+<entry path="C:\Program Files (x86)\IBM\WebSphere\AppServer\java_1.8_32\jre\lib\xml.jar"/>
+<entry path="C:\Program Files (x86)\IBM\WebSphere\AppServer\java_1.8_32\jre\lib\charsets.jar"/>
+<entry path="C:\Program Files (x86)\IBM\WebSphere\AppServer\java_1.8_32\jre\lib\resources.jar"/>
+<entry path="C:\Program Files (x86)\IBM\WebSphere\AppServer\java_1.8_32\jre\lib\rt.jar"/>
+<entry path="C:\Program Files (x86)\IBM\WebSphere\AppServer\java_1.8_32\jre\lib\dataaccess.jar"/>
+<entry path="C:\Program Files (x86)\IBM\WebSphere\AppServer\java_1.8_32\jre\lib\ibmgpu.jar"/>
+</bootpath>
+<extensionDirs>
+<entry path="C:\Program Files (x86)\IBM\WebSphere\AppServer\java_1.8_32\jre\lib\ext"/>
+</extensionDirs>
+<endorsedDirs>
+<entry path="C:\Program Files (x86)\IBM\WebSphere\AppServer\java_1.8_32\jre\lib\endorsed"/>
+</endorsedDirs>
+</libraryInfo>
+<libraryInfo home="C:\Program Files (x86)\IBM\SDP\jdk\jre" version="1.8.0">
+<bootpath>
+<entry path="C:\Program Files (x86)\IBM\SDP\jdk\jre\lib\endorsed\jaxws-api.jar"/>
+<entry path="C:\Program Files (x86)\IBM\SDP\jdk\jre\lib\endorsed\jaxb-api.jar"/>
+<entry path="C:\Program Files (x86)\IBM\SDP\jdk\jre\lib\endorsed\javax.j2ee.annotation.jar"/>
+<entry path="C:\Program Files (x86)\IBM\SDP\jdk\jre\bin\default\jclSC180\vm.jar"/>
+<entry path="C:\Program Files (x86)\IBM\SDP\jdk\jre\lib\se-service.jar"/>
+<entry path="C:\Program Files (x86)\IBM\SDP\jdk\jre\lib\math.jar"/>
+<entry path="C:\Program Files (x86)\IBM\SDP\jdk\jre\lib\ibmorb.jar"/>
+<entry path="C:\Program Files (x86)\IBM\SDP\jdk\jre\lib\ibmorbapi.jar"/>
+<entry path="C:\Program Files (x86)\IBM\SDP\jdk\jre\lib\ibmcfw.jar"/>
+<entry path="C:\Program Files (x86)\IBM\SDP\jdk\jre\lib\ibmpkcs.jar"/>
+<entry path="C:\Program Files (x86)\IBM\SDP\jdk\jre\lib\ibmcertpathfw.jar"/>
+<entry path="C:\Program Files (x86)\IBM\SDP\jdk\jre\lib\ibmjgssfw.jar"/>
+<entry path="C:\Program Files (x86)\IBM\SDP\jdk\jre\lib\ibmjssefw.jar"/>
+<entry path="C:\Program Files (x86)\IBM\SDP\jdk\jre\lib\ibmsaslfw.jar"/>
+<entry path="C:\Program Files (x86)\IBM\SDP\jdk\jre\lib\ibmjcefw.jar"/>
+<entry path="C:\Program Files (x86)\IBM\SDP\jdk\jre\lib\ibmjgssprovider.jar"/>
+<entry path="C:\Program Files (x86)\IBM\SDP\jdk\jre\lib\ibmjsseprovider2.jar"/>
+<entry path="C:\Program Files (x86)\IBM\SDP\jdk\jre\lib\ibmcertpathprovider.jar"/>
+<entry path="C:\Program Files (x86)\IBM\SDP\jdk\jre\lib\xmldsigfw.jar"/>
+<entry path="C:\Program Files (x86)\IBM\SDP\jdk\jre\lib\xml.jar"/>
+<entry path="C:\Program Files (x86)\IBM\SDP\jdk\jre\lib\charsets.jar"/>
+<entry path="C:\Program Files (x86)\IBM\SDP\jdk\jre\lib\resources.jar"/>
+<entry path="C:\Program Files (x86)\IBM\SDP\jdk\jre\lib\rt.jar"/>
+<entry path="C:\Program Files (x86)\IBM\SDP\jdk\jre\lib\dataaccess.jar"/>
+<entry path="C:\Program Files (x86)\IBM\SDP\jdk\jre\lib\ibmgpu.jar"/>
+</bootpath>
+<extensionDirs>
+<entry path="C:\Program Files (x86)\IBM\SDP\jdk\jre\lib\ext"/>
+</extensionDirs>
+<endorsedDirs>
+<entry path="C:\Program Files (x86)\IBM\SDP\jdk\jre\lib\endorsed"/>
+</endorsedDirs>
+</libraryInfo>
+<libraryInfo home="C:\Program Files (x86)\IBM\SDP\jdk" version="1.8.0">
+<bootpath>
+<entry path="C:\Program Files (x86)\IBM\SDP\jdk\jre\lib\endorsed\jaxws-api.jar"/>
+<entry path="C:\Program Files (x86)\IBM\SDP\jdk\jre\lib\endorsed\jaxb-api.jar"/>
+<entry path="C:\Program Files (x86)\IBM\SDP\jdk\jre\lib\endorsed\javax.j2ee.annotation.jar"/>
+<entry path="C:\Program Files (x86)\IBM\SDP\jdk\jre\bin\default\jclSC180\vm.jar"/>
+<entry path="C:\Program Files (x86)\IBM\SDP\jdk\jre\lib\se-service.jar"/>
+<entry path="C:\Program Files (x86)\IBM\SDP\jdk\jre\lib\math.jar"/>
+<entry path="C:\Program Files (x86)\IBM\SDP\jdk\jre\lib\ibmorb.jar"/>
+<entry path="C:\Program Files (x86)\IBM\SDP\jdk\jre\lib\ibmorbapi.jar"/>
+<entry path="C:\Program Files (x86)\IBM\SDP\jdk\jre\lib\ibmcfw.jar"/>
+<entry path="C:\Program Files (x86)\IBM\SDP\jdk\jre\lib\ibmpkcs.jar"/>
+<entry path="C:\Program Files (x86)\IBM\SDP\jdk\jre\lib\ibmcertpathfw.jar"/>
+<entry path="C:\Program Files (x86)\IBM\SDP\jdk\jre\lib\ibmjgssfw.jar"/>
+<entry path="C:\Program Files (x86)\IBM\SDP\jdk\jre\lib\ibmjssefw.jar"/>
+<entry path="C:\Program Files (x86)\IBM\SDP\jdk\jre\lib\ibmsaslfw.jar"/>
+<entry path="C:\Program Files (x86)\IBM\SDP\jdk\jre\lib\ibmjcefw.jar"/>
+<entry path="C:\Program Files (x86)\IBM\SDP\jdk\jre\lib\ibmjgssprovider.jar"/>
+<entry path="C:\Program Files (x86)\IBM\SDP\jdk\jre\lib\ibmjsseprovider2.jar"/>
+<entry path="C:\Program Files (x86)\IBM\SDP\jdk\jre\lib\ibmcertpathprovider.jar"/>
+<entry path="C:\Program Files (x86)\IBM\SDP\jdk\jre\lib\xmldsigfw.jar"/>
+<entry path="C:\Program Files (x86)\IBM\SDP\jdk\jre\lib\xml.jar"/>
+<entry path="C:\Program Files (x86)\IBM\SDP\jdk\jre\lib\charsets.jar"/>
+<entry path="C:\Program Files (x86)\IBM\SDP\jdk\jre\lib\resources.jar"/>
+<entry path="C:\Program Files (x86)\IBM\SDP\jdk\jre\lib\rt.jar"/>
+<entry path="C:\Program Files (x86)\IBM\SDP\jdk\jre\lib\dataaccess.jar"/>
+<entry path="C:\Program Files (x86)\IBM\SDP\jdk\jre\lib\ibmgpu.jar"/>
+</bootpath>
+<extensionDirs>
+<entry path="C:\Program Files (x86)\IBM\SDP\jdk\jre\lib\ext"/>
+</extensionDirs>
+<endorsedDirs>
+<entry path="C:\Program Files (x86)\IBM\SDP\jdk\jre\lib\endorsed"/>
+</endorsedDirs>
+</libraryInfo>
+</libraryInfos>

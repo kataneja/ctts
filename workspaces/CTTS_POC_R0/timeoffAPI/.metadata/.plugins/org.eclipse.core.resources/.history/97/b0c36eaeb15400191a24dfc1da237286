@@ -1,0 +1,10 @@
+package gov.wisconsin.timeoff.data.dao;
+
+import gov.wisconsin.framework.data.FwDAO;
+import gov.wisconsin.timeoff.data.pojo.T035_HolidayTime_Cargo;
+import gov.wisconsin.timeoff.data.pojo.T035_HolidayTime_PK;
+
+import org.springframework.stereotype.Repository;
+
+@Repository
+public interface T035_HolidayTime_DAO extends JpaRepository<T035_HolidayTime_Cargo, T035_HolidayTime_PK>, FwDAO {}

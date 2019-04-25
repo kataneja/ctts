@@ -1,0 +1,8 @@
+package gov.wisconsin.timeoff.transport.helper;
+
+public class TimesheetSummaryData {
+	private String status = "";
+	private String lastDayOff = "";
+	private String firstDayOff = "";
+	private int numberOfWorkingDays = 0;
+}

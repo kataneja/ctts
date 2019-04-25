@@ -1,0 +1,274 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://com.wisconsinhealthcare.www/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" targetNamespace="http://com.wisconsinhealthcare.www/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://com.wisconsinhealthcare.www/">
+      <s:element name="ValidateUser">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="userRequest" type="tns:UserAuthenticationRequest" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="UserAuthenticationRequest">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="SSN" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="DOB" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="MemberID" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="ValidateUserResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ValidateUserResult" type="tns:UserAuthenticationResponse" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="UserAuthenticationResponse">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="ErrorResults" type="tns:ArrayOfErrorResult" />
+          <s:element minOccurs="0" maxOccurs="1" name="MCIID" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfErrorResult">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="ErrorResult" nillable="true" type="tns:ErrorResult" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ErrorResult">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="ErrorCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ErrorMessage" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetEligibility">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="eligibilityRequestList" type="tns:ArrayOfEligibilityInformationRequest" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfEligibilityInformationRequest">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="EligibilityInformationRequest" nillable="true" type="tns:EligibilityInformationRequest" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="EligibilityInformationRequest">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="MCIID" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetEligibilityResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetEligibilityResult" type="tns:ArrayOfEligibilityInformationResponse" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfEligibilityInformationResponse">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="EligibilityInformationResponse" nillable="true" type="tns:EligibilityInformationResponse" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="EligibilityInformationResponse">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="MCIID" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="DateOfBirth" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="DateOfDeath" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="FirstName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="LastName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="MiddleInitial" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Gender" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="SuffixName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="AddressType" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="StreetAddressLine1" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="StreetAddressLine2" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="StreetAddressLine3" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="City" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="State" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ZipCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ZipCode4" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PhoneNumber" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="AccessInd" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="RemainingSpenddown" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="RemainingDeductible" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ErrorResults" type="tns:ArrayOfErrorResult" />
+          <s:element minOccurs="0" maxOccurs="1" name="EligibilitySegmentList" type="tns:ArrayOfEligibilityInformationSegment" />
+          <s:element minOccurs="0" maxOccurs="1" name="EligibilityManagedCareList" type="tns:ArrayOfEligibilityInformationManagedCare" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfEligibilityInformationSegment">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="EligibilityInformationSegment" nillable="true" type="tns:EligibilityInformationSegment" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="EligibilityInformationSegment">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="MCIID" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CategoryCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="SubCategoryCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="EffectiveDate" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="EndDate" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfEligibilityInformationManagedCare">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="EligibilityInformationManagedCare" nillable="true" type="tns:EligibilityInformationManagedCare" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="EligibilityInformationManagedCare">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="MCIID" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ManagedCareName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PhoneNumber" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="EffectiveDate" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="EndDate" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="RequestReplacementIdCard">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="idCardRequest" type="tns:ReplacementIdCardRequest" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ReplacementIdCardRequest">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="MCIID" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ReasonCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CardType" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="RequestReplacementIdCardResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="RequestReplacementIdCardResult" type="tns:ReplacementIdCardResponse" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ReplacementIdCardResponse">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="ErrorResults" type="tns:ArrayOfErrorResult" />
+          <s:element minOccurs="0" maxOccurs="1" name="MCIID" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="RequestExplainationOfBenefits">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="eobRequest" type="tns:ExplainationOfBenefitsRequest" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ExplainationOfBenefitsRequest">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="MCIID" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PeriodStartDate" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PeriodEndDate" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="RequestExplainationOfBenefitsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="RequestExplainationOfBenefitsResult" type="tns:ExplainationOfBenefitsResponse" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ExplainationOfBenefitsResponse">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="ErrorResults" type="tns:ArrayOfErrorResult" />
+          <s:element minOccurs="0" maxOccurs="1" name="MCIID" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="ValidateUserSoapIn">
+    <wsdl:part name="parameters" element="tns:ValidateUser" />
+  </wsdl:message>
+  <wsdl:message name="ValidateUserSoapOut">
+    <wsdl:part name="parameters" element="tns:ValidateUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetEligibilitySoapIn">
+    <wsdl:part name="parameters" element="tns:GetEligibility" />
+  </wsdl:message>
+  <wsdl:message name="GetEligibilitySoapOut">
+    <wsdl:part name="parameters" element="tns:GetEligibilityResponse" />
+  </wsdl:message>
+  <wsdl:message name="RequestReplacementIdCardSoapIn">
+    <wsdl:part name="parameters" element="tns:RequestReplacementIdCard" />
+  </wsdl:message>
+  <wsdl:message name="RequestReplacementIdCardSoapOut">
+    <wsdl:part name="parameters" element="tns:RequestReplacementIdCardResponse" />
+  </wsdl:message>
+  <wsdl:message name="RequestExplainationOfBenefitsSoapIn">
+    <wsdl:part name="parameters" element="tns:RequestExplainationOfBenefits" />
+  </wsdl:message>
+  <wsdl:message name="RequestExplainationOfBenefitsSoapOut">
+    <wsdl:part name="parameters" element="tns:RequestExplainationOfBenefitsResponse" />
+  </wsdl:message>
+  <wsdl:portType name="RecipientTransferSoap">
+    <wsdl:operation name="ValidateUser">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Validate the user is allowed to return interchange data to ACCESS.</wsdl:documentation>
+      <wsdl:input message="tns:ValidateUserSoapIn" />
+      <wsdl:output message="tns:ValidateUserSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetEligibility">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Retrieve eligibility information for one or more MCI ID recipients.</wsdl:documentation>
+      <wsdl:input message="tns:GetEligibilitySoapIn" />
+      <wsdl:output message="tns:GetEligibilitySoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="RequestReplacementIdCard">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Allow the user to request a replacement card.</wsdl:documentation>
+      <wsdl:input message="tns:RequestReplacementIdCardSoapIn" />
+      <wsdl:output message="tns:RequestReplacementIdCardSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="RequestExplainationOfBenefits">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Allow the user to request a recipient explaination of benefits.</wsdl:documentation>
+      <wsdl:input message="tns:RequestExplainationOfBenefitsSoapIn" />
+      <wsdl:output message="tns:RequestExplainationOfBenefitsSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="RecipientTransferSoap" type="tns:RecipientTransferSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="ValidateUser">
+      <soap:operation soapAction="http://com.wisconsinhealthcare.www/ValidateUser" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetEligibility">
+      <soap:operation soapAction="http://com.wisconsinhealthcare.www/GetEligibility" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RequestReplacementIdCard">
+      <soap:operation soapAction="http://com.wisconsinhealthcare.www/RequestReplacementIdCard" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RequestExplainationOfBenefits">
+      <soap:operation soapAction="http://com.wisconsinhealthcare.www/RequestExplainationOfBenefits" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+ 
+  <wsdl:service name="RecipientTransfer">
+    <wsdl:port name="RecipientTransferSoap" binding="tns:RecipientTransferSoap">
+      <soap:address location="http://www.forwardhealth.wi.gov/testaccess/test_ws/recipientTransfer.asmx" />
+    </wsdl:port>
+     </wsdl:service>
+</wsdl:definitions>

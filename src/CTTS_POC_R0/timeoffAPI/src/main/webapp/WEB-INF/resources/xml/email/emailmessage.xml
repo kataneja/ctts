@@ -1,0 +1,37 @@
+<EMAILS>
+	<EMAIL ID="SEND_EXCEPTION_MAIL">
+		<SUBJECT>Exception in Online-Batch Scheduler</SUBJECT>
+		<BODY>
+			<![CDATA[The following is a list of steps and their corresponding status that are performed on a nightly basis in ACCESS online application]]>
+			<![CDATA[This email will be sent only in an event when one or more steps fails:]]>
+			<![CDATA[]]>
+			<![CDATA[Chron Job Name : ~ ]]>
+			<![CDATA[]]>
+			<![CDATA[Status : Failed]]>
+			<![CDATA[]]>
+			<![CDATA[]]>
+			<![CDATA[Exception Id : ~]]>
+			<![CDATA[]]>
+			<![CDATA[]]>
+			<![CDATA[Exception Stack Trace : ~]]>
+		</BODY>
+		<HEADER></HEADER>
+		<FOOTER>Thank you</FOOTER>
+	</EMAIL>
+	
+	<EMAIL ID="TEST_EMAIL_MESSAGE">
+		<SUBJECT>Test Subject - <![CDATA[~]]></SUBJECT>
+		<BODY>
+		
+		<![CDATA[First Line Of Body]]>
+		
+		<![CDATA[First Body Substitution --> ]]><![CDATA[~]]>
+		
+		<![CDATA[Second Body Substitution --> ]]><![CDATA[~]]>
+		
+		</BODY>
+		<HEADER><![CDATA[**This e-mail is automatically generated. Please do not reply to this e-mail.**]]></HEADER>
+		<FOOTER><![CDATA[**This e-mail is automatically generated. Please do not reply to this e-mail.**]]></FOOTER>
+	</EMAIL>
+</EMAILS>
+

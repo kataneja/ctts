@@ -1,0 +1,29 @@
+package gov.wisconsin.timesheet.transport.request;
+
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.AllArgsConstructor;
+
+import gov.wisconsin.framework.transport.FwRequest;
+
+@Data @NoArgsConstructor @AllArgsConstructor
+public class TestRequest extends FwRequest {
+	private int num;
+	private String name;
+	
+	public int getNum() {
+		return num;
+	}
+	
+	public void setNum(int num) {
+		this.num = num;
+	}
+	
+	public String getName() {
+		return name;
+	}
+	
+	public void setName(String name) {
+		this.name = name;
+	}
+}

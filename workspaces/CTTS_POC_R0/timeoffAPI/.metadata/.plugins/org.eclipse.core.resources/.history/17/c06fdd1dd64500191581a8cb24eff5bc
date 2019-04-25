@@ -1,0 +1,39 @@
+package gov.wisconsin.framework.impl;
+
+import gov.wisconsin.framework.exception.FwExceptionManager;
+import gov.wisconsin.framework.management.FwConfigurationManager;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.springframework.web.servlet.HandlerMapping;
+import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
+
+public class FwRequestInterceptor extends HandlerInterceptorAdapter {
+
+    @Override
+    public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
+    	String requestURL = request.getRequestURL().toString();
+    	
+    	/**
+    	 * 	If the request is not for swagger or the spring error page we need to check if it is a URL we are aware of 
+    	 * 	and block the request if we aren't aware of it
+    	 */
+    	if (!requestURL.contains("swagger") && !requestURL.contains("v2/api-docs") && !requestURL.contains("error")) {
+    		Object urlTemplateAttribute = request.getAttribute(HandlerMapping.BEST_MATCHING_PATTERN_ATTRIBUTE);
+	    	String urlTemplateAttributeString = ((String) urlTemplateAttribute).substring(1);
+	    	
+	    	if (FwConfigurationManager.getInstance().getCodeForURL(urlTemplateAttributeString) == null) {
+	    		FwExceptionManager.handleException(this.getClass(), new Exception("No URL mapping found in url.properties for " + urlTemplateAttributeString));
+	    	}
+    	}
+    	
+    	return super.preHandle(request, response, handler);
+    }
+
+    @Override
+    public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception {
+        super.postHandle(request, response, handler, modelAndView);
+    }
+}

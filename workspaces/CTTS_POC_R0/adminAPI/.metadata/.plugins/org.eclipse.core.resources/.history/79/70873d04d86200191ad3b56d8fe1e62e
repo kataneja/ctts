@@ -1,0 +1,9 @@
+package gov.wisconsin.admin.business;
+
+public class StaffBO {
+
+	public StaffBO() {
+		// TODO Auto-generated constructor stub
+	}
+
+}

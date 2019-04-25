@@ -1,0 +1,49 @@
+package gov.wisconsin.timeoff.controller;
+
+import gov.wisconsin.framework.base.FwAbstractController;
+import gov.wisconsin.framework.constant.FwConstants;
+
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+@RequestMapping(FwConstants.EMPTY_STRING)
+public class TimeoffController extends FwAbstractController {
+
+	private @Autowired T035_HolidayTime_DAO holidayTimeDAO;
+	
+	//CSM:
+	//For use on the home page to get a summary of a user's timesheets
+	//Need to determine how to find timesheets for a particular user - by username, WID, etc...
+	//Need to determine which tables hold which information
+	@GetMapping(value = "/summary", produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<TimeoffSummaryResponse> getTimesheetSummary(HttpServletRequest httpRequest, HttpSession httpSession) {
+		TimeoffSummaryResponse apiResponse = new TimeoffSummaryResponse();
+		List<TimesheetSummaryData> resultList = new ArrayList<TimesheetSummaryData>();			
+		
+		try {
+			String loggedInUser = getAuthenticatedUser(httpRequest);
+			System.out.println(loggedInUser);
+			apiResponse.setStatus(false);
+			
+			List<T052_Timesheet_Cargo> timesheetRecords = timesheetDAO.findAll();
+			
+			for (T052_Timesheet_Cargo cargo : timesheetRecords) {
+				TimesheetSummaryData data = new TimesheetSummaryData();
+				data.setStatus("someStatus");
+				data.setTotalBillableHours(35);
+				data.setTotalNonBillableHours(5);
+				data.setTotalOverallHours(cargo.getActual_hours());
+				data.setWeekNumber("44");
+				resultList.add(data);
+			}
+			
+			apiResponse.setResultList(resultList);
+			apiResponse.setStatus(true);
+		} catch(FwException fe) {
+			throw new FwWrappedException(this.getClass(), fe, httpRequest);
+		}
+		
+		return ResponseEntity.status(200).body(apiResponse);
+	}
+}

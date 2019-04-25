@@ -1,0 +1,13 @@
+package gov.wisconsin.admin.pojo.response;
+
+public class GetAllCategoryResponse {
+	private String message;
+
+	public String getMessage() {
+		return message;
+	}
+
+	public void setMessage(String message) {
+		this.message = message;
+	}
+}

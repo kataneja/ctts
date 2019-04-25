@@ -1,0 +1,105 @@
+XXXXX = fw
+YYYYY = testing
+
+#
+#	Middleware Controller
+#
+MWHME = **
+
+#
+#	Accounts Controller
+#
+ACDSH = accounts/userId
+ACBCM = accounts/broadcasts
+ACTKN = accounts/deviceToken
+ACSQS = accounts/userId/secretQuestions
+ACVCL = accounts/userId/verificationChecklist
+
+
+#
+#	Unauthenticated Controller
+#
+PBACT = public/accounts
+PBPWD = public/password
+PBCCS = public/caseSearch
+PBNMS = public/broadcasts
+PBAUS = public/upgradeSwitch
+PBACS = public/accountSearch
+PBASU = public/accountSearch/userID
+PBASE = public/accountSearch/emailAddress
+PBXXX = public/temp
+
+
+#
+#	Documents Controller
+#
+DCDFT = documents
+DCNDL = documents/userId
+DCOTH = documents/otherDocuments
+DCSCN = documents/{docID}/pages
+DCVPD = documents/{docID}/viewPdf
+
+
+#
+#	Documents Batch Controller
+#
+DBSEL = docBatches
+DBSUB = docBatches/{batNum}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#
+#	Non-exposed, debugging, testing, utility, etc... URLs
+#
+
+#	Middleware Controller
+#MWTST = test
+
+#	Framework Controller
+#FWTST = fw/test
+#FWFLE = fw/file
+#FWTME = fw/time
+#FWSMP = fw/sample
+#FWEXP = fw/exception
+#FWVAL = fw/validation
+#FWAUT = fw/authorization
+#FWRCD = fw/response-code
+#FWAEX = fw/getMyAccessExample
+#FWRTN = fw/refreshRefTableByName
+
+#	Accounts Controller
+#ACTST = accounts/test
+#ACCSE = accounts/userId/cases
+#ACPWD = accounts/userId/passwords
+#ACLCK = accounts/userId/lockStatus
+
+#	Cases Controller
+#CSTST = cases/test
+#CSBNF = cases/{caseNum}/benefits
+#CSBFT = cases/{caseNum}/benefits/{benefitType}
+
+#	Unauthenticated Controller
+#PBTST = public/test
+#PBSQS = public/secretQuestions
+
+#	Documents Controller
+#DCTST = documents/test
+#DCCOM = documents/{docID}/comments
+
+#	Documents Batch Controller
+#DBTST = docBatches/test
+#DBPOD = docBatches/documents

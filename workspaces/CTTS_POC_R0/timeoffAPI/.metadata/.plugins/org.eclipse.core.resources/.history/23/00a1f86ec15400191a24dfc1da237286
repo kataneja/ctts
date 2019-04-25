@@ -1,0 +1,12 @@
+package gov.wisconsin.timeoff.transport.request;
+
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.AllArgsConstructor;
+
+import gov.wisconsin.framework.transport.FwRequest;
+
+@Data @NoArgsConstructor @AllArgsConstructor
+public class TestRequest extends FwRequest {
+
+}

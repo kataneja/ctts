@@ -1,0 +1,58 @@
+package gov.wisconsin.admin.data.pojo;
+
+import java.sql.Date;
+
+import lombok.Data;
+
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.Entity;
+import javax.persistence.Embedded;
+
+import gov.wisconsin.framework.data.FwCargo;
+
+@Entity @Data
+@Table(name = "T019_Staff_Profile")
+public class T019_Staff_Profile_Cargo implements FwCargo {
+
+	@Id
+	@Embedded
+	private T019_Staff_Profile_PK PK;
+	
+	private String first_nam;
+	private String last_nam;
+	private String position_cd;
+	private String bus_org_cd;
+	private String bus_ph_no;
+	private String home_ph_no;
+	private String st_num_adr;
+	private String st_name_adr;
+	private String apt_adr;
+	private String unit_adr;
+	private String direction_adr;
+	private String quadrant_adr;
+	private String suffix_adr;
+	private String line_2_adr;
+	private String city_adr;
+	private String state_adr;
+	private String zip_cd_adr;
+	private String company_cd;
+	private String password;
+	private String line_1_adr;
+	private String wi_uniq_user_id;
+
+	private Date dob_dt;
+	private Date begin_dt;
+	private Date end_dt;
+	
+	private long bus_ext_num;
+
+	private Character delete_flag;
+	private Character devp_region_ind;
+	private Character accp_region_ind;
+	private Character prod_region_ind;
+	private Character timesheet_reqd_ind;
+	
+	public T019_Staff_Profile_Cargo() {}
+
+}

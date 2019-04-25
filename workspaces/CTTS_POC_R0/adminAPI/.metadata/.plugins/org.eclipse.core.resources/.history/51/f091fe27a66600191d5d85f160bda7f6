@@ -1,0 +1,73 @@
+package gov.wisconsin.admin.business;
+
+
+
+import java.util.Iterator;
+import java.util.List;
+import java.util.ListIterator;
+
+import gov.wisconsin.admin.data.dao.T019_Staff_Profile_DAO;
+import gov.wisconsin.admin.data.pojo.T019_Staff_Profile_Cargo;
+import gov.wisconsin.admin.data.pojo.T019_T023_Staff_Security_Profile_Cargo;
+import gov.wisconsin.framework.base.FwAbstractBO;
+import gov.wisconsin.framework.constant.FwConstants;
+import gov.wisconsin.framework.exception.FwExceptionManager;
+
+import org.springframework.stereotype.Component;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
+
+@Component
+@Scope(value = FwConstants.PROTOTYPE_SCOPE)
+public class StaffBO  extends FwAbstractBO{
+	
+	private @Autowired T019_Staff_Profile_DAO staffProfileDAO;
+	
+	public StaffBO(){
+		// TODO Auto-generated constructor stub
+	}
+
+	public List<T019_T023_Staff_Security_Profile_Cargo> getStaffProfileList(String wid){
+		try{
+			List<T019_T023_Staff_Security_Profile_Cargo> securityProfileList= null;
+			T019_T023_Staff_Security_Profile_Cargo securityProfileCargo = null;
+			List<T019_T023_Staff_Security_Profile_Cargo> securityProfileResultList=staffProfileDAO.findByWid(wid);
+			Iterator<T019_T023_Staff_Security_Profile_Cargo> it = securityProfileResultList.iterator();
+			it.next();
+			securityProfileCargo = new T019_T023_Staff_Security_Profile_Cargo();
+			while(it.hasNext()){
+				T019_T023_Staff_Security_Profile_Cargo securityProfileCargoResult =(T019_T023_Staff_Security_Profile_Cargo)it.next();
+				securityProfileCargo.setPrfl_id(securityProfileCargoResult.getPrfl_id());
+				if(securityProfileCargoResult.getWindow_id()!=null && securityProfileCargoResult.getWindow_id().trim().equals("Admin")){
+					 securityProfileCargo.setShowAdminPanel(true);
+				}
+				if(securityProfileCargoResult.getWindow_id()!=null && securityProfileCargoResult.getWindow_id().trim().equals("UserManagement")){
+					 securityProfileCargo.setShowUserManagement(true);
+				}
+				if(securityProfileCargoResult.getWindow_id()!=null && securityProfileCargoResult.getWindow_id().trim().equals("Dashboard")){
+					 securityProfileCargo.setShowDasboard(true);
+				}
+				if(securityProfileCargoResult.getWindow_id()!=null && securityProfileCargoResult.getWindow_id().trim().equals("SubmitTimesheet")){
+					 securityProfileCargo.setShowSubmitTimesheet(true);
+				}
+				if(securityProfileCargoResult.getWindow_id()!=null && securityProfileCargoResult.getWindow_id().trim().equals("ApproveTimesheet")){
+					 securityProfileCargo.setShowApproveTimesheet(true);
+				}
+				if(securityProfileCargoResult.getWindow_id()!=null && securityProfileCargoResult.getWindow_id().trim().equals("SubmitTimeoff")){
+					 securityProfileCargo.setShowSubmitTimeoff(true);
+				}
+				if(securityProfileCargoResult.getWindow_id()!=null && securityProfileCargoResult.getWindow_id().trim().equals("Reports")){
+					 securityProfileCargo.setShowReports(true);
+				}
+			}
+			securityProfileList.add(securityProfileCargo);
+			System.out.println("Security Profile List++++++++++++++++++++++++++++++++");
+			System.out.println(securityProfileList.get(0));
+			return securityProfileList;
+		}
+		catch(Exception e){
+			FwExceptionManager.handleException(this.getClass(),e);
+		}
+		return null;
+	}
+}

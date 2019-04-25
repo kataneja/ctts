@@ -1,0 +1,63 @@
+root.level                  = INFO
+apiLogger.level             = TRACE
+serviceLogger.level         = TRACE
+securityLogger.level        = TRACE
+middlewareLogger.level      = TRACE
+mwActivityLogger.level      = TRACE
+apiActivityLogger.level     = TRACE
+mwExceptionLogger.level     = TRACE
+apiExceptionLogger.level    = TRACE
+batchExceptionLogger.level  = TRACE
+accountTransferLogger.level = TRACE
+
+consoleAppender.pattern = %-5p : %d{yyyy-MM-dd HH.mm.ss} : %m%n
+
+apiAppender.fileName   = api
+apiAppender.folder     = C:/mobile/workspaces/ACCESSMOBILE_CCDPG_R3/logs/api/
+apiAppender.maxHistory = 30
+apiAppender.pattern    = %d{yyyy-MM-dd HH.mm.ss} : %m%n
+
+middlewareAppender.fileName   = middleware
+middlewareAppender.folder     = C:/mobile/workspaces/ACCESSMOBILE_CCDPG_R3/logs/mw/
+middlewareAppender.maxHistory = 30
+middlewareAppender.pattern    = %d{yyyy-MM-dd HH.mm.ss} : %m%n
+
+apiExceptionAppender.fileName   = apiException
+apiExceptionAppender.folder     = C:/mobile/workspaces/ACCESSMOBILE_CCDPG_R3/logs/api/
+apiExceptionAppender.maxHistory = 30
+apiExceptionAppender.pattern    = %d{yyyy-MM-dd HH.mm.ss} : %m%n
+
+mwExceptionAppender.fileName   = mwException
+mwExceptionAppender.folder     = C:/mobile/workspaces/ACCESSMOBILE_CCDPG_R3/logs/mw/
+mwExceptionAppender.maxHistory = 30
+mwExceptionAppender.pattern    = %d{yyyy-MM-dd HH.mm.ss} : %m%n
+
+serviceAppender.fileName   = service
+serviceAppender.folder     = C:/mobile/workspaces/ACCESSMOBILE_CCDPG_R3/logs/
+serviceAppender.maxHistory = 30
+serviceAppender.pattern    = %d{yyyy-MM-dd HH.mm.ss} : %m%n
+
+securityAppender.fileName   = security
+securityAppender.folder     = C:/mobile/workspaces/ACCESSMOBILE_CCDPG_R3/logs/
+securityAppender.maxHistory = 30
+securityAppender.pattern    = %d{yyyy-MM-dd HH.mm.ss} : %m%n
+
+mwActivityAppender.fileName   = mwActivity
+mwActivityAppender.folder     = C:/mobile/workspaces/ACCESSMOBILE_CCDPG_R3/logs/mw/
+mwActivityAppender.maxHistory = 30
+mwActivityAppender.pattern    = %d{yyyy-MM-dd HH.mm.ss} : %m%n
+
+apiActivityAppender.fileName   = apiActivity
+apiActivityAppender.folder     = C:/mobile/workspaces/ACCESSMOBILE_CCDPG_R3/logs/api/
+apiActivityAppender.maxHistory = 30
+apiActivityAppender.pattern    = %d{yyyy-MM-dd HH.mm.ss} : %m%n
+
+batchExceptionAppender.fileName   = batchException
+batchExceptionAppender.folder     = C:/mobile/workspaces/ACCESSMOBILE_CCDPG_R3/logs/
+batchExceptionAppender.maxHistory = 30
+batchExceptionAppender.pattern    = %d{yyyy-MM-dd HH.mm.ss} : %m%n
+
+accountTransferAppender.fileName   = accountTransfer
+accountTransferAppender.folder     = C:/mobile/workspaces/ACCESSMOBILE_CCDPG_R3/logs/
+accountTransferAppender.maxHistory = 30
+accountTransferAppender.pattern    = %d{yyyy-MM-dd HH.mm.ss} : %m%n

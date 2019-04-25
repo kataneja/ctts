@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Implementation-Title: adminAPI
+Implementation-Version: 1.0
+Built-By: mckelcx
+Implementation-Vendor-Id: ctts
+Build-Jdk: 1.8.0
+Implementation-URL: http://projects.spring.io/spring-boot/adminAPI/
+Created-By: Maven Integration for Eclipse
+Implementation-Vendor: Pivotal Software, Inc.
+

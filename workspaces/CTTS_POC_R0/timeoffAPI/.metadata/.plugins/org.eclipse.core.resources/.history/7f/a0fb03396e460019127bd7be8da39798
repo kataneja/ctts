@@ -1,0 +1,19 @@
+package gov.wisconsin.admin.scheduled;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+import org.springframework.scheduling.annotation.Scheduled;
+import org.springframework.stereotype.Component;
+
+@Component
+public class ScheduledTasks {
+
+	@Scheduled(fixedRate = 60000)
+	public void scheduleFixedDelayTask() {
+		DateFormat formatter = new SimpleDateFormat("HH:mm:ss");
+		formatter.setTimeZone(TimeZone.getTimeZone("CST"));
+		System.out.println("Admin API Scheduled Task - " + formatter.format(new Date(System.currentTimeMillis() / 1000)));
+	}
+	
+}

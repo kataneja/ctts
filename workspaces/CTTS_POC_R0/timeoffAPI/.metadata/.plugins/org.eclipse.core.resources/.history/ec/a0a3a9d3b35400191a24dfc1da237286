@@ -1,0 +1,65 @@
+package gov.wisconsin.timeoff.controller;
+
+import gov.wisconsin.framework.base.FwAbstractController;
+import gov.wisconsin.framework.constant.FwConstants;
+import gov.wisconsin.framework.exception.FwException;
+import gov.wisconsin.framework.exception.FwWrappedException;
+import gov.wisconsin.timeoff.data.dao.T035_HolidayTime_DAO;
+import gov.wisconsin.timeoff.data.pojo.T035_HolidayTime_Cargo;
+import gov.wisconsin.timeoff.transport.helper.TimeoffSummaryData;
+import gov.wisconsin.timeoff.transport.response.TimeoffSummaryResponse;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+@RequestMapping(FwConstants.EMPTY_STRING)
+public class TimeoffController extends FwAbstractController {
+
+	private @Autowired T035_HolidayTime_DAO holidayTimeDAO;
+	
+	//CSM:
+	//For use on the home page to get a summary of a user's timesheets
+	//Need to determine how to find timesheets for a particular user - by username, WID, etc...
+	//Need to determine which tables hold which information
+	@GetMapping(value = "/summary", produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<TimeoffSummaryResponse> getTimesheetSummary(HttpServletRequest httpRequest, HttpSession httpSession) {
+		TimeoffSummaryResponse apiResponse = new TimeoffSummaryResponse();
+		List<TimeoffSummaryData> resultList = new ArrayList<TimeoffSummaryData>();			
+		
+		try {
+			String loggedInUser = getAuthenticatedUser(httpRequest);
+			System.out.println(loggedInUser);
+			apiResponse.setStatus(false);
+			
+			List<T035_HolidayTime_Cargo> timeoffRecords = holidayTimeDAO.findAll();
+			
+			for (T035_HolidayTime_Cargo cargo : timeoffRecords) {
+				TimeoffSummaryData data = new TimeoffSummaryData();
+				data.setStatus("someStatus");
+				data.setFirstDayOff("01/01/2019");
+				data.setLastDayOff("01/05/2019");
+				data.setNumberOfWorkingDays(5);
+				cargo.getHoliday_hr();
+				resultList.add(data);
+			}
+			
+			apiResponse.setResultList(resultList);
+			apiResponse.setStatus(true);
+		} catch(FwException fe) {
+			throw new FwWrappedException(this.getClass(), fe, httpRequest);
+		}
+		
+		return ResponseEntity.status(200).body(apiResponse);
+	}
+}

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE xml>
+<configuration>
+
+	<property resource="application-log.properties" />
+
+	<appender name="consoleAppender" class="ch.qos.logback.core.ConsoleAppender">
+		<encoder>
+			<Pattern>${consoleAppender.pattern}</Pattern>
+		</encoder>
+	</appender>
+
+	<appender name="apiAppender" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+   			<FileNamePattern>${apiAppender.folder}${apiAppender.fileName}_%d{yyyy-MM-dd}.log</FileNamePattern>
+   			<maxHistory>${apiAppender.maxHistory}</maxHistory>
+   		</rollingPolicy>
+   		<encoder>
+   			<Pattern>${apiAppender.pattern}</Pattern>
+   		</encoder>
+	</appender>
+	
+	<appender name="exceptionAppender" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+   			<FileNamePattern>${exceptionAppender.folder}${exceptionAppender.fileName}_%d{yyyy-MM-dd}.log</FileNamePattern>
+   			<maxHistory>${exceptionAppender.maxHistory}</maxHistory>
+   		</rollingPolicy>
+   		<encoder>
+   			<Pattern>${exceptionAppender.pattern}</Pattern>
+   		</encoder>
+	</appender>
+	
+	<appender name="activityAppender" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+   			<FileNamePattern>${activityAppender.folder}${activityAppender.fileName}_%d{yyyy-MM-dd}.log</FileNamePattern>
+   			<maxHistory>${activityAppender.maxHistory}</maxHistory>
+   		</rollingPolicy>
+   		<encoder>
+   			<Pattern>${activityAppender.pattern}</Pattern>
+   		</encoder>
+	</appender>
+
+   	<logger name="apiLogger" level="${apiLogger.level}" additivity="false">
+   		<appender-ref ref="apiAppender" />
+   		<appender-ref ref="consoleAppender" />
+   	</logger>
+   	
+   	<logger name="exceptionLogger" level="${exceptionLogger.level}" additivity="false">
+   		<appender-ref ref="exceptionAppender" />
+   		<appender-ref ref="consoleAppender" />
+   	</logger>
+   	
+	<logger name="activityLogger" level="${activityLogger.level}" additivity="false">
+   		<appender-ref ref="activityAppender" />
+   		<appender-ref ref="consoleAppender" />
+   	</logger>
+
+   	<root level="${root.level}" additivity="false">
+   		<appender-ref ref="consoleAppender" />
+   	</root>
+</configuration>

@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsl:stylesheet exclude-result-prefixes="xsl" version="1.0" xmlns:lxslt="http://xml.apache.org/xslt" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+    <xsl:output indent="yes" method="xml"/>
+    <xsl:strip-space elements="*"/>
+    <xsl:param name="SOURCE_FILENAME"/>
+    <xsl:template match="/REFRESHRESULTSET">
+        <REFRESHRESULTSET>
+            <ACCESS_PIN>
+                <xsl:value-of select="ACCESS_PIN"/>
+            </ACCESS_PIN>
+            <INDIVIDUAL_DEMOGRAPHICS>
+              <xsl:for-each select="INDIVIDUAL_DEMOGRAPHICS/INDIVIDUAL_DEMOGRAPHIC">
+              <xsl:sort order="ascending" select="PIN_NUM"/>
+                <INDIVIDUAL_DEMOGRAPHIC>
+                    <PIN_NUM>
+                        <xsl:value-of select="PIN_NUM"/>
+                    </PIN_NUM>
+                    <SUFFIX_NAM>
+                        <xsl:value-of select="SUFFIX_NAM"/>
+                    </SUFFIX_NAM>                    
+                    <FIRST_NAM>
+                        <xsl:value-of select="FIRST_NAM"/>
+                    </FIRST_NAM>                    
+                    <LAST_NAM>
+                        <xsl:value-of select="LAST_NAM"/>
+                    </LAST_NAM>
+                    <MIDDLE_INITIAL_NAM>
+                        <xsl:value-of select="MIDDLE_INITIAL_NAM"/>
+                    </MIDDLE_INITIAL_NAM>
+					<DEATH_DT>
+                        <xsl:value-of select="DEATH_DT"/>
+                    </DEATH_DT>
+                </INDIVIDUAL_DEMOGRAPHIC>
+            </xsl:for-each>
+            </INDIVIDUAL_DEMOGRAPHICS>
+            <CASES>
+               <xsl:for-each select="CASES/CASE">
+               <xsl:sort order="ascending" select="CASE_NUM"/>
+                <CASE>
+                    <CASE_NUM>
+                        <xsl:value-of select="CASE_NUM"/>
+                    </CASE_NUM>
+                    <INDIVIDUALS>
+                       <xsl:for-each select="INDIVIDUALS/INDIVIDUAL">
+                       <xsl:sort order="ascending" select="PIN_NUM"/>
+                        <INDIVIDUAL>
+                            <PRIMARY_PERSON_SW>
+                                <xsl:value-of select="PRIMARY_PERSON_SW"/>
+                            </PRIMARY_PERSON_SW>
+                            <PIN_NUM>
+                                <xsl:value-of select="PIN_NUM"/>
+                            </PIN_NUM>
+							<CASE_CLOSURE_DT>
+                                <xsl:value-of select="CASE_CLOSURE_DT"/>
+                            </CASE_CLOSURE_DT>                            
+                        </INDIVIDUAL>
+                       </xsl:for-each>
+                    </INDIVIDUALS>
+                    <ELIGIBILITY>
+                        <INDV_ELIG_DETAILS>
+                            <xsl:for-each select="ELIGIBILITY/INDV_ELIG_DETAILS/INDV_ELIG_DETAIL">
+                            <xsl:sort order="ascending" select="CAT_CD"/>
+                            <xsl:sort order="descending" select="CNFM_IND"/>
+                            <xsl:sort order="ascending" select="PYMT_BEG_DT"/>
+                            <xsl:sort order="ascending" select="ELIG_IND"/>
+                            <xsl:sort order="ascending" select="SCAT_CD"/>
+                            <xsl:sort order="ascending" select="ELIG_END_DT"/>
+							<xsl:sort order="ascending" select="BNFT_PIN_NUM"/>
+							<INDV_ELIG_DETAIL>
+							    <CASE_NUM>
+                                    <xsl:value-of select="../../../CASE_NUM"/>
+                            	</CASE_NUM>
+								<CAT_CD>
+									<xsl:value-of select="CAT_CD"/>
+                                </CAT_CD>
+                                <SCAT_CD>
+	                                 <xsl:value-of select="SCAT_CD"/>
+	                            </SCAT_CD>
+                                <CNFM_IND>
+	                                <xsl:value-of select="CNFM_IND"/>
+                                </CNFM_IND>
+                                <BNFT_PGM_CD>
+                                    <xsl:value-of select="BNFT_PGM_CD"/>
+                                </BNFT_PGM_CD>
+                                <BNFT_SPGM_CD>
+                                    <xsl:value-of select="BNFT_SPGM_CD"/>
+                                </BNFT_SPGM_CD>
+								<SCAT_SEQ_NUM>
+									<xsl:value-of select="SCAT_SEQ_NUM"/>
+								</SCAT_SEQ_NUM>
+								<PYMT_BEG_DT>
+                                    <xsl:value-of select="PYMT_BEG_DT"/>
+                                </PYMT_BEG_DT>
+                                <PYMT_END_DT>
+                                    <xsl:value-of select="PYMT_END_DT"/>
+                                </PYMT_END_DT>                                
+                                <CUR_ELIG_IND>
+                                    <xsl:value-of select="CUR_ELIG_IND"/>
+                                </CUR_ELIG_IND>
+								<ELIG_END_DT>
+									<xsl:value-of select="ELIG_END_DT"/>
+								</ELIG_END_DT>
+								<ELIG_BEG_DT>
+									<xsl:value-of select="ELIG_BEG_DT"/>
+								</ELIG_BEG_DT>
+								<BNFT_STS_CD>
+									<xsl:value-of select="BNFT_STS_CD"/>
+								</BNFT_STS_CD>
+                                <BNFT_STS_RSN_1_CD>
+                                    <xsl:value-of select="BNFT_STS_RSN_1_CD"/>
+                                </BNFT_STS_RSN_1_CD>
+                                <BNFT_STS_RSN_2_CD>
+                                    <xsl:value-of select="BNFT_STS_RSN_2_CD"/>
+                                </BNFT_STS_RSN_2_CD>
+                                <BNFT_STS_RSN_3_CD>
+                                    <xsl:value-of select="BNFT_STS_RSN_3_CD"/>
+                                </BNFT_STS_RSN_3_CD>
+								<SMIRF_MO>
+									<xsl:value-of select="SMIRF_MO"/>
+								</SMIRF_MO>
+								<VFCN_DUE_DT>
+									<xsl:value-of select="VFCN_DUE_DT"/>
+								</VFCN_DUE_DT>
+								<INS_VFCN_DUE_DT>
+									<xsl:value-of select="INS_VFCN_DUE_DT"/>
+								</INS_VFCN_DUE_DT>
+								<EMPL_VFCN_DUE_DT>
+									<xsl:value-of select="EMPL_VFCN_DUE_DT"/>
+								</EMPL_VFCN_DUE_DT>
+								<BNFT_PIN_NUM>
+									<xsl:value-of select="BNFT_PIN_NUM"/>
+								</BNFT_PIN_NUM>
+								<ELIG_IND>
+									<xsl:value-of select="ELIG_IND"/>
+								</ELIG_IND>
+								<MSG_CODES>
+									<xsl:value-of select="MSG_CODES"/>
+								</MSG_CODES>
+								<PYMT_AMT>
+                                    <xsl:value-of select="PYMT_AMT"/>
+                                </PYMT_AMT>								
+                            </INDV_ELIG_DETAIL>
+                          </xsl:for-each>
+                        </INDV_ELIG_DETAILS>
+                    </ELIGIBILITY>
+                </CASE>
+              </xsl:for-each>
+            </CASES>
+        </REFRESHRESULTSET>
+    </xsl:template>
+</xsl:stylesheet>

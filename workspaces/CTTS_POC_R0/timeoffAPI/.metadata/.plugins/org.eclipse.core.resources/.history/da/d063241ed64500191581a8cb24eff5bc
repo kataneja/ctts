@@ -1,0 +1,333 @@
+package gov.wisconsin.framework.bean.impl;
+
+import gov.wisconsin.framework.base.FwBaseClass;
+import gov.wisconsin.framework.base.IConfiguration;
+import gov.wisconsin.framework.constant.FwConstants;
+import gov.wisconsin.framework.exception.FwExceptionManager;
+import gov.wisconsin.framework.impl.FwRequestWrapper;
+import gov.wisconsin.framework.management.FwConfigurationManager;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.UUID;
+
+import javax.jms.Message;
+import javax.jms.Queue;
+import javax.jms.QueueConnection;
+import javax.jms.QueueConnectionFactory;
+import javax.jms.QueueSender;
+import javax.jms.QueueSession;
+import javax.naming.Context;
+import javax.naming.InitialContext;
+import javax.rmi.PortableRemoteObject;
+
+import org.springframework.web.servlet.HandlerMapping;
+
+public final class FwActivityBean extends FwBaseClass {
+
+	private String wid;
+	private String sessionID;
+	private String subSystem;
+  	private String requestID;
+  	private String urlTemplate;
+	private String incomingTime;
+  	private String outgoingTime;
+	private String requestedResource;
+
+	private static final String QUEUE_DELIMITER = "#";
+
+	private static Queue queue                = null;
+	private static QueueConnectionFactory qcf = null;
+	
+	private static IConfiguration configurationManager = null;
+	
+	public FwActivityBean() {
+		if (configurationManager == null) {
+			configurationManager = FwConfigurationManager.getInstance();
+		}
+		
+		if (queue == null || qcf == null) {
+			Context ctx = null;
+			String qcfName   = configurationManager.getSpringProperty(FwConstants.ACTIVITY_QCF);
+			String queueName = configurationManager.getSpringProperty(FwConstants.ACTIVITY_QUEUE);
+			
+			try {
+				if(configurationManager.getSpringProperty(FwConstants.ACTIVITY_TIMER_WRITE_TO_MQ).equals(FwConstants.ON)) {
+					if (configurationManager.getSpringProperty(FwConstants.ACTIVITY_TIMER).equals(FwConstants.ON)) {
+						ctx   = new InitialContext();
+						queue = (Queue) PortableRemoteObject.narrow(ctx.lookup(queueName), Queue.class);
+						qcf   = (QueueConnectionFactory) PortableRemoteObject.narrow(ctx.lookup(qcfName), QueueConnectionFactory.class);
+					}
+				}
+			} catch (Exception e) {
+				configurationManager.turnOffActivityMQSwitch();
+				FwExceptionManager.handleException(this.getClass(), e, FwConstants.EXP_TYP_MESSAGING);
+			}
+		}
+	}
+	
+	public void handleIncomingActivity(FwRequestWrapper request) {
+		try {
+			incomingTime = formatDate(System.currentTimeMillis());
+			requestedResource = request.getRequestURL().toString();
+			handleOtherData(request);
+		}
+		catch (Exception e) {
+			FwExceptionManager.handleException(this.getClass(), e);
+		}
+	}
+
+	public void handleOutgoingActivity(FwRequestWrapper request) {
+		try {
+			Object urlTemplateAttribute = request.getAttribute(HandlerMapping.BEST_MATCHING_PATTERN_ATTRIBUTE);
+			if (urlTemplateAttribute != null) {
+				urlTemplate = ((String) urlTemplateAttribute).substring(1);
+			}
+			
+			outgoingTime = formatDate(System.currentTimeMillis());
+			handleOtherData(request);
+			logActivity();
+		}
+		catch (Exception e) {
+			FwExceptionManager.handleException(this.getClass(), e);
+		}
+	}
+
+	private void handleOtherData(FwRequestWrapper request) {
+		handleRequestID(request);
+		handleSubSystem();
+		handleWID(request);
+		
+		if (sessionID == null) {
+			sessionID = request.getSession().getId();
+		}
+	}
+	
+	private void handleWID(FwRequestWrapper request) {
+		String widHeaderValue = request.getHeader(FwConstants.PAYLOAD_HEADER_WID);
+		
+		if (widHeaderValue != null) {
+			wid = widHeaderValue;
+		}
+		
+		if (wid == null) {
+			wid = FwConstants.EMPTY_STRING;
+		}
+	}
+	
+	private void handleSubSystem() {
+		subSystem = "???";
+
+		if (requestedResource.contains(FwConstants.URL_APPLICATION)) {
+			String urlSuffix = requestedResource.substring(requestedResource.indexOf(FwConstants.URL_APPLICATION) + 5);
+			
+			int slashIndex = urlSuffix.indexOf("/");
+			String controller = (slashIndex != -1) ? "/" + urlSuffix.substring(0, slashIndex) : urlSuffix;
+			
+			switch (controller) {
+				case FwConstants.URL_CONTROLLER_EXAMPLE:
+					subSystem = "XXX";
+					break;
+			}
+		}
+	}
+	
+	private void handleRequestID(FwRequestWrapper request) {
+		if (this.requestID == null) {
+			this.requestID = UUID.randomUUID().toString();
+			request.setAttribute(FwConstants.PAYLOAD_REQUESTID, this.requestID);
+		}
+	}
+	
+	public void logActivity() {
+		QueueConnection qc = null;
+		QueueSender queueSender = null;
+		QueueSession queueSession = null;
+		
+		try {
+			if (configurationManager.getSpringProperty(FwConstants.ACTIVITY_TIMER).equals(FwConstants.ON)) {
+				if(configurationManager.getSpringProperty(FwConstants.ACTIVITY_TIMER_WRITE_TO_MQ).equals(FwConstants.ON)) {
+					qc = qcf.createQueueConnection();
+					queueSession = qc.createQueueSession(false, QueueSession.AUTO_ACKNOWLEDGE);
+					queueSender = queueSession.createSender(queue);
+
+					String convertedLog = convertLogTOMQEntry(this.toString());
+					Message message = queueSession.createTextMessage(convertedLog);
+
+					queueSender.send(message);
+				} else {
+					activityLogger.info(this.toString());
+				}
+			}
+		} catch (Exception e) {
+			FwExceptionManager.handleException(this.getClass(), e, FwConstants.EXP_TYP_MESSAGING);
+		} finally {
+			if(qc != null) {
+				try {
+					queueSender.close();
+					queueSession.close();
+					qc.close();
+				} catch(Exception e){
+					FwExceptionManager.handleException(this.getClass(), e, FwConstants.EXP_TYP_MESSAGING);
+				}
+			}
+		}
+	}
+	
+	private String formatDate(long time) {
+		return new SimpleDateFormat(FwConstants.ACTIVITY_DATE_FORMAT).format(new Date(time));
+	}
+
+	public String getSubSystem() {
+		return subSystem;
+	}
+
+	public void setSubSystem(String subSystem) {
+		this.subSystem = subSystem;
+	}
+	
+	public String getIncomingTime() {
+		return incomingTime;
+	}
+
+	public void setIncomingTime(String incomingTime) {
+		this.incomingTime = incomingTime;
+	}
+
+	public String getOutgoingTime() {
+		return outgoingTime;
+	}
+
+	public void setOutgoingTime(String outgoingTime) {
+		this.outgoingTime = outgoingTime;
+	}
+
+	public String getRequestedResource() {
+		return requestedResource;
+	}
+
+	public void setRequestedResource(String requestedResource) {
+		this.requestedResource = requestedResource;
+	}
+	
+  	public String getRequestID() {
+		return requestID;
+	}
+
+	public void setRequestID(String requestID) {
+		this.requestID = requestID;
+	}
+	
+	public String getWid() {
+		return wid;
+	}
+
+	public void setWid(String wid) {
+		this.wid = wid;
+	}
+	
+  	public String getSessionID() {
+		return sessionID;
+	}
+
+	public void setSessionID(String sessionID) {
+		this.sessionID = sessionID;
+	}
+	
+	public String getUrlTemplate() {
+		return urlTemplate;
+	}
+
+	public void setUrlTemplate(String urlTemplate) {
+		this.urlTemplate = urlTemplate;
+	}
+	
+	/**
+	 *	This converts the Access Mobile Activity log format into the format expected by the
+	 *	ACCESS Online Activity Timer queue. This allows mobile to record mobile-specific data
+	 *	in the log files, but reuse the existing ACCESS Online Activity Timer resources for
+	 *	persisting to queue and database.
+	 */
+	public static String convertLogTOMQEntry(String logLine) {
+		StringBuffer sb = new StringBuffer();
+		
+		try {
+			IConfiguration configurationManager = FwConfigurationManager.getInstance();
+
+			String[] parts = logLine.replaceAll(FwConstants.COMMA, FwConstants.EMPTY_STRING).split(FwConstants.SPACE);
+			
+			String logURI = configurationManager.getCodeForURL(parts[5]);
+			if (logURI == null) { logURI = FwConstants.EMPTY_STRING; } 
+			
+			/**
+			 *	Get individual pieces from the split log line 
+			 */
+			String logWID = parts[9].substring(0, parts[9].length());
+			String logSubSystem = parts[7].substring(0, parts[7].length());
+			String logIncomingTime = parts[11] + FwConstants.HYPHEN + parts[12].substring(0, parts[12].length());
+			String logOutgoingTime = parts[14] + FwConstants.HYPHEN + parts[15].substring(0, parts[15].length());
+			String logSessionID = parts[17];
+			
+			/**
+			 *	Ensure times have 6 digits for milliseconds
+			 */
+			logIncomingTime = padTimeToSixDigitMilliseconds(logIncomingTime);
+			logOutgoingTime = padTimeToSixDigitMilliseconds(logOutgoingTime);
+			
+			/**
+			 * 	Create MQ String format											     OLD VALUE		   	 | NEW VALUE
+			 */																	/**  ---------------------------------------  */
+			sb.append(logSessionID).append(QUEUE_DELIMITER);		            /**  sessionID		    -->  sessionID		  */
+			sb.append(FwConstants.EMPTY_STRING).append(QUEUE_DELIMITER);		/**  trackingNumber      |					  */
+			sb.append(logSubSystem).append(QUEUE_DELIMITER);					/**  subSystem		    -->  subSystem		  */
+			sb.append(logURI).append(QUEUE_DELIMITER);							/**  incomingPageID	    -->  urlTemplate Code */
+			sb.append(FwConstants.EMPTY_STRING).append(QUEUE_DELIMITER);		/**  incomingPageAction  |					  */
+			sb.append(logIncomingTime).append(QUEUE_DELIMITER);					/**  incomingStartTime  -->  incomingTime	  */
+			sb.append(logIncomingTime).append(QUEUE_DELIMITER);					/**  incomingEndTime    -->  incomingTime     */
+			sb.append(logURI).append(QUEUE_DELIMITER);							/**  outgoingPageID	    -->  urlTemplate Code */
+			sb.append(FwConstants.EMPTY_STRING).append(QUEUE_DELIMITER);		/**  outgoingPageAction  |					  */
+			sb.append(logOutgoingTime).append(QUEUE_DELIMITER);					/**  outgoingStartTime  -->  outgoingTime	  */
+			sb.append(logOutgoingTime).append(QUEUE_DELIMITER);					/**  outgoingEndTime	-->  outgoingTime     */
+			sb.append(FwConstants.EMPTY_STRING).append(QUEUE_DELIMITER);		/**  langInd             |					  */
+			sb.append(logWID);													/**  wid                -->  wid			  */
+		}
+		catch (Exception e) {
+			FwExceptionManager.handleException(FwActivityBean.class, e);
+		}
+		
+		return sb.toString();
+	}
+	
+	private static String padTimeToSixDigitMilliseconds(String originalTime) {
+		int lastDecimalIndex = originalTime.lastIndexOf(FwConstants.DOT);
+		
+		String start = originalTime.substring(0, lastDecimalIndex);
+		String milliseconds = originalTime.substring(lastDecimalIndex + 1);
+		String modifiedMilliseconds = milliseconds;
+		
+		int currentLength = milliseconds.length();
+		if (currentLength < 6) {
+			int padAmount = 6 - currentLength;
+			for (int i = 0; i < padAmount; i++) {
+				modifiedMilliseconds += "0";
+			}
+		}
+		
+		return start + FwConstants.DOT + modifiedMilliseconds;
+	}
+	
+	@Override
+	public String toString() {
+		StringBuffer sb = new StringBuffer();
+		
+		sb.append("requestID: ").append(requestID == null ? FwConstants.EMPTY_STRING : requestID).append(FwConstants.ACTIVITY_DELIMITER);
+		sb.append("requestedResource: ").append(requestedResource == null ? FwConstants.EMPTY_STRING : requestedResource).append(FwConstants.ACTIVITY_DELIMITER);
+		sb.append("urlTemplate: ").append(urlTemplate == null ? FwConstants.EMPTY_STRING : urlTemplate).append(FwConstants.ACTIVITY_DELIMITER);
+		sb.append("subSystem: ").append(subSystem == null ? FwConstants.EMPTY_STRING : subSystem).append(FwConstants.ACTIVITY_DELIMITER);
+		sb.append("wid: ").append(wid == null ? FwConstants.EMPTY_STRING : wid).append(FwConstants.ACTIVITY_DELIMITER);
+		sb.append("incomingTime: ").append(incomingTime == null ? FwConstants.EMPTY_STRING : incomingTime).append(FwConstants.ACTIVITY_DELIMITER);
+		sb.append("outgoingTime: ").append(outgoingTime == null ? FwConstants.EMPTY_STRING : outgoingTime).append(FwConstants.ACTIVITY_DELIMITER);
+		sb.append("sessionID: ").append(sessionID == null ? FwConstants.EMPTY_STRING : sessionID);
+		return sb.toString();
+	}
+}

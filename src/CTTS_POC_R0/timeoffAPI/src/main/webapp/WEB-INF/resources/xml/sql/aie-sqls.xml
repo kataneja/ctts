@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<selectsql>
+
+	<sql id="sql-1" value="SELECT NEXT_CNTL_NUM FROM ~SCHEMA~CNTL_NUM WHERE CNTL_CD=?" type="static" sqlType="select" />
+	<sql id="sql-2" value="SELECT NEXT_CNTL_NUM FROM ~SCHEMA~CNTL_NUM" type="static" sqlType="select" />
+	<sql id="sql-3" value="SELECT MAX(CMT_SEQ_NUM) AS SEQUENCE FROM ~SCHEMA~HSHL_CMT" type="static" sqlType="select" />
+	<sql id="sql-4" value="SELECT PRSN_CT FROM ~SCHEMA~HSHL WHERE HSHL_ID = ?" type="static" sqlType="select" />
+	<sql id="sql-5" value="SELECT COUNT(INDV_ID) AS INDV_CT FROM ~SCHEMA~GRP_INDV WHERE HSHL_ID = ? AND INDV_PTCP_CD IN ('FM2','FM3','FM4')" type="static" sqlType="select" />
+	<sql id="sql-7" value="SELECT TRB_CD FROM ~SCHEMA~HSHL WHERE HSHL_ID = ? AND TRB_CD != '' AND TRB_CD IS NOT NULL" type="static" sqlType="select" />
+	<sql id="sql-8" value="SELECT DISTINCT A.HSHL_ID, A.GRP_ID, A.GRP_TYP, C.ELG_CD, B.INDV_PTCP_CD, C.PRIR_SRVC_FLG, C.BNFT_AMT FROM ~SCHEMA~HSHL_GRP A, ~SCHEMA~GRP_INDV B, ~SCHEMA~FS_ELG C WHERE (A.HSHL_ID=? AND A.GRP_TYP='FS' AND C.ELG_CD='E') AND (A.HSHL_ID=B.HSHL_ID AND A.GRP_ID=B.GRP_ID) AND (A.HSHL_ID=C.HSHL_ID AND A.GRP_ID=C.GRP_ID) ORDER BY B.INDV_PTCP_CD" type="static" sqlType="select" />
+	<sql id="sql-10" value="SELECT DISTINCT A.INDV_ID FROM ~SCHEMA~HSHL_INDV A, ~SCHEMA~INDV_INCM B WHERE A.INDV_ID = B.INDV_ID AND A.HSHL_ID = ? AND A.INDV_AGE > 64 AND B.INCM_TYP = 'SSI'" type="static" sqlType="select" />
+	<sql id="sql-11" value="SELECT DISTINCT A.HSHL_ID, A.GRP_ID, A.GRP_TYP, D.ELG_CD, B.INDV_ID, B.INDV_PTCP_CD, C.FST_NAM FROM ~SCHEMA~HSHL_GRP A, ~SCHEMA~GRP_INDV B, ~SCHEMA~HSHL_INDV C, ~SCHEMA~FAM_MA_ELG D WHERE (A.HSHL_ID=? AND A.GRP_TYP='FMA' AND D.ELG_CD='E') AND (A.HSHL_ID=B.HSHL_ID AND A.GRP_ID=B.GRP_ID) AND (A.HSHL_ID=D.HSHL_ID AND A.GRP_ID=D.GRP_ID) AND (B.HSHL_ID=C.HSHL_ID AND B.INDV_ID=C.INDV_ID) ORDER BY B.INDV_PTCP_CD" type="static" sqlType="select" />
+	<sql id="sql-12" value="SELECT DISTINCT A.HSHL_ID, A.GRP_ID, A.GRP_TYP, D.ELG_CD, B.INDV_ID, B.INDV_PTCP_CD, C.FST_NAM, D.SPND_DOWN_AMT FROM ~SCHEMA~HSHL_GRP A, ~SCHEMA~GRP_INDV B, ~SCHEMA~HSHL_INDV C, ~SCHEMA~SNR_CARE_ELG D WHERE (A.HSHL_ID=? AND A.GRP_TYP='SC' AND D.ELG_CD='E') AND (A.HSHL_ID=B.HSHL_ID AND A.GRP_ID=B.GRP_ID) AND (A.HSHL_ID=D.HSHL_ID AND A.GRP_ID=D.GRP_ID) AND (B.HSHL_ID=C.HSHL_ID AND B.INDV_ID=C.INDV_ID) ORDER BY B.INDV_PTCP_CD, A.GRP_ID" type="static" sqlType="select" />
+	<sql id="sql-13" value="SELECT GRP_ID FROM ~SCHEMA~HSHL_GRP WHERE HSHL_ID = ? AND GRP_TYP = 'FMA'" type="static" sqlType="select" />
+	<sql id="sql-14" value="SELECT A.INDV_ID, A.FST_NAM FROM ~SCHEMA~HSHL_INDV A, ~SCHEMA~GRP_INDV B WHERE A.HSHL_ID = B.HSHL_ID AND A.INDV_ID = B.INDV_ID AND A.HSHL_ID = ? AND A.GNDR_CD = 'F' AND A.INDV_AGE BETWEEN 15 AND 45 AND B.INDV_PTCP_CD IN ('FM3','FM4')" type="static" sqlType="select" />
+	<sql id="sql-15" value="SELECT A.HSHL_ID, A.GRP_ID, A.GRP_TYP, B.ELG_CD FROM ~SCHEMA~HSHL_GRP A, ~SCHEMA~FS_ELG B WHERE (A.HSHL_ID=? AND A.GRP_TYP='FS' AND B.ELG_CD='E') AND (A.HSHL_ID=B.HSHL_ID AND A.GRP_ID=B.GRP_ID)" type="static" sqlType="select" />
+	<sql id="sql-16" value="SELECT A.HSHL_ID, A.GRP_ID, A.GRP_TYP, B.ELG_CD FROM ~SCHEMA~HSHL_GRP A, ~SCHEMA~FAM_MA_ELG B WHERE (A.HSHL_ID=? AND A.GRP_TYP='FMA' AND B.ELG_CD='E') AND (A.HSHL_ID=B.HSHL_ID AND A.GRP_ID=B.GRP_ID)" type="static" sqlType="select" />
+	<sql id="sql-17" value="SELECT A.HSHL_ID, A.GRP_ID, A.GRP_TYP, B.ELG_CD FROM ~SCHEMA~HSHL_GRP A, ~SCHEMA~SNR_CARE_ELG B WHERE (A.HSHL_ID=? AND A.GRP_TYP='SC' AND B.ELG_CD='E') AND (A.HSHL_ID=B.HSHL_ID AND A.GRP_ID=B.GRP_ID)" type="static" sqlType="select" />
+	<sql id="sql-18" value="SELECT CNTY_CD FROM ~SCHEMA~HSHL WHERE HSHL_ID = ? AND CNTY_CD != '' AND CNTY_CD IS NOT NULL" type="static" sqlType="select" />
+	<sql id="sql-19" value="SELECT TRB_CD FROM ~SCHEMA~HSHL WHERE HSHL_ID = ? AND TRB_CD IN ('085','088','092')" type="static" sqlType="select" />
+	<sql id="sql-20" value="SELECT CNTY_CD FROM ~SCHEMA~HSHL WHERE HSHL_ID = ? AND CNTY_CD NOT IN ('998','999')" type="static" sqlType="select" />
+	<sql id="sql-21" value="DELETE FROM ~SCHEMA~HSHL_EXP WHERE HSHL_ID = ?" type="static" sqlType="persist" />
+	<sql id="sql-22" value="DELETE FROM ~SCHEMA~INDV_INCM WHERE HSHL_ID = ?" type="static" sqlType="persist" />
+	<sql id="sql-23" value="DELETE FROM ~SCHEMA~INDV_EXP WHERE HSHL_ID = ?" type="static" sqlType="persist" />
+	<sql id="sql-24" value="DELETE FROM ~SCHEMA~INDV_DGRPH WHERE HSHL_ID = ?" type="static" sqlType="persist" />
+	<sql id="sql-25" value="DELETE FROM ~SCHEMA~INDV_FNC WHERE HSHL_ID = ?" type="static" sqlType="persist" />
+	<sql id="sql-26" value="DELETE FROM ~SCHEMA~HSHL_RLT WHERE HSHL_ID = ?" type="static" sqlType="persist" />
+	<sql id="sql-27" value="DELETE FROM ~SCHEMA~SNR_CARE_ELG WHERE HSHL_ID = ?" type="static" sqlType="persist" />
+	<sql id="sql-28" value="DELETE FROM ~SCHEMA~FS_ELG WHERE HSHL_ID = ?" type="static" sqlType="persist" />
+	<sql id="sql-29" value="DELETE FROM ~SCHEMA~FAM_MA_ELG WHERE HSHL_ID = ?" type="static" sqlType="persist" />
+	<sql id="sql-30" value="DELETE FROM ~SCHEMA~HSHL_GRP WHERE HSHL_ID = ?" type="static" sqlType="persist" />
+	<sql id="sql-31" value="DELETE FROM ~SCHEMA~HSHL_INDV WHERE HSHL_ID = ?" type="static" sqlType="persist" />  
+	<sql id="sql-32" value="DELETE FROM ~SCHEMA~GRP_INDV WHERE HSHL_ID = ?" type="static" sqlType="persist" />
+	<sql id="sql-33" value="DELETE FROM ~SCHEMA~HSHL WHERE HSHL_ID = ?" type="static" sqlType="persist" />
+	<sql id="sql-34" value="SELECT A.INDV_ID,A.FST_NAM,A.INDV_AGE,A.GNDR_CD,B.PREG_FLG,B.DABL_FLG,C.EI_FLG,C.UEI_FLG FROM (~SCHEMA~HSHL_INDV A LEFT OUTER JOIN ~SCHEMA~INDV_DGRPH B ON A.INDV_ID=B.INDV_ID AND A.HSHL_ID=B.HSHL_ID) LEFT OUTER JOIN ~SCHEMA~INDV_FNC C ON A.INDV_ID=C.INDV_ID AND A.HSHL_ID=C.HSHL_ID WHERE A.HSHL_ID=?" type="static" /> 
+	<sql id="sql-35" value="SELECT INDV_ID,RLT_INDV_ID,RLT_CD FROM ~SCHEMA~HSHL_RLT WHERE HSHL_ID=?" type="static" />
+	<sql id="sql-36" value="UPDATE ~SCHEMA~CNTL_NUM SET NEXT_CNTL_NUM=NEXT_CNTL_NUM+1 WHERE CNTL_CD=?" type="static" sqlType="persist"/> 
+	<sql id="sql-37" value="COMMIT" type="static" sqlType="persist"/>
+	<sql id="sql-38" value="DELETE FROM ~SCHEMA~INDV_EBD WHERE HSHL_ID = ?" type="static" sqlType="persist" /> 
+	<sql id="sql-39" value="DELETE FROM ~SCHEMA~INDV_ASET WHERE HSHL_ID = ?" type="static" sqlType="persist" />
+	<sql id="sql-40" value="DELETE FROM ~SCHEMA~INDV_RSRC WHERE HSHL_ID = ?" type="static" sqlType="persist" />
+	<sql id="sql-41" value="DELETE FROM ~SCHEMA~EBD_ELG WHERE HSHL_ID = ?" type="static" sqlType="persist" />
+	<sql id="sql-42" value="DELETE FROM ~SCHEMA~FPW_ELG WHERE HSHL_ID = ?" type="static" sqlType="persist" />
+	<sql id="sql-43" value="DELETE FROM ~SCHEMA~LTC_ELG WHERE HSHL_ID = ?" type="static" sqlType="persist" />
+	<sql id="sql-44" value="DELETE FROM ~SCHEMA~MPA_ELG WHERE HSHL_ID = ?" type="static" sqlType="persist" />
+	<sql id="sql-45" value="DELETE FROM ~SCHEMA~SBL_ELG WHERE HSHL_ID = ?" type="static" sqlType="persist" />
+	<sql id="sql-46" value="DELETE FROM ~SCHEMA~SFSP_ELG WHERE HSHL_ID = ?" type="static" sqlType="persist" />
+	<sql id="sql-47" value="DELETE FROM ~SCHEMA~SSI_ELG WHERE HSHL_ID = ?" type="static" sqlType="persist" />
+	<sql id="sql-48" value="DELETE FROM ~SCHEMA~TAX_CR_ELG WHERE HSHL_ID = ?" type="static" sqlType="persist" />
+	<sql id="sql-49" value="DELETE FROM ~SCHEMA~TEFAP_ELG WHERE HSHL_ID = ?" type="static" sqlType="persist" />
+	<sql id="sql-50" value="DELETE FROM ~SCHEMA~WICP_ELG WHERE HSHL_ID = ?" type="static" sqlType="persist" />
+	<sql id="sql-51" value="SELECT PAGE_DSC FROM ~SCHEMA~PAGE WHERE PAGE_ID=?"  type="static" />
+	<sql id="sql-52" value="DELETE FROM ~SCHEMA~MEDCR_PARTD_ELG WHERE HSHL_ID = ?" type="static" sqlType="persist" />
+	<sql id="sql-53" value="DELETE FROM ~SCHEMA~WHEAP_ELG WHERE HSHL_ID = ?" type="static" sqlType="persist" />
+	<sql id="sql-100" value="SELECT HSHL_ID,INDV_ID,EI_FLG,UEI_FLG FROM ~SCHEMA~INDV_FNC WHERE HSHL_ID=?" type="static" />
+	<sql id="sql-101" value="SELECT HSHL_ID,INDV_ID,EI_FLG,UEI_FLG FROM ~SCHEMA~INDV_FNC WHERE HSHL_ID=? AND EI_FLG=?" type="static" />
+	<sql id="sql-102" value="SELECT HSHL_ID,INDV_ID,EI_FLG,UEI_FLG FROM ~SCHEMA~INDV_FNC WHERE HSHL_ID=? AND UEI_FLG=?" type="static" />
+	<sql id="sql-103" value="SELECT HSHL_ID,INDV_ID,FST_NAM,GNDR_CD,INDV_AGE FROM ~SCHEMA~HSHL_INDV WHERE HSHL_ID=? AND INDV_AGE=?" type="static" />
+	<sql id="sql-104" value="SELECT CNTY_CD,TRB_CD FROM ~SCHEMA~HSHL WHERE HSHL_ID=?"  type="static" />
+	<sql id="sql-105" value="SELECT HSHL_ID,CHLD_CT,PRSN_CT,HEAT_BILL_FLG,CNTY_CD,TRB_CD FROM ~SCHEMA~HSHL WHERE HSHL_ID=?" type="static" />
+	<sql id="sql-106" value="SELECT HSHL_ID,EXP_TYP,EXP_AMT FROM ~SCHEMA~HSHL_EXP WHERE HSHL_ID=? AND EXP_TYP=?"  type="static" />
+	<sql id="sql-107" value="SELECT HSHL_ID,HEAT_BILL_FLG FROM ~SCHEMA~HSHL WHERE HSHL_ID=?" type="static" />
+	<sql id="sql-108" value="SELECT HSHL_ID,INDV_ID,EXP_TYP,EXP_AMT FROM ~SCHEMA~INDV_EXP WHERE HSHL_ID=? AND EXP_TYP IN('CHC','CHS')" type="static" />
+	<sql id="sql-109" value="SELECT HSHL_ID,INDV_ID,SUM(WAGE_AMT) FROM ~SCHEMA~INDV_INCM WHERE HSHL_ID=? AND INCM_TYP=?"  type="static" />
+	<sql id="sql-110" value="SELECT HSHL_ID,INDV_ID,EXP_TYP,SUM(EXP_AMT) FROM ~SCHEMA~INDV_EXP WHERE HSHL_ID=? AND EXP_TYP=?"  type="static" />
+	<sql id="sql-111" value="SELECT HSHL_ID,INDV_ID,INCM_TYP,WAGE_FREQ_CD,WAGE_RT,WK_HRS_CT FROM ~SCHEMA~INDV_INCM WHERE HSHL_ID=? AND INCM_TYP IN('JB1','JB2','JB3','JB4')"  type="static" />
+	<sql id="sql-112" value="SELECT HSHL_ID,INDV_ID,INCM_TYP,WAGE_FREQ_CD,WAGE_RT,WK_HRS_CT FROM ~SCHEMA~INDV_INCM WHERE HSHL_ID=? AND INCM_TYP IN('SSI','SSD','SS','CHS','UNE','OTH')"  type="static" />
+	<sql id="sql-113" value="SELECT HSHL_ID,INDV_ID,DABL_FLG,PREG_FLG FROM ~SCHEMA~INDV_DGRPH WHERE HSHL_ID=? AND DABL_FLG=? "  type="static" />
+	<sql id="sql-114" value="DELETE FROM ~SCHEMA~INDV_INCM WHERE HSHL_ID=? AND INCM_TYP IN('JB1','JB2','JB3','JB4')"  type="static" sqlType="persist"/>
+	<sql id="sql-115" value="DELETE FROM ~SCHEMA~INDV_INCM WHERE HSHL_ID=? AND INCM_TYP IN('SSI','SS', 'SSD' ,'CHS','UNE','OTH')"  type="static" sqlType="persist" />
+	<sql id="sql-116" value="DELETE FROM ~SCHEMA~INDV_EXP WHERE HSHL_ID=? "  type="static"  sqlType="persist"/>
+	<sql id="sql-117" value="DELETE FROM ~SCHEMA~HSHL_EXP WHERE HSHL_ID=? "  type="static" sqlType="persist" />
+	<sql id="sql-118" value="DELETE FROM ~SCHEMA~INDV_INCM WHERE HSHL_ID=? "  type="static" sqlType="persist"/>
+	<sql id="sql-119" value="SELECT HSHL_ID,INDV_ID,EXP_TYP,EXP_AMT FROM ~SCHEMA~INDV_EXP WHERE HSHL_ID=? AND EXP_TYP IN('MED','LTC')" type="static" />
+	<sql id="sql-120" value="SELECT HSHL_ID,INDV_ID,INCM_TYP,WAGE_FREQ_CD,WAGE_RT,WK_HRS_CT FROM ~SCHEMA~INDV_INCM WHERE HSHL_ID=?"  type="static" />
+	<sql id="sql-121" value="UPDATE ~SCHEMA~SES_AUD SET LANG_CD='ES' WHERE SES_ID=?" type="static" sqlType="persist"/>
+	<sql id="sql-122" value="DELETE FROM ~SCHEMA~INDV_HLTH_INS WHERE HSHL_ID = ?" type="static" sqlType="persist" />
+	<sql id="sql-123" value="DELETE FROM ~SCHEMA~CLA_ELG WHERE HSHL_ID = ?" type="static" sqlType="persist" />
+	<sql id="sql-124" value="DELETE FROM ~SCHEMA~HSHL_PRNT_ROLE WHERE HSHL_ID = ?" type="static" sqlType="persist" />
+	<sql id="sql-125" value="DELETE FROM ~SCHEMA~INDV_APRV_ACTV WHERE HSHL_ID = ?" type="static" sqlType="persist" />
+	<sql id="sql-126" value="DELETE FROM ~SCHEMA~CC_ELG WHERE HSHL_ID = ?" type="static" sqlType="persist" />
+	<sql id="sql-127" value="DELETE FROM ~SCHEMA~ST_LI_FUND_ELG WHERE HSHL_ID = ?" type="static" sqlType="persist" />
+	<sql id="sql-128" value="DELETE FROM ~SCHEMA~WW_ELG WHERE HSHL_ID = ?" type="static" sqlType="persist" />
+	<sql id="sql-129" value="DELETE FROM ~SCHEMA~HSHL_TAX_FILR WHERE HSHL_ID = ?" type="static" sqlType="persist" />
+	<sql id="sql-130" value="DELETE FROM ~SCHEMA~HSHL_TAX_DPND WHERE HSHL_ID = ?" type="static" sqlType="persist" />
+   	  
+</selectsql>

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<libraries:Library xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:libraries="http://www.ibm.com/websphere/appserver/schemas/5.0/libraries.xmi" xmi:id="Library_1506696425618" name="CTTSSharedLib" description="Jars needed on classpath">
+	<classPath>C:\MAVEN\.m2\testRepository\cttsSharedLib\spring-libs</classPath>
+	<classPath>C:\MAVEN\.m2\testRepository\cttsSharedLib\jms-libs</classPath>
+	<classPath>C:\MAVEN\.m2\testRepository\cttsSharedLib\jpa-libs</classPath>
+</libraries:Library>

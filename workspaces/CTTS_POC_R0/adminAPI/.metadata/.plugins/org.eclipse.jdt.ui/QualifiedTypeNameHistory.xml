@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?><qualifiedTypeNameHistroy>
+<fullyQualifiedTypeName name="gov.wisconsin.framework.data.AutoGenerate"/>
+<fullyQualifiedTypeName name="lombok.Builder"/>
+<fullyQualifiedTypeName name="gov.wisconsin.framework.base.JPAGenerator"/>
+<fullyQualifiedTypeName name="org.springframework.beans.factory.annotation.Value"/>
+<fullyQualifiedTypeName name="javax.naming.Context"/>
+<fullyQualifiedTypeName name="javax.inject.Scope"/>
+<fullyQualifiedTypeName name="org.springframework.context.annotation.Scope"/>
+<fullyQualifiedTypeName name="javax.persistence.Column"/>
+<fullyQualifiedTypeName name="java.util.Date"/>
+<fullyQualifiedTypeName name="com.fasterxml.jackson.databind.annotation.JsonDeserialize"/>
+<fullyQualifiedTypeName name="com.fasterxml.jackson.annotation.JsonFormat"/>
+<fullyQualifiedTypeName name="gov.wisconsin.admin.data.pojo.T019_T023_Staff_Security_Profile"/>
+<fullyQualifiedTypeName name="gov.wisconsin.admin.transport.response.GetStaffSecurityProfile"/>
+<fullyQualifiedTypeName name="gov.wisconsin.admin.data.pojo.T019_T023_Staff_Security_Profile_Cargo"/>
+<fullyQualifiedTypeName name="gov.wisconsin.framework.transport.FwResponse"/>
+<fullyQualifiedTypeName name="java.util.ListIterator"/>
+<fullyQualifiedTypeName name="java.util.Iterator"/>
+<fullyQualifiedTypeName name="gov.wisconsin.admin.data.pojo.T019_T023_Security_Profile_Response_Cargo"/>
+<fullyQualifiedTypeName name="java.util.List"/>
+</qualifiedTypeNameHistroy>

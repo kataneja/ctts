@@ -1,0 +1,31 @@
+!SESSION 2019-04-03 10:36:39.660 -----------------------------------------------
+eclipse.buildId=unknown
+java.fullversion=JRE 1.8.0 IBM J9 2.8 Windows 10 x86-32 20160106_284759 (JIT enabled, AOT enabled)
+J9VM - R28_20160106_1341_B284759
+JIT  - tr.r14.java_20151209_107110.02
+GC   - R28_20160106_1341_B284759
+J9CL - 20160106_284759
+BootLoader constants: OS=win32, ARCH=x86, WS=win32, NL=en_US
+Framework arguments:  -product com.ibm.rational.rad.product.v95.ide
+Command-line arguments:  -os win32 -ws win32 -arch x86 -product com.ibm.rational.rad.product.v95.ide
+
+!ENTRY com.ibm.rational.clearcase.rtc.UCMActivity 4 0 2019-04-03 10:36:41.523
+!MESSAGE FrameworkEvent ERROR
+!STACK 0
+org.osgi.framework.BundleException: Could not resolve module: com.ibm.rational.clearcase.rtc.UCMActivity [2721]
+  Unresolved requirement: Require-Bundle: com.rational.clearcase
+
+	at org.eclipse.osgi.container.Module.start(Unknown Source)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.incStartLevel(Unknown Source)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.incStartLevel(Unknown Source)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.doContainerStartLevel(Unknown Source)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.dispatchEvent(Unknown Source)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.dispatchEvent(Unknown Source)
+	at org.eclipse.osgi.framework.eventmgr.EventManager.dispatchEvent(Unknown Source)
+	at org.eclipse.osgi.framework.eventmgr.EventManager$EventThread.run(Unknown Source)
+
+!ENTRY com.ibm.datatools.core.http 1 0 2019-04-03 10:36:55.827
+!MESSAGE Embedded server started: [HTTP port: 56800, HTTPS port: 56801]
+
+!ENTRY com.ibm.datatools.core.http 1 0 2019-04-03 10:37:04.416
+!MESSAGE Embedded HTTP server stopped

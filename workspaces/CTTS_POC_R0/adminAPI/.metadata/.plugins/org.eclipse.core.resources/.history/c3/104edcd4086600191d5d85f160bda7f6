@@ -1,0 +1,5 @@
+package gov.wisconsin.admin.transport.response;
+
+public class GetStaffSecurityProfile {
+
+}
